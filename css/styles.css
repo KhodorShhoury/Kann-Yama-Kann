@@ -1,0 +1,192 @@
+*{
+    
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+:root{
+    --main-color:#ec9a2f;
+    --main-transition-duration:0.3s;
+    --main-padding-top:100px;
+    --main-padding-bottom:100px;
+    --paragraph-color:#666;
+    --black-color : #232D39;
+    --box-shadow-color : #ddd;
+    --grayish-color : #FAFAFA;
+    --main-overlay-color: rgba(0,0,0,0.5);
+}
+html{
+    scroll-behavior: smooth;
+}
+body{
+    font-family: "cairo",sans-serif; 
+    height: 300vh;
+}
+a{
+    text-decoration: none;
+}
+ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.container{
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+/* small */
+@media (min-width:768px){
+    .container{
+         width: 750px;
+    }
+}
+/* medium */
+@media (min-width:992px){
+    .container{
+         width: 970px;
+    }
+}
+/* large */
+@media (min-width:1200px){
+    .container{
+         width: 1170px;
+    }
+}
+
+/* animations */
+
+/* animations */
+/* end global rules */
+
+/* start header */
+.header{
+  width: 100%;
+  position: absolute;
+  z-index: 999;
+}
+.header.fixed{
+    position: fixed;
+    background-color: white;
+    -webkit-box-shadow: 0 0 10px var(--box-shadow-color);
+    -moz-box-shadow: 0 0 10px var(--box-shadow-color);
+    box-shadow: 0 0 10px var(--box-shadow-color);
+}
+.header .container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+}
+.header .container::after{
+    content: "";
+    width: calc(100% - 30px);
+    height: 1px;
+    background-color: white;
+    position: absolute;
+    bottom: 0;
+}
+.header .container .logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 72px;
+}
+@media(max-width:767px){
+.header .container .logo{
+    width: 100%;
+}
+}
+.header .container .logo img{
+    max-width: 100%;
+    max-height: 100%;
+}
+.header .container .main-nav{
+    display: flex;
+}
+@media (max-width: 767px) {
+    .header .main-nav {
+      margin: auto;
+    }
+  }
+.header .container .main-nav .nav-link a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 72px;
+    padding: 0px 25px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all var(--main-transition-duration);
+    position: relative;
+    overflow: hidden;
+}
+.header.fixed .container .main-nav .nav-link a{
+    color: black;
+}
+.header.fixed .container .main-nav .nav-link a:hover{
+    background-color: var(--grayish-color);
+}
+.header .container .main-nav .nav-link a::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background-color: var(--main-color);
+    bottom: 0;
+    left: -100%;
+    transition: all var(--main-transition-duration);
+}
+@media(max-width:991px){
+    .header .container .main-nav .nav-link a{
+        padding: 0 20px;
+    }
+}
+@media (max-width: 767px) {
+    .header .container .main-nav .nav-link a {
+      padding: 10px;
+      height: 35px;
+      
+    }
+  }
+  @media(max-width:480px){
+    .header .container .main-nav .nav-link a {
+        font-size: 10px;
+    }
+  }
+.header .container .main-nav .nav-link a:hover{
+    color: var(--main-color);
+    
+}
+.header .container .main-nav .nav-link a:hover::before{
+    left: 0;
+}
+/* end header */
+/* start main */
+.main{
+    position: relative;
+    width: 100%;
+}
+.main::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color:var(--main-overlay-color);
+
+}
+.main .main-bg{
+   object-fit: cover;
+   min-width: 100%;
+   max-width: 100%;
+   min-height: 100vh;
+   max-height: 100vh;
+   background-position: center center;
+}
+/* end main */
