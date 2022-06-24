@@ -189,32 +189,36 @@ ul{
    max-height: 100vh;
    background-position: center center;
 }
-.main .container{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+
+.main .text{
     position: absolute;
-    top: 50%;
     left: 50%;
+    top: 50%;
     transform: translate(-50%,-50%);
     z-index: 1;
 }
-.main .container .text{
-    width: 350px;
-}
-.main .container .text p{
+.main .text p{
     font-size: 40px;
-    font-weight: 600;
+    font-weight: 700;
     color: white;
     line-height: 1.6;
+    width: 500px;
+    text-align: center;
 }
-.main .container .text p span{
+@media(max-width:767px){
+    .main .text p{
+        font-size: 25px;
+        width: 400px;
+    }
+}
+@media(max-width:480px){
+    .main .text p{
+        font-size: 25px;
+        width: 350px;
+    }
+}
+.main .text p span{
     color: var(--main-color);
-}
-.main .container .main-img{
-    width: 350px;
-}
-.main .container .main-img img{
-    max-width: 100%;
+    font-size: 42px;
 }
 /* end main */
