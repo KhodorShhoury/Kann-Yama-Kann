@@ -259,6 +259,8 @@ ul{
     padding: 15px 40px;
     margin: 10px 0px;
     display: inline-block;
+    font-weight: 700;
+    font-size: 18px;
 }
 .about .container .image{
     width: 450px;
