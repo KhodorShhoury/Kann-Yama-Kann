@@ -23,7 +23,7 @@ window.onscroll = function(){
 
 //start gallery
 var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 1,
+    slidesPerView: 3,
     spaceBetween: 0,
     freeMode: true,
     autoplay: {
@@ -39,5 +39,11 @@ var swiper = new Swiper(".mySwiper", {
     nextEl: '.swiper-button-next',
     prevEl: '.swiper-button-prev',
   },
+  breakpoints :{
+    0: {slidesPerView : 1},
+    480 : {slidesPerView : 2},
+    991 : {slidesPerView : 3},
+    1200: {slidesPerView : 4},
+  }
   });
 //end gallery
