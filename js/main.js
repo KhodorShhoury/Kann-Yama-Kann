@@ -26,7 +26,10 @@ var swiper = new Swiper(".mySwiper", {
     slidesPerView: 3,
     spaceBetween: 30,
     freeMode: true,
-    loop : true,
+    loop: true,
+    keyboard: {
+      enabled: true,
+    },
     autoplay: {
         delay: 2500,
         disableOnInteraction: false,
