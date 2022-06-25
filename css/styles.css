@@ -224,6 +224,48 @@ ul{
     font-size: 42px;
 }
 /* end main */
+/* start gallery */
+.gallery{
+    padding-top: var(--main-padding-top);
+    padding-bottom: var(--main-padding-bottom);
+}
+
+/* start swiper */
+.swiper {
+    width: 100%;
+    height: 250px;
+    margin-bottom: 100px;
+    background: #ccc;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+  }
+
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+/* end swiper */
+/* end gallery */
 /* start about */
 .about{
     padding-top: var(--main-padding-top);

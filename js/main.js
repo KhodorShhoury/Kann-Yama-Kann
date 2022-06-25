@@ -18,3 +18,26 @@ function handleHeaderPosition(){
 window.onscroll = function(){
     handleHeaderPosition();
 }
+
+
+
+//start gallery
+var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 1,
+    spaceBetween: 0,
+    freeMode: true,
+    autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+     // Navigation arrows
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+  });
+//end gallery

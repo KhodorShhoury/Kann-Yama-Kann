@@ -13,6 +13,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet" />
+    <!-- swiper.js -->
+    <link
+  rel="stylesheet"
+  href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
+/>
+    <!-- swiper.js -->
     <!-- styles -->
     <link rel="stylesheet" href="css/styles.css">
   </head>
@@ -51,12 +57,42 @@
     <!-- start gallery -->
     <div class="gallery">
       <div class="container">
-        <ul class="categoty-links">
-          <li><a href="#">Drinks</a></li>
-          <li><a href="#">Breakfast</a></li>
-          <li><a href="#">crepe</a></li>
-          <li><a href="#">remixes</a></li>
-        </ul>
+        <!-- Slider main container -->
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="imgs/drinks/carmel-latte.jpeg" alt="" srcset=""></div>
+            <div class="swiper-slide"><img src="imgs/drinks/milkshake.jpeg" alt="" srcset=""></div>
+            <div class="swiper-slide"><img src="imgs/breakfast/salad.jpeg" alt="" srcset=""></div>
+            <div class="swiper-slide"><img src="imgs/crepe/crepino-italiano.jpeg" alt="" srcset=""></div>
+            <div class="swiper-slide"><img src="imgs/crepe/crepe.jpeg" alt="" srcset=""></div>
+            <div class="swiper-slide"><img src="imgs/meals-imgs/pizza.jpeg" alt="" srcset=""></div>
+            <div class="swiper-slide"><img src="imgs/mixes/chocolate-mix.jpeg" alt="" srcset=""></div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="imgs/drinks/carmel-latte.jpeg" alt="" srcset=""></div>
+            <div class="swiper-slide"><img src="imgs/drinks/milkshake.jpeg" alt="" srcset=""></div>
+            <div class="swiper-slide"><img src="imgs/breakfast/salad.jpeg" alt="" srcset=""></div>
+            <div class="swiper-slide"><img src="imgs/crepe/crepino-italiano.jpeg" alt="" srcset=""></div>
+            <div class="swiper-slide"><img src="imgs/crepe/crepe.jpeg" alt="" srcset=""></div>
+            <div class="swiper-slide"><img src="imgs/meals-imgs/pizza.jpeg" alt="" srcset=""></div>
+            <div class="swiper-slide"><img src="imgs/mixes/chocolate-mix.jpeg" alt="" srcset=""></div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+
+  
+      
+      
+      
+
+
+  <!-- If we need scrollbar -->
+  <div class="swiper-scrollbar"></div>
+</div>
       </div>
     </div>
     <!-- end gallery -->
@@ -77,6 +113,8 @@
     <!-- start menu -->
 
     <!-- end menu -->
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
    <script src="js/main.js"></script>
+   
   </body>
 </html>
