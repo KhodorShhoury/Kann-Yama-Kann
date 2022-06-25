@@ -295,6 +295,12 @@ ul{
     text-align: start;
     position: relative;
 }
+@media(max-width:767px){
+    .about .container .content{
+        margin: auto;
+        text-align: center;
+    }
+}
 .about .container .content h4{
     font-size: 40px;
     font-weight: 700;
@@ -309,6 +315,17 @@ ul{
     line-height: 1.7;
     margin: 20px 0px;
 }
+@media(max-width:991px){
+    .about .container .content p{
+    font-size: 20px;
+    width: 300px;
+    }
+}
+@media(max-width:767px){
+    .about .container .content p{
+  
+    }
+}
 .about .container .content a{
     color: white;
     background-color: var(--black-color);
@@ -320,6 +337,16 @@ ul{
 }
 .about .container .image{
     width: 450px;
+}
+@media(max-width:991px){
+    .about .container .image{
+        width: 350px;
+    }
+}
+@media(max-width:767px){
+    .about .container .image{
+        display: none;
+    }
 }
 .about .container .about-img{
     max-width: 100%;
