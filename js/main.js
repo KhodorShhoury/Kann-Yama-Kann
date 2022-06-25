@@ -24,10 +24,11 @@ window.onscroll = function(){
 //start gallery
 var swiper = new Swiper(".mySwiper", {
     slidesPerView: 3,
-    spaceBetween: 0,
+    spaceBetween: 30,
     freeMode: true,
+    loop :true,
     autoplay: {
-        delay: 2500,
+        delay: 1500,
         disableOnInteraction: false,
       },
     pagination: {
