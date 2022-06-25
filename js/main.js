@@ -26,9 +26,9 @@ var swiper = new Swiper(".mySwiper", {
     slidesPerView: 3,
     spaceBetween: 30,
     freeMode: true,
-    loop :true,
+    loop : true,
     autoplay: {
-        delay: 1500,
+        delay: 2500,
         disableOnInteraction: false,
       },
     pagination: {
