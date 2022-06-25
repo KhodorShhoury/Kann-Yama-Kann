@@ -230,6 +230,7 @@ ul{
     padding-bottom: var(--main-padding-bottom);
     position: relative;
     overflow: hidden;
+    margin: 100px 0px;
 }
 .about::before{
     content: "";

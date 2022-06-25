@@ -161,7 +161,7 @@ ul{
     gap: 30px;
 }
 .menu .container .box{
-    box-shadow: 0 0 15px var(--box-shadow-color);
+    box-shadow: 0 0 10px var(--box-shadow-color);
     padding: 20px;
 }
   .menu .container .box .card-img-top{
