@@ -25,7 +25,7 @@ window.onscroll = function(){
 var swiper = new Swiper(".mySwiper", {
     slidesPerView: 3,
     spaceBetween: 30,
-    freeMode: true,
+    freeMode: false,
     loop: true,
     keyboard: {
       enabled: true,
