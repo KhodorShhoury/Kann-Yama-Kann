@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <form action="" class="form">
+            <h1>Contact US</h1>
+
+            <label for="meal-id">Meal ID:</label>
+            <input type="text" id="meal-id" placeholder="Type meal id">
+            <small class="error"></small>
+
+
+            <label for="meal-name">Meal Name:</label>
+            <input type="text" id="meal-name" placeholder="Type meal name">
+            <small class="error"></small>
+
+            <label for="meal-desc">Meal description:</label>
+            <input type="text" id="meal-desc" placeholder="Type meal description">
+            <small class="error"></small>
+
+            <label for="meal-price">Meal price:</label>
+            <input type="number" id="meal-price" placeholder="Type meal price">
+            <small class="error"></small>
+
+            <label for="meal-categ">Meal category:</label>
+            <input type="text" id="meal-categ" placeholder="Type meal category">
+            <small class="error"></small>
+
+
+
+
+
+            <div class="center">
+                <button id="Insbtn" type="">Insert</button>
+                <button id="Selbtn">Select</button>
+                <button id="Updbtn">Update</button>
+                <button id="Delbtn">Delete</button>
+            </div>
+        </form>
+    </div>
+
+
+
+
+<!-- ------------------------------IMPORTS + CONFIGURATION---------------------------------------------------------- -->
+
+    <script type="module">
+        
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyDc86l5nGQW5BgRZ87g0HiskLQFpojkF80",
+          authDomain: "kann-yama-kann-firestore.firebaseapp.com",
+          projectId: "kann-yama-kann-firestore",
+          storageBucket: "kann-yama-kann-firestore.appspot.com",
+          messagingSenderId: "138428441492",
+          appId: "1:138428441492:web:03accd6edfc2e4b2b16581"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        import {getFirestore, doc, getDoc, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField} from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js"
+
+        const db = getFirestore();
+
+        // -----------------------------------------------REFFERENCES-------------------------------------------
+
+        let mealId = document.getElementById("meal-id");
+        let mealName = document.getElementById("meal-name");
+        let mealDesc = document.getElementById("meal-desc");
+        let mealPrice = document.getElementById("meal-price");
+        let mealCateg = document.getElementById("meal-categ");
+
+
+
+        let insBtn = document.getElementById("Insbtn");
+        let selBtn = document.getElementById("Selbtn");
+        let updBtn = document.getElementById("Updbtn");
+        let delBtn = document.getElementById("Delbtn");
+
+
+        // -------------------------------------------- ADD Documents ------------------------------------------
+
+        async function AddDocument_AutoID(e){
+            e.preventDefault()
+            var ref = collection(db, "meals");
+
+            const docRef = await addDoc(
+                ref, {
+                    MealName : mealName.value,
+                    MealDesc : mealDesc.value,
+                    MealPrice : mealPrice.value,
+                    mealCateg : mealCateg.value,
+                }
+            )
+            .then(()=>{
+                alert("data has been added Succesfuly");
+            })
+            .catch((error)=>{
+
+             alert("Unsuccesfuly data has not been added");
+            });
+        }
+
+        async function AddDocument_CustomID(e){
+            e.preventDefault()
+            var ref = doc(db, "meals",mealId.value);
+
+             await setDoc(
+                ref, {
+                    MealId : mealId.value,
+                    MealName : mealName.value,
+                    MealDesc : mealDesc.value,
+                    MealPrice : mealPrice.value,
+                    MealCateg : mealCateg.value,
+                }
+            )
+            .then(()=>{
+                alert("data has been added Succesfuly");
+            })
+            .catch((error)=>{
+
+             alert("Unsuccesfuly data has not been added");
+            });
+        }
+
+
+        //----------------------------------------------------------Getting Documents----------------------------------------------------
+
+
+        async function GetADocument(e){
+            e.preventDefault();
+            var ref = doc(db, "meals",mealId.value);
+            const docSnap = await getDoc(ref);
+
+            if(docSnap.exists){
+                mealName.value = docSnap.data().MealName;
+                mealDesc.value = docSnap.data().MealDesc;
+                mealPrice.value = docSnap.data().MealPrice;
+                mealCateg.value = docSnap.data().MealCateg;
+            }else{
+                alert("No Such Document");
+            }
+        }
+
+
+
+        //---------------------------------------------------------Updating Document Data--------------------------------------------------
+
+        async  function updateFieldsInADocument(e){
+            e.preventDefault();
+
+            var ref = doc(db, "meals",mealId.value);
+
+            await updateDoc(
+                ref, {
+                    MealId : mealId.value,
+                    MealName : mealName.value,
+                    MealDesc : mealDesc.value,
+                    MealPrice : mealPrice.value,
+                    MealCateg : mealCateg.value,
+                }
+            )
+            .then(()=>{
+                alert("data has been updated Succesfuly");
+            })
+            .catch((error)=>{
+
+            alert("Unsuccesfuly data has not been updated:" + error);
+            });
+                    }
+
+        //-----------------------------------------Deleting Document-------------------------------------------------------------------
+
+
+        async function DeleteDocument(e){
+            e.preventDefault()
+            var ref = doc(db, "meals",mealId.value);
+            const docSnap = await getDoc(ref);
+
+            if(!docSnap.exists()){
+                alert("Document does not exist");
+                return;
+            }
+
+            await deleteDoc(ref)
+            .then(()=>{
+                alert("data has been deleted Succesfuly");
+            })
+            .catch((error)=>{
+
+            alert("Unsuccesfuly data has not been deleted:" + error);
+            });
+        }
+
+
+        // --------------------------------------- buttons event -----------------------------------------------------------------------
+
+        insBtn.addEventListener("click",AddDocument_CustomID);
+        selBtn.addEventListener("click",GetADocument);
+        updBtn.addEventListener("click",updateFieldsInADocument);
+        delBtn.addEventListener("click",DeleteDocument)
+      </script>
+</body>
+</html>
