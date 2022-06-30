@@ -1,48 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kann Yama Kann</title>
+    <link rel="stylesheet" href="../css/normalize.css" />
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../css/all.min.css" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet" />
+    <!-- swiper.js -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
+    <style>
+        :root{
+        --main-color:#ec9a2f;
+        --main-transition-duration:0.3s;
+        --main-padding-top:100px;
+        --main-padding-bottom:100px;
+        --paragraph-color:#666;
+        --black-color : #232D39;
+        --box-shadow-color : #ddd;
+        --grayish-color : #FAFAFA;
+        --main-overlay-color: rgba(0,0,0,0.5);
+        --main-border-radius : 8px;
+        --section-background: #ececec;
+    }
+        *{
+         padding: 0;
+         margin: 0;
+         box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        }
+        body{
+            font-family: "cairo",sans-serif;
+            background-color:white;
+        }
+        .container{
+            max-width: 600px;
+            margin: 0 20px;
+            display: flex;
+            align-items: center;
+        }
+        .container .title{
+            font-weight: 700;
+            color: var(--main-color);
+            font-size: 40px;
+        }
+        .container .form{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: start;
+            width: 100%;
+        }
+        .container .form label{
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--main-color);
+        }
+        .container .form .input{
+            display: block;
+            border: none;
+            outline: none;
+            height: 40px;
+            padding: 0px 10px;
+            background-color: transparent;
+            color: var(--main-color);
+            border-radius: var(--main-border-radius);
+            border: 2px solid var(--main-color);
+            font-weight: 700;
+            margin: 10px 0px;
+            caret-color: var(--main-color);
+        }
+        .container .form .input::placeholder{
+            color: var(--main-color);
+            font-weight: bold;
+        }
+        .container .form .error{
+            margin: 0px 0px 0px 10px;
+            color: red;
+            font-weight: 700;
+            display: none;
+        }
+        .container .form .center{
+            margin: 0 auto;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+        .container .form .button{
+            padding: 15px 35px;
+            background-color: var(--main-color);
+            cursor: pointer;
+        }
+    </style>
+  </head>
+
 <body>
     <div class="container">
+        
         <form action="" class="form">
-            <h1>Contact US</h1>
-
+            <h1 class="title">Control Panel</h1>
             <label for="meal-id">Meal ID:</label>
-            <input type="text" id="meal-id" placeholder="Type meal id">
-            <small class="error"></small>
+            <input class="input" type="text" id="meal-id" placeholder="Type meal id">
+            <small class="error">error</small>
 
 
             <label for="meal-name">Meal Name:</label>
-            <input type="text" id="meal-name" placeholder="Type meal name">
-            <small class="error"></small>
+            <input class="input" type="text" id="meal-name" placeholder="Type meal name">
+            <small class="error">error</small>
 
             <label for="meal-desc">Meal description:</label>
-            <input type="text" id="meal-desc" placeholder="Type meal description">
-            <small class="error"></small>
+            <input class="input" type="text" id="meal-desc" placeholder="Type meal description">
+            <small class="error">error</small>
 
             <label for="meal-price">Meal price:</label>
-            <input type="number" id="meal-price" placeholder="Type meal price">
-            <small class="error"></small>
+            <input class="input" type="text" id="meal-price" placeholder="Type meal price">
+            <small class="error">error</small>
 
             <label for="meal-categ">Meal category:</label>
-            <input type="text" id="meal-categ" placeholder="Type meal category">
-            <small class="error"></small>
+            <input class="input" type="text" id="meal-categ" placeholder="Type meal category">
+            <small class="error">error</small>
 
 
 
 
 
             <div class="center">
-                <button id="Insbtn" type="">Insert</button>
-                <button id="Selbtn">Select</button>
-                <button id="Updbtn">Update</button>
-                <button id="Delbtn">Delete</button>
+                <button class="button" id="Insbtn" type="">Insert</button>
+                <button class="button" id="Selbtn">Select</button>
+                <button class="button"id="Updbtn">Update</button>
+                <button class="button" id="Delbtn">Delete</button>
             </div>
         </form>
+        <div class="table-container">
+            <table border="1px">
+                <thead>
+                    <th>Meal-ID</th>
+                    <th>Meal-Name</th>
+                    <th>Meal-Description</th>
+                    <th>Meal-price</th>
+                    <th>Meal-Category</th>
+                </thead>
+                <tbody class="tbody1"></tbody>
+            </table>
+        </div>
     </div>
 
 
@@ -69,8 +177,9 @@
       
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
+        
 
-        import {getFirestore, doc, getDoc, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField} from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js"
+        import {getFirestore, doc, getDoc, getDocs, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField} from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js"
 
         const db = getFirestore();
 
@@ -111,6 +220,7 @@
 
              alert("Unsuccesfuly data has not been added");
             });
+            GetAllDocumentsOnce();
         }
 
         async function AddDocument_CustomID(e){
@@ -133,6 +243,7 @@
 
              alert("Unsuccesfuly data has not been added");
             });
+            GetAllDocumentsOnce();
         }
 
 
@@ -142,16 +253,13 @@
         async function GetADocument(e){
             e.preventDefault();
             var ref = doc(db, "meals",mealId.value);
-            const docSnap = await getDoc(ref);
-
-            if(docSnap.exists){
+            const docSnap = await getDoc(ref)
+            .then((docSnap)=>{
                 mealName.value = docSnap.data().MealName;
                 mealDesc.value = docSnap.data().MealDesc;
                 mealPrice.value = docSnap.data().MealPrice;
                 mealCateg.value = docSnap.data().MealCateg;
-            }else{
-                alert("No Such Document");
-            }
+            }).catch(()=> alert("No Such Document"));
         }
 
 
@@ -179,6 +287,7 @@
 
             alert("Unsuccesfuly data has not been updated:" + error);
             });
+            GetAllDocumentsOnce();
                     }
 
         //-----------------------------------------Deleting Document-------------------------------------------------------------------
@@ -202,6 +311,7 @@
 
             alert("Unsuccesfuly data has not been deleted:" + error);
             });
+            GetAllDocumentsOnce();
         }
 
 
@@ -211,6 +321,59 @@
         selBtn.addEventListener("click",GetADocument);
         updBtn.addEventListener("click",updateFieldsInADocument);
         delBtn.addEventListener("click",DeleteDocument)
+
+
+        //----------------------------------------Table oF Data-----------------------------------
+
+        let tableBody = document.querySelector(".tbody1")
+
+         function AddItemToTable(mealId,mealName,mealDesc,mealPrice,mealCateg){
+
+            let tableTr = document.createElement("tr");
+            let tableTd1 = document.createElement("td");
+            let tableTd2 = document.createElement("td");
+            let tableTd3 = document.createElement("td");
+            let tableTd4 = document.createElement("td");
+            let tableTd5 = document.createElement("td");
+
+            tableTd1.innerHTML = mealId;
+            tableTd2.innerHTML = mealName;
+            tableTd3.innerHTML = mealDesc ;
+            tableTd4.innerHTML = mealPrice;
+            tableTd5.innerHTML = mealCateg;
+
+
+            tableTr.appendChild(tableTd1);
+            tableTr.appendChild(tableTd2);
+            tableTr.appendChild(tableTd3);
+            tableTr.appendChild(tableTd4);
+            tableTr.appendChild(tableTd5);
+
+            tableBody.appendChild(tableTr);
+        }
+
+
+        function AddAllItemsToTable(meals){
+                tableBody.innerHTML ="";
+                meals.forEach(meal =>{
+                    AddItemToTable(meal.MealId,meal.MealName,meal.MealDesc,meal.MealPrice,meal.MealCateg)
+                })
+            }
+
+
+    async function GetAllDocumentsOnce(){
+        const querySnapShot = await getDocs(collection(db,"meals"))
+
+        var meals = [];
+
+        querySnapShot.forEach(doc=>{
+            meals.push(doc.data())
+        })
+
+        AddAllItemsToTable(meals)
+    }
+
+    window.onload = GetAllDocumentsOnce;
       </script>
 </body>
 </html>
