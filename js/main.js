@@ -51,3 +51,5 @@ var swiper = new Swiper(".mySwiper", {
   }
   });
 //end gallery
+
+
