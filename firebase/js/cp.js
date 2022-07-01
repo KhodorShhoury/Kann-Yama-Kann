@@ -75,7 +75,7 @@
              MealId : mealId.value,
              MealName : mealName.value,
              MealDesc : mealDesc.value,
-             MealPrice : `L.L${mealPrice.value}`,
+             MealPrice : mealPrice.value,
              MealCateg : mealCateg.value,
          }
      )

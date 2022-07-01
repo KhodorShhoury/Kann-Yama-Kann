@@ -41,7 +41,6 @@ async function GetAllDocumentsRealTime(){
             meals.push(doc.data());
             
         });
-        console.log(meals)
         createMealCard(meals);
     })
     
@@ -105,7 +104,7 @@ function createMealCard(meals){
     mealBody.appendChild(mealPriceDiv)
 
     mealPriceDiv.appendChild(mealPrice)
-    mealPrice.appendChild(mealPriceCur)
+    mealPrice.prepend(mealPriceCur)
 
     mealContainer.appendChild(meal);
     menu.appendChild(mealContainer);
