@@ -75,7 +75,7 @@
              MealId : mealId.value,
              MealName : mealName.value,
              MealDesc : mealDesc.value,
-             MealPrice : `$${mealPrice.value}`,
+             MealPrice : `L.L${mealPrice.value}`,
              MealCateg : mealCateg.value,
          }
      )
@@ -240,14 +240,12 @@ async function GetAllDocumentsOnce(){
 async function GetAllDocumentsRealTime(){
  const dbRef = collection(db,"meals");
 
-
  onSnapshot(dbRef,(querySnapShot)=>{
     var meals = [];
 
      querySnapShot.forEach(doc => {
          meals.push(doc.data());
      });
-     
      AddAllItemsToTable(meals)
  })
 }

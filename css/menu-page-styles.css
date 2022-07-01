@@ -160,36 +160,36 @@ ul{
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 30px;
 }
-.menu .container .card{
+.menu .container .meal{
     box-shadow: 0 0 10px var(--box-shadow-color);
     padding: 20px;
 }
-  .menu .container .card .card-img-top{
+  .menu .container .meal .meal-img-top{
     border-radius: var(--main-border-radius);
     max-width: 100%;
   }
-.menu .container .card .card-body{
+.menu .container .meal .meal-body{
     position: relative;
 }
-.menu .container .card .card-body .card-title{
+.menu .container .meal .meal-body .meal-name{
     font-size: 23px;
     font-weight: 700;margin-top: 5px;
 }
-.menu .container .card .card-body  .card-text{
+.menu .container .meal .meal-body .meal-desc{
     font-size: 16px;
     margin: 10px 0px;
     color: var(--paragraph-color);
 }
-.menu .container .card .card-body .price {
+.menu .container .meal .meal-body .meal-price-div {
     display: inline-block;
     margin-bottom: 15px;
 }
-.menu .container .card .card-body .price p{
+.menu .container .meal .meal-body .meal-price-div  .meal-price{
     font-size: 16px;
     color: var(--main-color);
     font-weight: 700;
 }
-.menu .container .card .card-body .type{
+.menu .container .meal .meal-body .meal-type{
     display: inline-block;
     position: absolute;
     right: 0;
