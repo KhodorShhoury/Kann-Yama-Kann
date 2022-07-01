@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kann Yama Kann</title>
+    <link rel="stylesheet" href="../css/normalize.css" />
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../css/all.min.css" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet" />
+    <!-- swiper.js -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="main">
+        <div class="form-container">
+           
+                <label>Email:</label>
+                <input type="email" name="email" id="email-input">
+
+                <label>Password:</label>
+                <input type="password" name="password" id="password-input">
+
+                <button id="register-button">Sign Up</button>
+                <button id="login-button">sign In</button>
+        </div>
+    </div>
+  </body>
+  <script type="module">
+
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyDc86l5nGQW5BgRZ87g0HiskLQFpojkF80",
+  authDomain: "kann-yama-kann-firestore.firebaseapp.com",
+  projectId: "kann-yama-kann-firestore",
+  storageBucket: "kann-yama-kann-firestore.appspot.com",
+  messagingSenderId: "138428441492",
+  appId: "1:138428441492:web:03accd6edfc2e4b2b16581"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+// Initialize Firebase Authentication and get a reference to the service
+const auth = getAuth(app);
+
+const registerButton = document.getElementById("register-button");
+
+    const register = () =>{
+      const email = document.getElementById("email-input").value;
+      const password = document.getElementById("password-input").value;
+
+      createUserWithEmailAndPassword(auth,email,password)
+      .then((userCredential) =>{
+        window.location.replace("cp.html");
+      }).catch(err =>{
+        alert("error:"+err)
+      })
+    }
+
+    const loginButton = document.getElementById("login-button");
+
+    const login = ()=>{
+      const email = document.getElementById("email-input").value;
+      const password = document.getElementById("password-input").value;
+
+      signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) =>{
+        window.location.replace("cp.html");
+      }).catch(err =>{
+        alert(err);
+      })
+    }
+
+
+    registerButton.addEventListener("click",register)
+    loginButton.addEventListener("click",login)
+  </script>
+</html>

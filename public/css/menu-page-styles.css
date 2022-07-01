@@ -1,0 +1,198 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+:root{
+    --main-color:#ec9a2f;
+    --main-transition-duration:0.3s;
+    --main-padding-top:100px;
+    --main-padding-bottom:100px;
+    --paragraph-color:#666;
+    --black-color : #232D39;
+    --box-shadow-color : #ddd;
+    --grayish-color : #FAFAFA;
+    --main-overlay-color: rgba(0,0,0,0.5);
+    --main-border-radius : 8px;
+}
+html{
+    scroll-behavior: smooth;
+}
+body{
+    font-family: "cairo",sans-serif; 
+}
+a{
+    text-decoration: none;
+}
+ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.container{
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+/* small */
+@media (min-width:768px){
+    .container{
+         width: 750px;
+    }
+}
+/* medium */
+@media (min-width:992px){
+    .container{
+         width: 970px;
+    }
+}
+/* large */
+@media (min-width:1200px){
+    .container{
+         width: 1170px;
+    }
+}
+
+/* animations */
+
+/* animations */
+/* end global rules */
+/* start header */
+.header{
+    width: 100%;
+    position: absolute;
+    z-index: 999;
+    position: fixed;
+    background-color: white;
+    -webkit-box-shadow: 0 0 10px var(--box-shadow-color);
+    -moz-box-shadow: 0 0 10px var(--box-shadow-color);
+    box-shadow: 0 0 10px var(--box-shadow-color);
+  }
+  .header .container{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+  }
+  .header .container .logo{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 72px;
+  }
+  @media(max-width:767px){
+  .header .container .logo{
+      width: 100%;
+  }
+  }
+  .header .container .logo img{
+      max-width: 100%;
+      max-height: 100%;
+  }
+  .header .container .main-nav{
+      display: flex;
+  }
+  @media (max-width: 767px) {
+      .header .main-nav {
+        margin: auto;
+      }
+    }
+  .header .container .main-nav .nav-link a{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 72px;
+      padding: 0px 25px;
+      color: black;
+      font-size: 16px;
+      font-weight: 600;
+      transition: all var(--main-transition-duration);
+      position: relative;
+      overflow: hidden;
+  }
+  @media(max-width:991px){
+    .header .container .main-nav .nav-link a{
+        padding: 0 20px;
+    }
+}
+@media (max-width: 767px) {
+    .header .container .main-nav .nav-link a {
+      padding: 10px;
+      height: 35px;
+      
+    }
+  }
+  @media(max-width:480px){
+    .header .container .main-nav .nav-link a {
+        font-size: 10px;
+    }
+  }
+  .header .container .main-nav .nav-link a:hover{
+    color: var(--main-color);
+    background-color: var(--grayish-color);
+  }
+  .header .container .main-nav .nav-link a::before{
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 4px;
+      background-color: var(--main-color);
+      bottom: 0;
+      left: -100%;
+      transition: all var(--main-transition-duration);
+  }
+  .header .container .main-nav .nav-link a:hover::before{
+      left: 0;
+  }
+  /* end header */
+  /* start menu */
+  .menu{
+    padding-top: var(--main-padding-top);
+    padding-bottom: var(--main-padding-bottom);
+  }
+  .menu .container{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+}
+.menu .container .meal{
+    box-shadow: 0 0 10px var(--box-shadow-color);
+    padding: 20px;
+}
+  .menu .container .meal .meal-img-top{
+    border-radius: var(--main-border-radius);
+    max-width: 100%;
+  }
+.menu .container .meal .meal-body{
+    position: relative;
+}
+.menu .container .meal .meal-body .meal-name{
+    font-size: 23px;
+    font-weight: 700;margin-top: 5px;
+}
+.menu .container .meal .meal-body .meal-desc{
+    font-size: 16px;
+    margin: 10px 0px;
+    color: var(--paragraph-color);
+}
+.menu .container .meal .meal-body .meal-price-div {
+    display: inline-block;
+    margin-bottom: 15px;
+}
+.menu .container .meal .meal-body .meal-price-div  .meal-price{
+    font-size: 16px;
+    color: var(--main-color);
+    font-weight: 700;
+}
+.menu .container .meal .meal-body .meal-type{
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    color: var(--paragraph-color);
+}
+  /* end menu */

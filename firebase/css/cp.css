@@ -119,12 +119,11 @@ margin-left: auto;
         align-items: flex-start;
         justify-content: center;
         position: relative;
-        height: 700px;
+        height: 500px;
         overflow-y: scroll;
     }
     .form-container .table-container .table{
         position: absolute;
-        width: 100%;
     }
     .form-container .table-container .table thead th{
         width:200px;

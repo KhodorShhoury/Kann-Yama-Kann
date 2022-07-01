@@ -102,6 +102,7 @@ function createMealCard(meals){
     mealBody.appendChild(mealName)
     mealBody.appendChild(mealDesc)
     mealBody.appendChild(mealPriceDiv)
+    mealBody.appendChild(mealType)
 
     mealPriceDiv.appendChild(mealPrice)
     mealPrice.prepend(mealPriceCur)
@@ -115,3 +116,11 @@ function createMealCard(meals){
 
 
 
+class Meal{
+    constructor(img,name,desc,price,categ){
+        this.mealName = name;
+        this.mealDesc = desc;
+        this.mealPrice = price;
+        this.mealCateg = categ;
+    }
+}
