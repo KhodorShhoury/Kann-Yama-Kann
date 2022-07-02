@@ -21,58 +21,55 @@
 </head>
 
 <body>
-    <div class="form-container container">
-        
-        <form action="" class="form">
-            <h1 class="title">Control Panel</h1>
-            <label for="meal-id">Meal ID:</label>
-            <input class="input" type="text" id="meal-id" placeholder="Type meal id">
-            <small class="error">error</small>
-
-
-            <label for="meal-name">Meal Name:</label>
-            <input class="input" type="text" id="meal-name" placeholder="Type meal name">
-            <small class="error">error</small>
-
-            <label for="meal-desc">Meal description:</label>
-            <input class="input" type="text" id="meal-desc" placeholder="Type meal description">
-            <small class="error">error</small>
-
-            <label for="meal-price">Meal price:</label>
-            <input class="input" type="text" id="meal-price" placeholder="Type meal price">
-            <small class="error">error</small>
-
-            <label for="meal-categ">Meal category:</label>
-            <input class="input" type="text" id="meal-categ" placeholder="Type meal category">
-            <small class="error">error</small>
-
-
-            <label for="">Meal Image</label>
-            <input id="meal-image" type= "file" id="meal-image-name">
-            <small class="error">error</small>
-
-
-            <div class="center">
-                <button class="button" id="Insbtn" type="">Insert</button>
-                <button class="button" id="Selbtn">Select</button>
-                <button class="button"id="Updbtn">Update</button>
-                <button class="button" id="Delbtn">Delete</button>
+    <div class="container">
+        <h4 class="main-heading">menu Panel</h4>
+        <div class="menu-panel-container">
+            <form action="" class="form">
+                <label for="meal-id">Meal ID:</label>
+                <input class="input" type="text" id="meal-id" placeholder="Type meal id">
+    
+    
+                <label for="meal-name">Meal Name:</label>
+                <input class="input" type="text" id="meal-name" placeholder="Type meal name">
+    
+                <label for="meal-desc">Meal description:</label>
+                <input class="input" type="text" id="meal-desc" placeholder="Type meal description">
+    
+                <label for="meal-price">Meal price:</label>
+                <input class="input" type="text" id="meal-price" placeholder="Type meal price">
+    
+                <label for="meal-categ">Meal category:</label>
+                <input class="input" type="text" id="meal-categ" placeholder="Type meal category">
+    
+    
+                <label for="">Meal Image</label>
+                <input class="input" id="meal-image" type= "file" id="meal-image-name">
+    
+    
+                <div class="center">
+                    <button class="button" id="Insbtn" type="">Insert</button>
+                    <button class="button" id="Selbtn">Select</button>
+                    <button class="button"id="Updbtn">Update</button>
+                    <button class="button" id="Delbtn">Delete</button>
+                </div>
+            </form>
+            <div class="menu-panel-table">
+                <table class="table">
+                    <thead>
+                        <th>Meal-No</th>
+                        <th>Meal-ID</th>
+                        <th>Meal-Name</th>
+                        <th>Meal-Description</th>
+                        <th>Meal-price</th>
+                        <th>Meal-Category</th>
+                    </thead>
+                    <tbody class="tbody1"></tbody>
+                </table>
             </div>
-        </form>
-        <div class="table-container">
-            <table  class="table">
-                <thead>
-                    <th>Meal-No</th>
-                    <th>Meal-ID</th>
-                    <th>Meal-Name</th>
-                    <th>Meal-Description</th>
-                    <th>Meal-price</th>
-                    <th>Meal-Category</th>
-                </thead>
-                <tbody class="tbody1"></tbody>
-            </table>
         </div>
     </div>
+
+   
 <!-- ------------------------------IMPORTS + CONFIGURATION---------------------------------------------------------- -->
 
     <script src="js/cp.js" type="module"></script>

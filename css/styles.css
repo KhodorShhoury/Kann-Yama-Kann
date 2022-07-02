@@ -147,6 +147,7 @@ ul{
     transition: all var(--main-transition-duration);
     position: relative;
     overflow: hidden;
+    text-align: center;
 }
 .header.fixed .container .main-nav .nav-link a{
     color: black;

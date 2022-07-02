@@ -201,7 +201,7 @@
      tableTd2.innerHTML = mealId;
      tableTd3.innerHTML = mealName;
      tableTd4.innerHTML = mealDesc ;
-     tableTd5.innerHTML = mealPrice;
+     tableTd5.innerHTML = "L.L " +mealPrice;
      tableTd6.innerHTML = mealCateg;
 
 

@@ -55,6 +55,7 @@ let menu = document.querySelector("#menu");
 let mealContainer = document.getElementById("menu-container");
 
 function createMealCard(meals){
+    mealContainer.innerHTML = "";
     meals.forEach(mealCard => {
         //-create meal
     let meal = document.createElement("div");
@@ -111,16 +112,4 @@ function createMealCard(meals){
     menu.appendChild(mealContainer);
     })
     
-}
-
-
-
-
-class Meal{
-    constructor(img,name,desc,price,categ){
-        this.mealName = name;
-        this.mealDesc = desc;
-        this.mealPrice = price;
-        this.mealCateg = categ;
-    }
 }
