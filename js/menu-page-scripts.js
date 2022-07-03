@@ -65,7 +65,7 @@ function createMealCard(meals){
     //-create mealImage
     let mealImageTop = document.createElement("img");
     mealImageTop.className = "meal-img-top";
-    mealImageTop.src = "../imgs/meals-imgs/pizza.jpeg";
+    mealImageTop.src = mealCard.MealImageURL;
     //-create mealBody
     let mealBody = document.createElement("div");
     mealBody.className = "meal-body";

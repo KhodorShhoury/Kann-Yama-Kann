@@ -104,6 +104,27 @@ margin-left: auto;
         font-weight: 700;
 
     }
+
+    /* img */
+    .container .menu-panel-container .form #meal-image-input{
+
+    }
+    .container .menu-panel-container .form #select-button{
+        width: 30px;
+        height: 30px;
+        display: block;
+    }
+    .container .menu-panel-container .form #extlab{
+        width: 100%;
+        height: 20px;
+        display: block;
+        color: white;
+    }
+    .container .menu-panel-container .form #myimg{
+        max-width: 100%;
+    }
+    .container .menu-panel-container .form 
+    /* img */
     .container .menu-panel-container .form .center{
         display: flex;
         justify-content:center;
@@ -149,6 +170,7 @@ margin-left: auto;
         background-color: white;
     }
     .container .menu-panel-container .menu-panel-table .table thead{
+        
     }
     .container .menu-panel-container .menu-panel-table .table th{
         font-weight: 700;

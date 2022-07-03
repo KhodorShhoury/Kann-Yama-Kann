@@ -70,27 +70,8 @@
      e.preventDefault()
      var ref = doc(db, "meals",mealId.value);
 
-      await setDoc(
-         ref, {
-             MealId : mealId.value,
-             MealName : mealName.value,
-             MealDesc : mealDesc.value,
-             MealPrice : mealPrice.value,
-             MealCateg : mealCateg.value,
-         }
-     )
-     .then(()=>{
-         alert("data has been added Succesfuly");
-     })
-     .catch((error)=>{
-
-      alert("Unsuccesfuly data has not been added");
-     });
-         mealId.value = "";
-         mealName.value = "";
-         mealDesc.value = "";
-         mealPrice.value = "";
-         mealCateg.value = "";
+     saveURLtoFirestore(url)
+     
      GetAllDocumentsOnce();
  }
 
@@ -98,8 +79,7 @@
  //----------------------------------------------------------Getting Documents----------------------------------------------------
 
 
- async function GetADocument(e){
-     e.preventDefault();
+ async function GetADocument(){
      var ref = doc(db, "meals",mealId.value);
      const docSnap = await getDoc(ref)
      .then((docSnap)=>{
@@ -108,6 +88,8 @@
          mealDesc.value = docSnap.data().MealDesc;
          mealPrice.value = docSnap.data().MealPrice;
          mealCateg.value = docSnap.data().MealCateg;
+         imgNameInput.value = docSnap.data().MealImageName;
+         myImg.src = docSnap.data().MealImageURL;
      }).catch(()=> alert("No Such Document"));
  }
 
@@ -173,11 +155,145 @@
      GetAllDocumentsOnce();
  }
 
+//-------------------------------------------------select image-------------------------------------------
+import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL  } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-storage.js";
+
+
+//---variables and references
+
+var files = [];
+var reader = new FileReader();
+
+let imgSelButton = document.getElementById("select-img");
+
+var imgNameInput = document.getElementById("img-name-input");
+var extLab = document.getElementById("extlab");
+var myImg = document.getElementById("myimg");
+var progLab = document.getElementById("upprogress");
+
+var input = document.createElement("input");
+input.type = 'file';
+
+input.onchange = e =>{
+   files = e.target.files;
+    var extension = GetFileExt(files[0]);
+    var name = getFileName(files[0]);
+
+    imgNameInput.value = name;
+    extLab.innerHTML = extension;
+
+    reader.readAsDataURL(files[0]);
+}
+
+reader.onload = function(){
+    myImg.src = reader.result;
+}
+
+imgSelButton.onclick = function(e){
+    e.preventDefault();
+    input.click();
+}
+
+function GetFileExt(file){
+    var temp = file.name.split('.');
+    var ext = temp.slice((temp.length-1),(temp.length));
+    return "."+ ext[0];
+}
+
+function getFileName(file){
+    var temp = file.name.split('.');
+    var fname = temp.slice(0,-1).join(".");
+    return fname;
+}
+
+
+// upload proccess
+
+async function UploadProcess(){
+    var imgToUpload = files[0];
+
+    var ImageName = imgNameInput.value + extLab.innerHTML;
+
+    const metaData ={
+        contentType:imgToUpload.type,
+
+    }
+    const storage = getStorage();
+
+    const storageRef = sRef(storage, "menuTopImages/"+ImageName);
+
+    const uploadTask = uploadBytesResumable(storageRef,imgToUpload,metaData);
+    uploadTask.on('state-change',(snapShot)=>{
+        var progress = (snapShot.bytesTransferred / snapShot.totalBytes) * 100;
+        progLab.innerHTML = "upload" + progress + "%";
+    },
+    (error) =>{
+        alert("error image not uploaded");
+    },
+    ()=>{
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL)=>{
+            saveURLtoFirestore(downloadURL)
+        })
+    }
+    )
+}
+
+async function saveURLtoFirestore(url){
+    var name = imgNameInput.value;
+    var ext = extLab.innerHTML;
+
+    var ref = doc(db,"meals/"+mealId.value);
+
+
+    await setDoc(ref,{
+        MealId : mealId.value,
+        MealName : mealName.value,
+        MealDesc : mealDesc.value,
+        MealPrice : mealPrice.value,
+        MealCateg : mealCateg.value,
+        MealImageName: (name+ext),
+        MealImageURL: url
+    }).then(()=>{
+        alert("data has been added Succesfuly");
+    })
+    .catch((error)=>{
+
+     alert("Unsuccesfuly data has not been added");
+    });
+        mealId.value = "";
+        mealName.value = "";
+        mealDesc.value = "";
+        mealPrice.value = "";
+        mealCateg.value = "";
+}
+
+async function getImageFromFirestore(){
+    var name = imgNameInput.value;
+
+    var ref = doc(db,"meals/"+name);
+
+    const docSnapshot = await getDoc(ref);
+
+    if(docSnapshot.exists()){
+        myImg.src = docSnapshot.data().ImageURL;
+    }
+}
+
+
 
  // --------------------------------------- buttons event -----------------------------------------------------------------------
 
- insBtn.addEventListener("click",AddDocument_CustomID);
- selBtn.addEventListener("click",GetADocument);
+ insBtn.addEventListener("click", (e)=>{
+    e.preventDefault();
+    AddDocument_CustomID;
+    UploadProcess();
+
+ });
+ selBtn.addEventListener("click",(e)=>{
+    e.preventDefault()
+    GetADocument();
+    getImageFromFirestore();
+ });
  updBtn.addEventListener("click",updateFieldsInADocument);
  delBtn.addEventListener("click",DeleteDocument)
 
@@ -251,3 +367,6 @@ async function GetAllDocumentsRealTime(){
 }
 
 window.onload = GetAllDocumentsRealTime;
+
+
+
