@@ -58,20 +58,20 @@
 
       alert("Unsuccesfuly data has not been added:"+ error);
      });
-     mealId.value = "";
-         mealName.value = "";
-         mealDesc.value = "";
-         mealPrice.value = "";
-         mealCateg.value = "";
+     emptyInputs()
+
      GetAllDocumentsOnce();
  }
+
+
 
  async function AddDocument_CustomID(e){
      e.preventDefault()
      var ref = doc(db, "meals",mealId.value);
 
      saveURLtoFirestore(url)
-     
+     emptyInputs()
+
      GetAllDocumentsOnce();
  }
 
@@ -118,11 +118,7 @@
 
      alert("Unsuccesfuly data has not been updated:" + error);
      });
-         mealId.value = "";
-         mealName.value = "";
-         mealDesc.value = "";
-         mealPrice.value = "";
-         mealCateg.value = "";
+     emptyInputs()
      GetAllDocumentsOnce();
              }
 
@@ -147,11 +143,7 @@
 
      alert("Unsuccesfuly data has not been deleted:" + error);
      });
-         mealId.value = "";
-         mealName.value = "";
-         mealDesc.value = "";
-         mealPrice.value = "";
-         mealCateg.value = "";
+     emptyInputs()
      GetAllDocumentsOnce();
  }
 
@@ -260,11 +252,8 @@ async function saveURLtoFirestore(url){
 
      alert("Unsuccesfuly data has not been added");
     });
-        mealId.value = "";
-        mealName.value = "";
-        mealDesc.value = "";
-        mealPrice.value = "";
-        mealCateg.value = "";
+    emptyInputs()
+
 }
 
 async function getImageFromFirestore(){
@@ -292,7 +281,6 @@ async function getImageFromFirestore(){
  selBtn.addEventListener("click",(e)=>{
     e.preventDefault()
     GetADocument();
-    getImageFromFirestore();
  });
  updBtn.addEventListener("click",updateFieldsInADocument);
  delBtn.addEventListener("click",DeleteDocument)
@@ -366,6 +354,15 @@ async function GetAllDocumentsRealTime(){
  })
 }
 
+function emptyInputs(){
+    mealId.value = "";
+        mealName.value = "";
+        mealDesc.value = "";
+        mealPrice.value = "";
+        mealCateg.value = "";
+        imgNameInput.value = "";
+        myImg.src = "";
+}
 window.onload = GetAllDocumentsRealTime;
 
 

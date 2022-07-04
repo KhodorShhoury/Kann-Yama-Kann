@@ -167,6 +167,7 @@ ul{
   .menu .container .meal .meal-img-top{
     border-radius: var(--main-border-radius);
     max-width: 100%;
+    height: 150px;
   }
 .menu .container .meal .meal-body{
     position: relative;

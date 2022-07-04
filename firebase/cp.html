@@ -21,10 +21,36 @@
 </head>
 
 <body>
+
+    <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kann Yama Kann</title>
+    <link rel="stylesheet" href="../css/normalize.css" />
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../css/all.min.css" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet" />
+    <!-- swiper.js -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/cp.css">
+</head>
+
+<body>
     <div class="container">
         <h4 class="main-heading">menu Panel</h4>
         <div class="menu-panel-container">
             <form action="" class="form">
+                <div class="meal-text-input">
+
                 <label for="meal-id">Meal ID:</label>
                 <input class="input" type="text" id="meal-id" placeholder="Type meal id">
     
@@ -40,42 +66,49 @@
     
                 <label for="meal-categ">Meal category:</label>
                 <input class="input" type="text" id="meal-categ" placeholder="Type meal category">
-    
-    
-                <label for="">Meal Image</label><br>
-                <input class="input"  type= "text" id="img-name-input"><br>
-                <button style="padding : 10px;" id="select-img">Insert Image</button><br>
-                <label id="extlab"></label><br>
-                <img id="myimg" height="200px" width="200px"><br>
-                <label id="upprogress"></label><br>
-    
-    
+            </div>
+
+            <div class="meal-image-input">
+
+                <label for="">Meal Image</label>
+
+                <div class="image-name">
+                <input class="input"  type= "text" id="img-name-input" placeholder="Image Name">
+                <label id="extlab"></label>
+
+            </div>
+                <img id="myimg" height="200px" width="200px">
+                <button style="padding : 10px;" id="select-img">Insert Image</button>
+                <label id="upprogress"></label>
+
+            </div>
+
+            </form>
+            <div class="menu-panel-table">
+                <div class="table-container">
+
+                <table class="table">
+                    <thead>
+                        <th>No</th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>price</th>
+                        <th>Category</th>
+                    </thead>
+                    <tbody class="tbody1"></tbody>
+                </table>
+            </div>
+
                 <div class="center">
                     <button class="button" id="Insbtn" type="">Insert</button>
                     <button class="button" id="Selbtn">Select</button>
                     <button class="button"id="Updbtn">Update</button>
                     <button class="button" id="Delbtn">Delete</button>
                 </div>
-            </form>
-            <div class="menu-panel-table">
-                <table class="table">
-                    <thead>
-                        <th>Meal-No</th>
-                        <th>Meal-ID</th>
-                        <th>Meal-Name</th>
-                        <th>Meal-Description</th>
-                        <th>Meal-price</th>
-                        <th>Meal-Category</th>
-                    </thead>
-                    <tbody class="tbody1"></tbody>
-                </table>
             </div>
         </div>
     </div>
-
-   
-<!-- ------------------------------IMPORTS + CONFIGURATION---------------------------------------------------------- -->
-
     <script src="js/cp.js" type="module"></script>
 </body>
 </html>
