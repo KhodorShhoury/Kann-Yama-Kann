@@ -283,7 +283,7 @@ async function getImageFromFirestore(){
     GetADocument();
  });
  updBtn.addEventListener("click",updateFieldsInADocument);
- delBtn.addEventListener("click",DeleteDocument)
+ delBtn.addEventListener("click",DeleteDocument);
 
 
  //----------------------------------------Table oF Data-----------------------------------
@@ -367,3 +367,143 @@ window.onload = GetAllDocumentsRealTime;
 
 
 
+
+// tournaments images firestore
+
+
+ let TourinsBtn = document.getElementById("tour-Insbtn");
+ let TourselBtn = document.getElementById("tour-Selbtn");
+ let TourupdBtn = document.getElementById("tour-Updbtn");
+ let TourdelBtn = document.getElementById("tour-Delbtn");
+
+
+ var TourImgsfiles = [];
+ var TourImgsreader = new FileReader();
+ 
+ let TourImgSelButton = document.getElementById("select-tour-img");
+ 
+ var TourImgNameInput = document.getElementById("tour-img-name-input");
+ var TourImgextLab = document.getElementById("tour-extlab");
+ var TourImg = document.getElementById("tour-img");
+ var TourImgprogLab = document.getElementById("tour-upprogress");
+ 
+ var TourImginput = document.createElement("input");
+ TourImginput.type = 'file';
+
+
+
+
+ TourImginput.onchange = e =>{
+    TourImgsfiles = e.target.files;
+     var extension = GetTourFileExt(TourImgsfiles[0]);
+     var name = getTourFileName(TourImgsfiles[0]);
+ 
+     TourImgNameInput.value = name;
+     TourImgextLab.innerHTML = extension;
+ 
+     TourImgsreader.readAsDataURL(TourImgsfiles[0]);
+ }
+
+ TourImgsreader.onload = function(){
+    TourImg.src = TourImgsreader.result;
+}
+
+TourImgSelButton.onclick = function(e){
+    e.preventDefault();
+    TourImginput.click();
+}
+
+function GetTourFileExt(file){
+    var temp = file.name.split('.');
+    var ext = temp.slice((temp.length-1),(temp.length));
+    return "."+ ext[0];
+}
+
+function getTourFileName(file){
+    var temp = file.name.split('.');
+    var fname = temp.slice(0,-1).join(".");
+    return fname;
+}
+
+
+
+// upload proccess
+
+async function TourUploadProcess(){
+    var imgToUpload = TourImgsfiles[0];
+
+    var ImageName = TourImgNameInput.value + TourImgextLab.innerHTML;
+
+    const metaData ={
+        contentType:imgToUpload.type,
+
+    }
+    const storage = getStorage();
+
+    const storageRef = sRef(storage, "TournamentsImages/"+ImageName);
+
+    const uploadTask = uploadBytesResumable(storageRef,imgToUpload,metaData);
+    uploadTask.on('state-change',(snapShot)=>{
+        var progress = (snapShot.bytesTransferred / snapShot.totalBytes) * 100;
+        TourImgprogLab.innerHTML = "upload" + progress + "%";
+    },
+    (error) =>{
+        alert("error image not uploaded");
+    },
+    ()=>{
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL)=>{
+            saveTourURLtoFirestore(downloadURL)
+        })
+    }
+    )
+}
+
+async function saveTourURLtoFirestore(url){
+    var name = TourImginput.value;
+    var ext = TourImgextLab.innerHTML;
+
+    var ref = collection(db, "TournamentsImages");
+
+
+    await addDoc(ref,{
+        TourImageName : (name+ext),
+        TourImageURL: url,
+
+    }).then(()=>{
+        alert("data has been added Succesfuly");
+    })
+    .catch((error)=>{
+
+     alert("Unsuccesfuly data has not been added");
+    });
+    emptyTourInputs()
+
+}
+
+async function getTourImageFromFirestore(){
+    var name = TourImginput.value;
+
+    var ref = doc(db,"TournamentsImages/"+name);
+
+    const docSnapshot = await getDoc(ref);
+
+    if(docSnapshot.exists()){
+        TourImg.src = docSnapshot.data().ImageURL;
+    }
+}
+
+
+function emptyTourInputs(){
+    TourImgNameInput.value = "";
+    TourImg.src = "";
+}
+
+
+TourinsBtn.onclick = function(e){
+    e.preventDefault();
+    TourUploadProcess();
+}
+TourselBtn.onclick = function(e){
+    e.preventDefault();
+    getTourImageFromFirestore();
+}

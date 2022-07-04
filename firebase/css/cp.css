@@ -22,7 +22,15 @@
     body{
         font-family: "cairo",sans-serif;
         background-color: var(--dark-color);
+        color: white;
         }
+
+hr{
+    width: 100%;
+    height: 10px;
+    background-color: var(--main-color);
+
+}
 
 .main-heading{
     margin: 20px auto 20px;
@@ -32,6 +40,7 @@
     font-weight: 700;
     text-transform: uppercase;
 }
+
 
 .container{
 padding: 0;
@@ -107,11 +116,7 @@ margin: auto;
       color: white;
       font-weight: 700;
     }
-    @media(max-width :991px){
-        .container .menu-panel-container .form .meal-text-input .input{
-            
-        }
-    }
+
 
     .container .menu-panel-container .form .meal-text-input .input::placeholder{
         visibility: hidden;
@@ -121,12 +126,18 @@ margin: auto;
 
     /* img */
     .container .menu-panel-container .form  .meal-image-input{
-        
+        display: flex;
+        flex-direction: column;
     }
+    .container .menu-panel-container .form  .meal-image-input label:first-child{
+        color: var(--main-color);
+        font-weight: 700;
+        font-size: 16px;    }
     .container .menu-panel-container .form  .meal-image-input .image-name{
         display: flex;
         align-items: center;        
-    }    .container .menu-panel-container .form  .meal-image-input .image-name .input{
+    }   
+     .container .menu-panel-container .form  .meal-image-input .image-name .input{
         display: block;
         width: 100%;
         background-color: transparent;
@@ -182,6 +193,7 @@ margin: auto;
         color: var(--dark-color);
         background-color: var(--main-color);
         position: relative;
+        
     }
     .container .menu-panel-container .menu-panel-table .table-container::-webkit-scrollbar{
         width: 10px;
@@ -192,19 +204,20 @@ margin: auto;
     .container .menu-panel-container .menu-panel-table .table-container::-webkit-scrollbar-thumb{
         background-color: var(--main-color);
     }
-    .container .menu-panel-container .menu-panel-table .table thead{
-    }
+
     .container .menu-panel-container .menu-panel-table .table th{
         font-weight: 700;
         font-size: 14px;
         text-align: center;
-        height: 50px;
-        line-height: 50px;
+        line-height: 100%;
         border: none;
-        border: 3px solid var(--dark-color);
+        border-right: 3px solid var(--dark-color);
+        padding: 30px 0px;
     }
-    .container .menu-panel-container .menu-panel-table .table tbody{
-        
+    @media(max-width:480px){
+        .container .menu-panel-container .menu-panel-table .table th{
+            font-size: 10px;
+        }
     }
     .container .menu-panel-container .menu-panel-table .table td{
         font-weight: 700;
@@ -214,8 +227,14 @@ margin: auto;
         border: none;
         max-width: 40px;
         border: 3px solid var(--dark-color);
+        padding: 20px 10px;
+        overflow: auto;
     }
-
+    @media(max-width:480px){
+        .container .menu-panel-container .menu-panel-table .table td{
+            font-size: 10px;
+        }
+    }
     .container .menu-panel-container  .center{
         display: flex;
         margin: 10px auto 0px auto;
@@ -227,7 +246,7 @@ margin: auto;
             margin-bottom: 30px;
         }
     }
-    .container .menu-panel-container  .button{
+    .container .menu-panel-container .center  .button{
        padding: 10px 35px;
        border: none;
        outline: none;
@@ -237,3 +256,70 @@ margin: auto;
        text-align: center;
        margin: 10px 10px;
     }
+
+
+
+    /* tournament images */
+    .container .tournaments-panel-container .form  .tour-image-input{
+        display: flex;
+        flex-direction: column;
+    }
+    .container .tournaments-panel-container .form  .tour-image-input label:first-child{
+        color: var(--main-color);
+        font-weight: 700;
+        font-size: 16px;    }
+    .container .tournaments-panel-container .form  .tour-image-input .image-name{
+        display: flex;
+        align-items: center;        
+    }   
+     .container .tournaments-panel-container .form  .tour-image-input .tour-image-name .input{
+        display: block;
+        width: 30%;
+        background-color: transparent;
+        outline: none;
+        border: 3px solid var(--main-color);
+        border-radius: var(--main-border-radius);
+        margin: 0px 0px 10px 0px;
+        padding: 5px;
+        caret-color: var(--main-color);
+        color: white;
+        font-weight: 700;
+    }
+    .container .tournaments-panel-container .form  #select-tour-img{
+        padding: 10px 15px;
+        display: block;
+        background-color: var(--main-color);
+        margin: 10px;
+        width: 10%;
+    }
+    .container .tournaments-panel-container .form #tour-img-extlab{
+        color: white;
+        margin-left: 5px;
+    }
+    .container .tournaments-panel-container .form #tour-img{
+        display: block;
+    }
+
+    .container .tournaments-panel-container  .center{
+        display: flex;
+        margin: 10px auto 0px auto;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    @media(max-width:991px){
+        .container .tournaments-panel-container  .center{
+            margin-bottom: 30px;
+        }
+    }
+    .container .tournaments-panel-container .center  .button{
+       padding: 10px 35px;
+       border: none;
+       outline: none;
+       background-color: var(--main-color);
+       color: var(--dark-color);
+       font-weight: 700;
+       text-align: center;
+       margin: 10px 10px;
+    }
+
+    /* tournament images */
