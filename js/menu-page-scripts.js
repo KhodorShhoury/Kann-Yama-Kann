@@ -19,7 +19,7 @@ const app = initializeApp(firebaseConfig);
 
 
 import {getFirestore, doc, getDoc, getDocs, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField,onSnapshot} from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js"
-
+export {collection}
 const db = getFirestore();
 
 

@@ -31,6 +31,11 @@ hr{
     background-color: var(--main-color);
 
 }
+button,input{
+    outline: none;
+    border: none;
+    border-radius: var(--main-border-radius);
+}
 
 .main-heading{
     margin: 20px auto 20px;
@@ -103,6 +108,13 @@ margin: auto;
        font-weight: 700;
        font-size: 16px;
     }
+    @media(max-width:480px){
+        .container .menu-panel-container .form .meal-text-input {
+            margin: 0px 10px 10px 10px;
+    
+        }
+    }
+    
     .container .menu-panel-container .form .meal-text-input .input{
       display: block;
       width: 100%;
@@ -149,6 +161,11 @@ margin: auto;
         caret-color: var(--main-color);
         color: white;
         font-weight: 700;
+    }
+    @media(max-width:480px){
+        .container .menu-panel-container .form  .meal-image-input .image-name .input{
+            margin: 0px 10px 10px 10px;
+        }
     }
     .container .menu-panel-container .form  #select-img{
         padding: 10px 15px;
@@ -263,7 +280,10 @@ margin: auto;
     .container .tournaments-panel-container .form  .tour-image-input{
         display: flex;
         flex-direction: column;
+        align-items: center;
+
     }
+
     .container .tournaments-panel-container .form  .tour-image-input label:first-child{
         color: var(--main-color);
         font-weight: 700;
@@ -274,7 +294,7 @@ margin: auto;
     }   
      .container .tournaments-panel-container .form  .tour-image-input .tour-image-name .input{
         display: block;
-        width: 30%;
+        width: 100%;
         background-color: transparent;
         outline: none;
         border: 3px solid var(--main-color);
@@ -290,7 +310,7 @@ margin: auto;
         display: block;
         background-color: var(--main-color);
         margin: 10px;
-        width: 10%;
+        width: 180px;
     }
     .container .tournaments-panel-container .form #tour-img-extlab{
         color: white;

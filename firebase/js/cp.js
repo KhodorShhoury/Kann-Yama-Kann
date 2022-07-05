@@ -493,6 +493,8 @@ async function getTourImageFromFirestore(){
 }
 
 
+
+
 function emptyTourInputs(){
     TourImgNameInput.value = "";
     TourImg.src = "";
