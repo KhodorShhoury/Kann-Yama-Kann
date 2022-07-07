@@ -119,33 +119,3 @@ function createTournamentsSwiperSlide(TournamentsImages){
     tournamentsSwiperWrapper.appendChild(tournamentsSwiperSlide);
   })
 }
-
-
-var TournamentsSwiper = new Swiper(".tournaments-swiper", {
-  slidesPerView: 3,
-  spaceBetween: 30,
-  freeMode: false,
-  loop: true,
-  keyboard: {
-    enabled: true,
-  },
-  autoplay: {
-      delay: 2500,
-      disableOnInteraction: false,
-    },
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-  },
-   // Navigation arrows
-navigation: {
-  nextEl: '.swiper-button-next',
-  prevEl: '.swiper-button-prev',
-},
-breakpoints :{
-  0: {slidesPerView : 1},
-  480 : {slidesPerView : 2},
-  991 : {slidesPerView : 3},
-  1200: {slidesPerView : 4},
-}
-});
