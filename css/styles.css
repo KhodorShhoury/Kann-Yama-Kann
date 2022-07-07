@@ -205,7 +205,6 @@ ul{
     height: 100vh;
     background-color:var(--main-overlay-color);
     z-index: 0;
-
 }
 .main .main-bg{
    object-fit: cover;
@@ -381,7 +380,44 @@ ul{
     border-radius: var(--main-border-radius);
 }
 /* end about */
+/* start tournaments */
+.tournaments-swiper {
+    width: 100%;
+    height: 300px;
+    margin-bottom: 25px;
+    padding: 30px 0px;
+  }
 
-/* start menu */
+  .tournaments-swiper .swiper-slide {
+    font-size: 18px;
+    background: #fff;
 
-/* end menu */
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+  }
+  
+  .tournaments-swiper .swiper-slide img {
+    display:block;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: var(--main-border-radius);
+  }
+  .tournaments-swiper .swiper-pagination-bullet-active {
+    background-color: var(--main-color);
+}
+.tournaments-swiper .swiper-button-prev,
+.tournaments-swiper .swiper-button-next{
+    color: var(--main-color);
+}
+/* end tournaments */
