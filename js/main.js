@@ -111,7 +111,7 @@ function createTournamentsSwiperSlide(TournamentsImages){
     tournamentsSwiperSlide.classList.add("swiper-slide");
 
     let tournamentImg = document.createElement("img");
-    tournamentImg.src = img.TourImageURL;
+    tournamentImg.src = img.TournamentImgURL;
 
 
     tournamentsSwiperSlide.appendChild(tournamentImg);

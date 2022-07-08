@@ -69,29 +69,6 @@ input.type = "file";
 //     GetAllDocumentsOnce();
 // }
 
-//----------------- Add documents by custom ID
-async function AddDocument_CustomID(url){
-    var name = imgNameInput.value;
-    var ext = extLab.innerHTML;
-
-    var ref = doc(db,"meals/"+mealId.value);
-    await setDoc(ref,{
-        MealId : mealId.value,
-        MealName : mealName.value,
-        MealDesc : mealDesc.value,
-        MealPrice : mealPrice.value,
-        MealCateg : mealCateg.value,
-        MealImageName: (name+ext),
-        MealImageURL: url
-    }).then(()=>{
-        alert("data has been added Succesfuly");
-    })
-    .catch((error)=>{
-     alert("Unsuccesfuly data has not been added:"+error);
-    });
-    emptyInputs();
-    files = "";
-}
 //
 input.onchange = e =>{
     files = e.target.files;
@@ -122,6 +99,29 @@ function getFileName(file){
     var temp = file.name.split('.');
     var fname = temp.slice(0,-1).join(".");
     return fname;
+}
+//----------------- Add documents by custom ID
+async function AddDocument_CustomID(url){
+    var name = imgNameInput.value;
+    var ext = extLab.innerHTML;
+
+    var ref = doc(db,"meals/"+mealId.value);
+    await setDoc(ref,{
+        MealId : mealId.value,
+        MealName : mealName.value,
+        MealDesc : mealDesc.value,
+        MealPrice : mealPrice.value,
+        MealCateg : mealCateg.value,
+        MealImageName: (name+ext),
+        MealImageURL: url
+    }).then(()=>{
+        alert("data has been added Succesfuly");
+    })
+    .catch((error)=>{
+     alert("Unsuccesfuly data has not been added:"+error);
+    });
+    emptyInputs();
+    files = "";
 }
 // upload Image to storage proccess
 async function UploadProcess(){
@@ -437,6 +437,28 @@ function getTourFileName(file){
     return fname;
 }
 
+
+// Save Image  To Firestore
+async function saveTourImgURLToFireStore(url){
+    var name = TourImginput.files[0].name;
+    // var ext = TourImgextLab.innerHTML;
+
+    var ref = doc(db,"TournamentsImages/"+tourImgId.value);
+
+    await setDoc(ref,{
+        TournamentImgId : tourImgId.value,
+        TournamentImgName : name,
+        TournamentImgURL: url,
+
+    }).then(()=>{
+        alert("data has been added Succesfuly");
+    })
+    .catch((error)=>{
+     alert("Unsuccesfuly data has not been added");
+    });
+    emptyTourInputs()
+    TourImgsfiles = "";
+}
 //-----------------------image upload proccess
 async function TourUploadProcess(){
     var imgToUpload = TourImgsfiles[0];
@@ -460,32 +482,10 @@ async function TourUploadProcess(){
     },
     ()=>{
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL)=>{
-            saveTourURLtoFirestoreCostumeID(downloadURL)
+            saveTourImgURLToFireStore(downloadURL)
         })
     }
     )
-}
-// Save Image  To Firestore
-async function saveTourURLtoFirestoreCostumeID(url){
-    var name = TourImginput.files[0].name;
-    // var ext = TourImgextLab.innerHTML;
-
-    var ref = doc(db,"TournamentsImages/"+tourImgId.value);
-
-    await setDoc(ref,{
-        TourImageID : tourImgId.value,
-        TourImageName : (name),
-        TourImageURL: url,
-
-    }).then(()=>{
-        alert("data has been added Succesfuly");
-    })
-    .catch((error)=>{
-
-     alert("Unsuccesfuly data has not been added");
-    });
-    emptyTourInputs()
-
 }
 //get image from firestore
 var tourImgStash;
@@ -495,22 +495,22 @@ async function getTourImageFromFirestore(){
 
     const docSnap = await getDoc(ref)
     .then((docSnap)=>{
-        TourImgNameInput.value = docSnap.data().TourImageName;
-        TourImg.src = docSnap.data().TourImageURL;
-        tourImgStash = docSnap.data().TourImageName;
+        TourImgNameInput.value = docSnap.data().TournamentImgName;
+        TourImg.src = docSnap.data().TournamentImgURL;
+        tourImgStash = docSnap.data().TournamentImgName;
     })
     .catch(error=> alert("No Such Document:"+error));
       
 }
  //update tournaments Image
  async  function updateTourImage(url){
-    var name = imgNameInput.value;
-    var ext = extLab.innerHTML;
-    var ref = doc(db, "TournamentsImages",TourImgNameInput.value);
+    await deleteTournamentImageFromStorage();
+    var name = TourImginput.files[0].name;
+    var ref = doc(db, "TournamentsImages",tourImgId.value);
         await updateDoc(
             ref, {
                 TournamentImgId : tourImgId.value,
-                TournamentImgName : TourImgNameInput.value,
+                TournamentImgName : name,
                 TournamentImgURL: url,
             }
         )
@@ -521,12 +521,11 @@ async function getTourImageFromFirestore(){
     
         alert("Unsuccesfuly data has not been updated:" + error);
         });
-
-        deleteTournamentImageFromStorage();
         emptyInputs();
 }
 // update Image to storage procces
 async function UpdateTourImgProcess(){
+    if(TourImgsfiles.length > 0){
     var imgToUpload = TourImgsfiles[0];
 
     var ImageName = TourImgNameInput.value + TourImgextLab.innerHTML;
@@ -541,18 +540,18 @@ async function UpdateTourImgProcess(){
     const uploadTask = uploadBytesResumable(storageRef,imgToUpload,metaData);
     uploadTask.on('state-change',(snapShot)=>{
         var progress = (snapShot.bytesTransferred / snapShot.totalBytes) * 100;
-        progLab.innerHTML = "upload" + progress + "%";
+        TourImgprogLab.innerHTML = "upload" + progress + "%";
     },
     (error) =>{
         alert("error image not uploaded:"+error);
     },
     ()=>{
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL)=>{
-            updateFieldsInADocument(downloadURL);
+            updateTourImage(downloadURL);
         })
     }
     )
-    updateFieldsInADocument()
+}
 }
 //delete image from fireBase and storage
 async function DeleteTourDocument(){
@@ -580,14 +579,14 @@ async function deleteTournamentImageFromStorage(){
     var ref = doc(db, "TournamentsImages",tourImgId.value);
     const docSnap = await getDoc(ref)
     .then((docSnap)=>{
-        name = docSnap.data().TourImageName;
+        name = docSnap.data().TournamentImgName;
     })
     const storage = getStorage();
     const desertRef = sRef(storage, "TournamentsImages/"+name);
 
 
     await deleteObject(desertRef).then(() => {
-        alert("File Deleted Succefully")
+        // alert("File Deleted Succefully")
       }).catch((error) => {
         alert(error)
       });
@@ -612,3 +611,7 @@ TourdelBtn.onclick = (e)=>{
     e.preventDefault()
     DeleteTourDocument();
 };
+TourupdBtn.onclick = (e) =>{
+    e.preventDefault()
+    UpdateTourImgProcess()
+}
