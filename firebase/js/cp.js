@@ -12,18 +12,14 @@ const firebaseConfig = {
   messagingSenderId: "138428441492",
   appId: "1:138428441492:web:03accd6edfc2e4b2b16581"
 };
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
-
+// import firestore db
 import {getFirestore, doc, getDoc, getDocs, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField,onSnapshot} from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js"
-
+//db
 const db = getFirestore();
-
 // import firebase storage
-import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL, deleteObject  } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-storage.js";
-
+import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL, deleteObject , } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-storage.js";
 
  // -----------------------------------------------REFFERENCES-------------------------------------------
  //inputs
@@ -48,7 +44,6 @@ import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL, deleteOb
  var input = document.createElement("input");
 input.type = "file";
  
-
  // -------------------------------------------- ADD meals Documents ------------------------------------------
 //  async function AddDocument_AutoID(e){
 //     e.preventDefault()
@@ -95,6 +90,7 @@ async function AddDocument_CustomID(url){
      alert("Unsuccesfuly data has not been added:"+error);
     });
     emptyInputs();
+    files = "";
 }
 //
 input.onchange = e =>{
@@ -130,7 +126,7 @@ function getFileName(file){
 // upload Image to storage proccess
 async function UploadProcess(){
     var imgToUpload = files[0];
-
+    
     var ImageName = imgNameInput.value + extLab.innerHTML;
 
     const metaData ={
@@ -155,7 +151,6 @@ async function UploadProcess(){
     }
     )
 }
-
 //----------------------------------------------------------Getting meals Documents----------------------------------------------------
 var imgNameStash;
 async function GetADocument(){
@@ -174,12 +169,14 @@ async function GetADocument(){
 }
  //---------------------------------------------------------Updating meals Document Data--------------------------------------------------
  async  function updateFieldsInADocument(url){
-    var name = imgNameInput.value;
-    var ext = extLab.innerHTML;
-
+    var name = imgNameStash;
+    var extension;
     var ref = doc(db, "meals",mealId.value);
 
     if(files.length > 0){
+       await deleteMealImageFromStorage();
+        name = imgNameInput.value;
+        extension = extLab.innerHTML;
         await updateDoc(
             ref, {
                 MealId : mealId.value,
@@ -187,20 +184,17 @@ async function GetADocument(){
                 MealDesc : mealDesc.value,
                 MealPrice : mealPrice.value,
                 MealCateg : mealCateg.value,
-                MealImageName: (name+ext),
+                MealImageName: (name+extension),
                 MealImageURL: url
             }
             
         )
-     
         .then(()=>{
             alert("data has been updated Succesfuly");
         })
         .catch((error)=>{
-    
         alert("Unsuccesfuly data has not been updated:" + error);
         });
-        deleteMalImageFromStorage();
     }else{
         await updateDoc(
             ref, {
@@ -209,21 +203,19 @@ async function GetADocument(){
                 MealDesc : mealDesc.value,
                 MealPrice : mealPrice.value,
                 MealCateg : mealCateg.value,
-                MealImageName: (name+ext),
             }
             
         )
-     
         .then(()=>{
             alert("data has been updated Succesfuly");
         })
         .catch((error)=>{
-    
         alert("Unsuccesfuly data has not been updated:" + error);
         });
     }
-    emptyInputs()
+    emptyInputs();
     GetAllDocumentsOnce();
+    files = "";
 }
 // update Image to storage proccess
 async function UpdateProcess(){
@@ -281,7 +273,6 @@ async function UpdateProcess(){
     emptyInputs();
     GetAllDocumentsOnce();
 }
-
 async function deleteMealImageFromStorage(){
     var name;
     const storage = getStorage();
@@ -290,9 +281,7 @@ async function deleteMealImageFromStorage(){
     .then((docSnap)=>{
         name = docSnap.data().MealImageName;
     })
-
     const desertRef = sRef(storage, "menuTopImages/"+name);
-
 
     await deleteObject(desertRef).then(() => {
         alert("File Deleted Succefully")
@@ -304,7 +293,6 @@ async function deleteMealImageFromStorage(){
  insBtn.addEventListener("click", (e)=>{
     e.preventDefault();
     UploadProcess();
-
  });
  selBtn.addEventListener("click",(e)=>{
     e.preventDefault()
@@ -315,7 +303,6 @@ async function deleteMealImageFromStorage(){
     UpdateProcess();
  });
  delBtn.addEventListener("click",DeleteDocument);
-
  // ---------------------------- Table Of Data ---------------------------------------------------------------------------------------
 //variable
 let tableBody = document.querySelector(".tbody1")
@@ -522,13 +509,9 @@ async function getTourImageFromFirestore(){
     var ref = doc(db, "TournamentsImages",TourImgNameInput.value);
         await updateDoc(
             ref, {
-                MealId : mealId.value,
-                MealName : mealName.value,
-                MealDesc : mealDesc.value,
-                MealPrice : mealPrice.value,
-                MealCateg : mealCateg.value,
-                MealImageName: (name+ext),
-                MealImageURL: url,
+                TournamentImgId : tourImgId.value,
+                TournamentImgName : TourImgNameInput.value,
+                TournamentImgURL: url,
             }
         )
         .then(()=>{
@@ -543,6 +526,34 @@ async function getTourImageFromFirestore(){
         emptyInputs();
 }
 // update Image to storage procces
+async function UpdateTourImgProcess(){
+    var imgToUpload = TourImgsfiles[0];
+
+    var ImageName = TourImgNameInput.value + TourImgextLab.innerHTML;
+
+    const metaData ={
+        contentType:imgToUpload.type,
+    }
+    const storage = getStorage();
+
+    const storageRef = sRef(storage, "TournamentsImages/"+ImageName);
+
+    const uploadTask = uploadBytesResumable(storageRef,imgToUpload,metaData);
+    uploadTask.on('state-change',(snapShot)=>{
+        var progress = (snapShot.bytesTransferred / snapShot.totalBytes) * 100;
+        progLab.innerHTML = "upload" + progress + "%";
+    },
+    (error) =>{
+        alert("error image not uploaded:"+error);
+    },
+    ()=>{
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL)=>{
+            updateFieldsInADocument(downloadURL);
+        })
+    }
+    )
+    updateFieldsInADocument()
+}
 //delete image from fireBase and storage
 async function DeleteTourDocument(){
     deleteTournamentImageFromStorage();
