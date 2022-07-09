@@ -71,6 +71,7 @@ input.type = "file";
 
 //
 input.onchange = e =>{
+    if(input.value !== "")
     files = e.target.files;
      var extension = GetFileExt(files[0]);
      var name = getFileName(files[0]);
@@ -284,7 +285,7 @@ async function deleteMealImageFromStorage(){
     const desertRef = sRef(storage, "menuTopImages/"+name);
 
     await deleteObject(desertRef).then(() => {
-        alert("File Deleted Succefully")
+        // alert("File Deleted Succefully")
       }).catch((error) => {
         alert(error)
       });
@@ -406,7 +407,8 @@ function AddAllItemsToTable(meals){
  TourImginput.type = 'file';
 
  TourImginput.onchange = e =>{
-    TourImgsfiles = e.target.files;
+     if(TourImginput.value !== "")
+     TourImgsfiles = e.target.files;
      var extension = GetTourFileExt(TourImgsfiles[0]);
      var name = getTourFileName(TourImgsfiles[0]);
  
