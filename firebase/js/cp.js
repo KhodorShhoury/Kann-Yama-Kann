@@ -128,32 +128,37 @@ async function AddDocument_CustomID(url){
 // upload Image to storage proccess
 async function UploadProcess(){
     if(files.length > 0){
-    var imgToUpload = files[0];
+        var ref = doc(db,"meals/"+mealId.value);
+        const docSnap = await getDoc(ref);
+        if(!docSnap.exists()){
+            var imgToUpload = files[0];
     
-    var ImageName = imgNameInput.value + extLab.innerHTML;
-
-    const metaData ={
-        contentType:imgToUpload.type,
-    }
-    const storage = getStorage();
-
-    const storageRef = sRef(storage, "menuTopImages/"+ImageName);
-
-    const uploadTask = uploadBytesResumable(storageRef,imgToUpload,metaData);
-    uploadTask.on('state-change',(snapShot)=>{
-        var progress = (snapShot.bytesTransferred / snapShot.totalBytes) * 100;
-        progLab.innerHTML = "upload" + progress + "%";
-    },
-    (error) =>{
-        alert("error image not uploaded:"+error);
-    },
-    ()=>{
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL)=>{
-            AddDocument_CustomID(downloadURL);
-        })
-    }
-    )
-}
+            var ImageName = imgNameInput.value + extLab.innerHTML;
+        
+            const metaData ={
+                contentType:imgToUpload.type,
+            }
+            const storage = getStorage();
+        
+            const storageRef = sRef(storage, "menuTopImages/"+ImageName);
+        
+            const uploadTask = uploadBytesResumable(storageRef,imgToUpload,metaData);
+            uploadTask.on('state-change',(snapShot)=>{
+                var progress = (snapShot.bytesTransferred / snapShot.totalBytes) * 100;
+                progLab.innerHTML = "upload" + progress + "%";
+            },
+            (error) =>{
+                alert("error image not uploaded:"+error);
+            },
+            ()=>{
+                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL)=>{
+                    AddDocument_CustomID(downloadURL);
+                })
+            }
+            )
+        }
+        }
+  
 }
 //----------------------------------------------------------Getting meals Documents----------------------------------------------------
 var imgNameStash;
@@ -415,7 +420,6 @@ function AddAllItemsToTable(meals){
 
  TourImgInput.onchange = e =>{
      if(TourImgInput.value !== "")
-     console.log(TourImgInput.value + "1");
      TourImgsfiles = e.target.files;
      var extension = GetTourFileExt(TourImgsfiles[0]);
      var name = getTourFileName(TourImgsfiles[0]);
@@ -446,11 +450,8 @@ function getTourFileName(file){
     var fname = temp.slice(0,-1).join(".");
     return fname;
 }
-
-
 // Save Image  To Firestore
 async function saveTourImgURLToFireStore(url){
-    if(TourImgsfiles.length > 0){
     var name = TourImgInput.files[0].name;
     // var ext = TourImgextLab.innerHTML;
 
@@ -465,42 +466,44 @@ async function saveTourImgURLToFireStore(url){
         alert("data has been added Succesfuly");
     })
     .catch((error)=>{
-     alert("Unsuccesfuly data has not been added");
+     alert("Unsuccesfuly data has not been added"+error);
     });
     emptyTourInputs()
     TourImgsfiles = "";
-}
+
 }
 //-----------------------image upload proccess
 async function TourUploadProcess(){
     if(TourImgsfiles.length > 0){
-    
-    var imgToUpload = TourImgsfiles[0];
-
-    var ImageName = TourImgNameInput.value + TourImgextLab.innerHTML;
-
-    const metaData ={
-        contentType:imgToUpload.type,
-    }
-    const storage = getStorage();
-
-    const storageRef = sRef(storage, "TournamentsImages/"+ImageName);
-
-    const uploadTask = uploadBytesResumable(storageRef,imgToUpload,metaData);
-    uploadTask.on('state-change',(snapShot)=>{
-        var progress = (snapShot.bytesTransferred / snapShot.totalBytes) * 100;
-        TourImgprogLab.innerHTML = "upload" + progress + "%";
-    },
-    (error) =>{
-        alert("error image not uploaded");
-    },
-    ()=>{
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL)=>{
-            saveTourImgURLToFireStore(downloadURL)
-        })
-    }
-    )
-}
+        var ref = doc(db,"TournamentsImages/"+tourImgId.value);
+        const docSnap = await getDoc(ref);
+        if(!docSnap.exists()){
+            var imgToUpload = TourImgsfiles[0];
+            var ImageName = TourImgNameInput.value + TourImgextLab.innerHTML;
+            const metaData ={
+                contentType:imgToUpload.type,
+            }
+            const storage = getStorage();
+        
+            const storageRef = sRef(storage, "TournamentsImages/"+ImageName);
+        
+            const uploadTask = uploadBytesResumable(storageRef,imgToUpload,metaData);
+            uploadTask.on('state-change',(snapShot)=>{
+                var progress = (snapShot.bytesTransferred / snapShot.totalBytes) * 100;
+                TourImgprogLab.innerHTML = "upload" + progress + "%";
+            },
+            (error) =>{
+                alert("error image not uploaded");
+            },
+            ()=>{
+                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL)=>{
+                    saveTourImgURLToFireStore(downloadURL)
+                })
+            }
+            )
+        }
+        }
+        
 }
 //get image from firestore
 var tourImgStash;
@@ -521,7 +524,6 @@ async function getTourImageFromFirestore(){
  async  function updateTourImage(url){
     
     var name = TourImgInput.files[0].name;
-    console.log(name)
     var ref = doc(db, "TournamentsImages",tourImgId.value);
         await updateDoc(
             ref, {
