@@ -223,7 +223,11 @@ async function GetADocument(){
 }
 // update Image to storage proccess
 async function UpdateProcess(){
+    var ref = doc(db, "meals",mealId.value);
+    const docSnap = await getDoc(ref);
+    if(docSnap.exists())
     if(files.length > 0){
+
     var imgToUpload = files[0];
 
     var ImageName = imgNameInput.value + extLab.innerHTML;
@@ -406,11 +410,12 @@ function AddAllItemsToTable(meals){
  var TourImgextLab = document.getElementById("tour-extlab");
  var TourImg = document.getElementById("tour-img");
  var TourImgprogLab = document.getElementById("tour-upprogress");
- var TourImginput = document.createElement("input");
- TourImginput.type = 'file';
+ var TourImgInput = document.createElement("input");
+ TourImgInput.type = 'file';
 
- TourImginput.onchange = e =>{
-     if(TourImginput.value !== "")
+ TourImgInput.onchange = e =>{
+     if(TourImgInput.value !== "")
+     console.log(TourImgInput.value + "1");
      TourImgsfiles = e.target.files;
      var extension = GetTourFileExt(TourImgsfiles[0]);
      var name = getTourFileName(TourImgsfiles[0]);
@@ -427,7 +432,7 @@ function AddAllItemsToTable(meals){
 
 TourImgSelButton.onclick = function(e){
     e.preventDefault();
-    TourImginput.click();
+    TourImgInput.click();
 }
 //get image extension
 function GetTourFileExt(file){
@@ -446,7 +451,7 @@ function getTourFileName(file){
 // Save Image  To Firestore
 async function saveTourImgURLToFireStore(url){
     if(TourImgsfiles.length > 0){
-    var name = TourImginput.files[0].name;
+    var name = TourImgInput.files[0].name;
     // var ext = TourImgextLab.innerHTML;
 
     var ref = doc(db,"TournamentsImages/"+tourImgId.value);
@@ -515,7 +520,7 @@ async function getTourImageFromFirestore(){
  //update tournaments Image
  async  function updateTourImage(url){
     
-    var name = TourImginput.files[0].name;
+    var name = TourImgInput.files[0].name;
     console.log(name)
     var ref = doc(db, "TournamentsImages",tourImgId.value);
         await updateDoc(
@@ -532,11 +537,14 @@ async function getTourImageFromFirestore(){
     
         alert("Unsuccesfuly data has not been updated:" + error);
         });
-        
         emptyInputs();
+        TourImgsfiles = "";
 }
 // update Image to storage procces
 async function UpdateTourImgProcess(){
+    var ref = doc(db, "TournamentsImages",tourImgId.value);
+    const docSnap = await getDoc(ref);
+    if(docSnap.exists())
     if(TourImgsfiles.length > 0){
     await deleteTournamentImageFromStorage();
     var imgToUpload = TourImgsfiles[0];
@@ -574,7 +582,7 @@ async function DeleteTourDocument(){
         alert("Document does not exist");
         return;
     }else{
-        deleteTournamentImageFromStorage();
+       await deleteTournamentImageFromStorage();
         await deleteDoc(ref)
         .then(()=>{
             alert("data has been deleted Succesfuly");
