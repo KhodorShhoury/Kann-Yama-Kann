@@ -441,21 +441,25 @@ margin: auto;
                 font-size: 10px;
             }
         }
-        .container .tournaments-panel-container .tour-panel-table .table td{
+        .container .tournaments-panel-container .tour-panel-table .table td:not(img){
             font-weight: 700;
-            line-height: 100%;
+            line-height: 100px;
             text-align: center;
             font-size: 12px;
             border: none;
             max-width: 40px;
             border: 3px solid var(--dark-color);
-            padding: 20px 10px;
             overflow: auto;
+            height: 100px;
         }
         @media(max-width:480px){
             .container .tournaments-panel-container .tour-panel-table .table td{
                 font-size: 10px;
             }
+        }
+        .container .tournaments-panel-container .tour-panel-table .table td img{
+            width: 100px;
+            max-width: 100%;
         }
         .container .tournaments-panel-container  .center{
             display: flex;

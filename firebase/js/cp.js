@@ -176,7 +176,7 @@ async function GetADocument(){
     })
     .catch((error)=> alert("No Such Document:"+error));
     files = "";
-
+    input.value = "";
 }
  //---------------------------------------------------------Updating meals Document Data--------------------------------------------------
  async  function updateFieldsInADocument(url){
@@ -399,7 +399,6 @@ function AddAllItemsToTable(meals){
             progLab.innerHTML = "";
     }
     //run function after page load
-    window.onload = GetAllDocumentsRealTime;
 
     //------------------------------------------------- tournaments images----------------------------------------------
     // variables
@@ -522,7 +521,7 @@ async function getTourImageFromFirestore(){
         tourImgStash = docSnap.data().TournamentImgName;
     })
     .catch(error=> alert("No Such Document:"+error));
-      
+    TourImgInput.value = "";
 }
  //update tournaments Image
  async  function updateTourImage(url){
@@ -623,6 +622,77 @@ async function deleteTournamentImageFromStorage(){
         alert(error)
       });
 }
+
+// ------------------------------------------------ Add tournaments data to table-------------------------------------------------
+// ---------------------------- Table Of Data ---------------------------------------------------------------------------------------
+//variable
+let TourtableBody = document.querySelector(".tour-tbody1")
+let TourImgNo = 0;
+
+//Add Item To Table
+function AddTourItemToTable(TourId,TourName,TourImg){
+    // create table elements
+    let tableTr = document.createElement("tr");
+    let tableTd1 = document.createElement("td");
+    let tableTd2 = document.createElement("td");
+    let tableTd3 = document.createElement("td");
+    let tableTd4 = document.createElement("td");
+    let tableTd4Img = document.createElement("img");
+    //fill table elements with image data
+    tableTd1.innerHTML = ++TourImgNo;
+    tableTd2.innerHTML = TourId;
+    tableTd3.innerHTML = TourName;
+    tableTd4Img.src = TourImg ;
+    //append table elements
+    tableTr.appendChild(tableTd1);
+    tableTr.appendChild(tableTd2);
+    tableTr.appendChild(tableTd3);
+    tableTr.appendChild(tableTd4);
+
+    tableTd4.appendChild(tableTd4Img)
+    //append table body
+    TourtableBody.appendChild(tableTr);
+}
+//Add All Items To Table
+function AddAllTourItemsToTable(tournaments){
+    TourImgNo = 0
+    TourtableBody.innerHTML ="";
+        tournaments.forEach(tour =>{
+            AddTourItemToTable(tour.TournamentImgId,tour.TournamentImgName,tour.TournamentImgURL)
+        })
+    }
+
+    //Get DocumentOnce
+    // async function GetAllTourDocumentsOnce(){
+    //     const querySnapShot = await getDocs(collection(db,"TournamentsImages"))
+       
+    //     var tournaments = [];
+       
+    //     querySnapShot.forEach(doc=>{
+    //         tournaments.push(doc.data())
+    //     })
+       
+    //     AddAllTourItemsToTable(meals)
+    //    }
+
+    //Get All Documents Real Time
+    async function GetAllTourDocumentsRealTime(){
+        const dbRef = collection(db,"TournamentsImages");
+       
+        onSnapshot(dbRef,(querySnapShot)=>{
+           var tournaments = [];
+       
+            querySnapShot.forEach(doc => {
+                tournaments.push(doc.data());
+            });
+            AddAllTourItemsToTable(tournaments)
+        })
+       }
+       window.onload = ()=>{
+        GetAllDocumentsRealTime();
+        GetAllTourDocumentsRealTime();
+       };
+
 //Empty Inputs After Submit
 function emptyTourInputs(){
     TourImgNameInput.value = "";
