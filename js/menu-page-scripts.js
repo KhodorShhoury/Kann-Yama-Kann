@@ -1,3 +1,16 @@
+// let headerSection = document.querySelector(".header"); //header section
+// let offersSection = document.getElementById("offers");
+// // function that handle header position
+// function handleHeaderPosition(){
+//     if(document.documentElement.scrollTop >=  offersSection.offsetHeight + 80){
+//         headerSection.classList.add("fixed");
+//     }else{
+//         headerSection.classList.remove("fixed")
+//     }
+// }
+// window.onscroll = handleHeaderPosition;
+
+
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -114,17 +127,7 @@ function createMealCard(meals){
 }
 
 //--------------------------------------------------------offers----------------------------------------
-let headerSection = document.querySelector(".header"); //header section
-let offersSection = document.getElementById("offers");
-// function that handle header position
-function handleHeaderPosition(){
-    if(document.documentElement.scrollTop >=  offersSection.offsetHeight + 80){
-        headerSection.classList.add("fixed");
-    }else{
-        headerSection.classList.remove("fixed")
-    }
-}
-window.onscroll = handleHeaderPosition;
+
 
 
 
@@ -166,35 +169,38 @@ function createOffersSwiperSlide(offersImages){
     })
   }
   
-  var swiper = new Swiper(".offers-swiper", {
-    slidesPerView : 4,
-    spaceBetween: 30,
-    freeMode: false,
-    loop: true,
-    keyboard: {
-      enabled: true,
-    },
-    autoplay: {
-        delay: 2500,
-        disableOnInteraction: false,
+  setTimeout(() => {
+    var swiper = new Swiper(".offers-swiper", {
+      slidesPerView : 3,
+      spaceBetween: 30,
+      freeMode: false,
+      loop: true,
+      keyboard: {
+        enabled: true,
       },
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-     // Navigation arrows
-
-  breakpoints :{
-    0: {slidesPerView : 1},
-    480 : {slidesPerView : 2},
-    991 : {slidesPerView : 3},
-    1199: {slidesPerView : 4},
-  }
-  });
+      autoplay: {
+          delay: 2500,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+       // Navigation arrows
+  
+    breakpoints :{
+      0: {slidesPerView : 1},
+      480 : {slidesPerView : 2},
+      991 : {slidesPerView : 3},
+      1199: {slidesPerView : 4},
+    }
+    });
+  }, 2000);
+  
   window.onload =  ()=>{
     GetAllDocumentsRealTime();
     getOffersImageFromFirestoreRealtime();
