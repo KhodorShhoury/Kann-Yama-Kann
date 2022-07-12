@@ -113,7 +113,7 @@ function createMealCard(meals){
     
 }
 
-//offers
+//--------------------------------------------------------offers----------------------------------------
 let headerSection = document.querySelector(".header"); //header section
 let offersSection = document.getElementById("offers");
 // function that handle header position
@@ -167,7 +167,7 @@ function createOffersSwiperSlide(offersImages){
   }
   
   var swiper = new Swiper(".offers-swiper", {
-    slidesPerView : 3,
+    slidesPerView : 4,
     spaceBetween: 30,
     freeMode: false,
     loop: true,

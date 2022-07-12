@@ -39,7 +39,13 @@ ul{
     margin-left: auto;
 }
 
-
+.main-heading{
+    margin: 0px auto 80px;
+    text-align: center;
+    font-size: 40px;
+    color: var(--main-color);
+    text-transform: uppercase;
+}
 /* small */
 @media (min-width:768px){
     .container{
@@ -71,9 +77,11 @@ ul{
     -webkit-box-shadow: 0 0 10px var(--box-shadow-color);
     -moz-box-shadow: 0 0 10px var(--box-shadow-color);
     box-shadow: 0 0 10px var(--box-shadow-color);
+    
   }
   .header.fixed{
     position: fixed;
+    top: 0;
   }
   .header .container{
       display: flex;
@@ -155,14 +163,12 @@ ul{
   /* /start offers */
   .offers{
     width: 100%;
-    background-color: var(--main-color);
     margin-top: 20px;
 }
 .swiper {
     width: 100%;
-    height: 200px;
+    height: 300px;
     padding: 30px 0px;
-
   }
 
   .swiper-slide {
@@ -220,6 +226,7 @@ ul{
 }
   .menu .container .meal .meal-img-top{
     border-radius: var(--main-border-radius);
+    width: 100%;
     max-width: 100%;
     height: 150px;
   }
