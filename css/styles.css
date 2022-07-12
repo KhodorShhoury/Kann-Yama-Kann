@@ -47,7 +47,22 @@ ul{
     text-transform: uppercase;
 }
 
+.main-button{
+    text-align: center;
+    margin: 0 auto;
+    width: fit-content;
+   
+}
+.main-button a{
+    font-size: 16px;
+    background-color: var(--main-color);
+    padding: 12px 20px;
+    color: white;
+    font-weight: 600;
+    border-radius: 5px;
 
+   
+}
 .spikes{
     position: relative;
 }
@@ -427,3 +442,82 @@ ul{
 /* end swiper */
   /* /end offers */
 /* end tournaments */
+
+/* start contact */
+.contact{
+    display: flex;
+    margin-top: 100px;
+}
+.contact .location {
+    min-height: 500px;
+}
+.contact .location iframe{
+    min-height: 100%;
+    max-height: 100%;
+    width: 100%;
+}
+@media(min-width:992px){
+.contact .location{
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+.contact .contact-form{
+flex: 0 0 50%;
+max-width: 50%;
+}
+}
+@media(max-width:991px){
+    .contact{
+        flex-direction: column;
+    }
+}
+.contact .contact-form{
+background-image: url("../img/contact-bg.jpg");
+background-size: cover;
+background-repeat: no-repeat;
+background-position: cover cover;
+}
+@media(min-width:481px){
+    .contact .contact-form {
+        padding: 80px;
+    }
+}
+.contact .contact-form form{
+    display: block;
+    background-color: white;
+    padding: 40px;
+    border-radius: var(--main-border-radius);
+}
+.contact .contact-form form .inputs{
+    display: flex;
+    flex-wrap: wrap;
+}
+.contact .contact-form form .inputs .input-div{
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+.contact .contact-form form .inputs .input-div .input{
+    width: 100%;
+    font-size: 14px;
+    margin: 0 0 30px 0;
+    padding: 0 10px;
+    height: 40px;
+    outline: none;
+    border: 1px solid #ddd;
+}
+.contact .contact-form form .inputs .input-div textarea{
+    line-height: 40px;
+    height: 150px !important;
+    resize: none;
+
+}
+@media(min-width:481px){
+    .contact .contact-form form .inputs .name,
+    .contact .contact-form form .inputs .email{
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+
+/* end contact */
