@@ -38,7 +38,7 @@ button,input{
 }
 
 .main-heading{
-    margin: 20px auto 20px;
+    margin: 20px auto 20px auto;
     text-align: center;
     font-size: 40px;
     color: var(--main-color);
@@ -276,6 +276,214 @@ margin: auto;
 
 
 
+    /* tournament images */
+    .container .offers-panel-container{
+        display: flex;
+        justify-content: space-between;
+        }
+        @media(max-width:991px){
+            .container .offers-panel-container{
+                flex-direction: column;
+            }
+        }
+    
+        .container .offers-panel-container .form{
+            flex: 0 0 30%;
+    
+        }
+        @media(max-width:991px){
+            .container .offers-panel-container .form{
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+        @media(max-width:480px){
+            .container .offers-panel-container .form{
+                flex-direction: column;
+            }
+        }
+    
+        @media(min-width:992px){
+            .container .offers-panel-container .form{
+                flex: 0 0 30%;
+            }
+        }
+        .container .offers-panel-container .form .offers-text-input label{
+           color: var(--main-color);
+           font-weight: 700;
+           font-size: 16px;
+        }
+        @media(max-width:480px){
+            .container .offers-panel-container .form .offers-text-input {
+                margin: 0px 10px 10px 10px;
+        
+            }
+        }
+        
+        .container .offers-panel-container .form .offers-text-input .input{
+          display: block;
+          width: 100%;
+          background-color: transparent;
+          outline: none;
+          border: 3px solid var(--main-color);
+          border-radius: var(--main-border-radius);
+          margin: 0px 0px 10px 0px;
+          padding: 5px;
+          caret-color: var(--main-color);
+          color: white;
+          font-weight: 700;
+        }
+    
+    
+        .container .offers-panel-container .form .offers-text-input .input::placeholder{
+            visibility: hidden;
+            font-weight: 700;
+    
+        }
+    
+        /* img */
+        .container .offers-panel-container .form  .offers-image-input{
+            display: flex;
+            flex-direction: column;
+        }
+        .container .offers-panel-container .form  .offers-image-input label:first-child{
+            color: var(--main-color);
+            font-weight: 700;
+            font-size: 16px;    }
+        .container .offers-panel-container .form  .offers-image-input .image-name{
+            display: flex;
+            align-items: center;        
+        }   
+         .container .offers-panel-container .form  .offers-image-input .offers-image-name .input{
+            display: block;
+            width: 100%;
+            background-color: transparent;
+            outline: none;
+            border: 3px solid var(--main-color);
+            border-radius: var(--main-border-radius);
+            margin: 0px 0px 10px 0px;
+            padding: 5px;
+            caret-color: var(--main-color);
+            color: white;
+            font-weight: 700;
+        }
+        @media(max-width:480px){
+            .container .offers-panel-container .form  .offers-image-input .offers-image-name .input{
+                margin: 0px 10px 10px 10px;
+            }
+        }
+        .container .offers-panel-container .form  #select-offers-img{
+            padding: 10px 15px;
+            display: block;
+            background-color: var(--main-color);
+            margin: 10px auto;
+        }
+        .container .offers-panel-container .form #offers-extlab{
+            color: white;
+            margin-left: 5px;
+        }
+        .container .offers-panel-container .form #offers-img{
+            display: block;
+            margin: 0px auto;
+        }
+    
+        /* img */
+        
+        .container .offers-panel-container .offers-panel-table{
+            flex: 0 0 65%;
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+    
+        }
+        @media(min-width:992px){
+            .container .offers-panel-container .offers-panel-table{
+                flex: 0 0 65%;
+            }
+        }
+        @media(max-width:991px){
+            .container .offers-panel-container .offers-panel-table{
+                flex-direction: column-reverse;
+            }
+        }
+        .container .offers-panel-container .offers-panel-table .table-container{
+            max-height: 400px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+        .container .offers-panel-container .offers-panel-table .table-container .table{
+            color: var(--dark-color);
+            background-color: var(--main-color);
+            position: relative;
+            
+        }
+        .container .offers-panel-container .offers-panel-table .table-container::-webkit-scrollbar{
+            width: 10px;
+        }
+        .container .offers-panel-container .offers-panel-table .table-container::-webkit-scrollbar-track{
+            background: #212529;
+        }
+        .container .offers-panel-container .offers-panel-table .table-container::-webkit-scrollbar-thumb{
+            background-color: var(--main-color);
+        }
+    
+        .container .offers-panel-container .offers-panel-table .table th{
+            font-weight: 700;
+            font-size: 14px;
+            text-align: center;
+            line-height: 100%;
+            border: none;
+            border-right: 3px solid var(--dark-color);
+            padding: 30px 0px;
+        }
+        @media(max-width:480px){
+            .container .offers-panel-container .offers-panel-table .table th{
+                font-size: 10px;
+            }
+        }
+        .container .offers-panel-container .offers-panel-table .table td:not(img){
+            font-weight: 700;
+            line-height: 100px;
+            text-align: center;
+            font-size: 12px;
+            border: none;
+            max-width: 40px;
+            border: 3px solid var(--dark-color);
+            overflow: auto;
+            height: 100px;
+        }
+        @media(max-width:480px){
+            .container .offers-panel-container .offers-panel-table .table td{
+                font-size: 10px;
+            }
+        }
+        .container .offers-panel-container .offers-panel-table .table td img{
+            width: 100px;
+            max-width: 100%;
+        }
+        .container .offers-panel-container  .center{
+            display: flex;
+            margin: 10px auto 0px auto;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        @media(max-width:991px){
+            .container .offers-panel-container  .center{
+                margin-bottom: 30px;
+            }
+        }
+        .container .offers-panel-container .center  .button{
+           padding: 10px 35px;
+           border: none;
+           outline: none;
+           background-color: var(--main-color);
+           color: var(--dark-color);
+           font-weight: 700;
+           text-align: center;
+           margin: 10px 10px;
+        }
+
+    /* offers images */
     /* tournament images */
     .container .tournaments-panel-container{
         display: flex;

@@ -1,4 +1,3 @@
-
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -47,7 +46,7 @@ async function GetAllDocumentsRealTime(){
    }
 
 
-window.onload =  GetAllDocumentsRealTime;
+
 
 
 // --------------------------------------------------- Add Menu meals ------------------------------------------------------------
@@ -114,6 +113,89 @@ function createMealCard(meals){
     
 }
 
+//offers
+let headerSection = document.querySelector(".header"); //header section
+let offersSection = document.getElementById("offers");
+// function that handle header position
+function handleHeaderPosition(){
+    if(document.documentElement.scrollTop >=  offersSection.offsetHeight + 80){
+        headerSection.classList.add("fixed");
+    }else{
+        headerSection.classList.remove("fixed")
+    }
+}
+window.onscroll = handleHeaderPosition;
 
 
 
+
+
+  async function getOffersImageFromFirestoreRealtime(){
+    const dbRef = collection(db,"offersImages");
+  
+     onSnapshot(dbRef,(querySnapShot)=>{
+         var offersImages = [];
+     
+          querySnapShot.forEach(doc => {
+            offersImages.push(doc.data());
+          });
+          createOffersSwiperSlide(offersImages)
+  
+      })
+  }
+  
+  
+
+  let offers = document.getElementById("offers");
+let offersSwiperWrapper = document.querySelector(".offers-swiper-wrapper");
+
+
+function createOffersSwiperSlide(offersImages){
+
+    offersImages.forEach(img=>{
+      let offersSwiperSlide = document.createElement("div");
+      offersSwiperSlide.classList.add("swiper-slide");
+  
+      let offerImg = document.createElement("img");
+      offerImg.src = img.offerImgURL;
+  
+  
+      offersSwiperSlide.appendChild(offerImg);
+  
+      offersSwiperWrapper.appendChild(offersSwiperSlide);
+    })
+  }
+  
+  var swiper = new Swiper(".offers-swiper", {
+    slidesPerView : 3,
+    spaceBetween: 30,
+    freeMode: false,
+    loop: true,
+    keyboard: {
+      enabled: true,
+    },
+    autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+     // Navigation arrows
+
+  breakpoints :{
+    0: {slidesPerView : 1},
+    480 : {slidesPerView : 2},
+    991 : {slidesPerView : 3},
+    1199: {slidesPerView : 4},
+  }
+  });
+  window.onload =  ()=>{
+    GetAllDocumentsRealTime();
+    getOffersImageFromFirestoreRealtime();
+};

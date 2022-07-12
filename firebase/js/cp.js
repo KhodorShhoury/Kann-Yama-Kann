@@ -388,7 +388,7 @@ function AddAllItemsToTable(meals){
 
        //Empty Inputs After submit
        function emptyInputs(){
-        mealId.value = "";
+            mealId.value = "";
             mealName.value = "";
             mealDesc.value = "";
             mealPrice.value = "";
@@ -398,71 +398,72 @@ function AddAllItemsToTable(meals){
             extLab.innerHTML= "";
             progLab.innerHTML = "";
     }
-    //run function after page load
-
-    //------------------------------------------------- tournaments images----------------------------------------------
+    
+    //------------------------------------------------- offers images----------------------------------------------
     // variables
     //buttons
- let TourinsBtn = document.getElementById("tour-Insbtn");
- let TourselBtn = document.getElementById("tour-Selbtn");
- let TourupdBtn = document.getElementById("tour-Updbtn");
- let TourdelBtn = document.getElementById("tour-Delbtn");
+ let offersinsBtn = document.getElementById("offers-Insbtn");
+ let offersselBtn = document.getElementById("offers-Selbtn");
+ let offersupdBtn = document.getElementById("offers-Updbtn");
+ let offersdelBtn = document.getElementById("offers-Delbtn");
  //inputs and elements
- var TourImgsfiles = [];
- var tourImgId = document.getElementById("tour-id");
- var TourImgsreader = new FileReader();
- let TourImgSelButton = document.getElementById("select-tour-img");
- var TourImgNameInput = document.getElementById("tour-img-name-input");
- var TourImgextLab = document.getElementById("tour-extlab");
- var TourImg = document.getElementById("tour-img");
- var TourImgprogLab = document.getElementById("tour-upprogress");
- var TourImgInput = document.createElement("input");
- TourImgInput.type = 'file';
+ var offersImgsfiles = [];
+ var offersImgId = document.getElementById("offers-id");
+ var offersImgsreader = new FileReader();
+ let offersImgSelButton = document.getElementById("select-offers-img");
+ var offersImgNameInput = document.getElementById("offers-img-name-input");
+ var offersImgextLab = document.getElementById("offers-extlab");
+ var offersImg = document.getElementById("offers-img");
+ var offersImgprogLab = document.getElementById("offers-upprogress");
+ var offersImgInput = document.createElement("input");
+ offersImgInput.type = 'file';
 
- TourImgInput.onchange = e =>{
-     if(TourImgInput.value !== "")
-     {     TourImgsfiles = e.target.files;
-        var extension = GetTourFileExt(TourImgsfiles[0]);
-        var name = getTourFileName(TourImgsfiles[0]);
+ offersImgInput.onchange = e =>{
+     if(offersImgInput.value !== "")
+     {     
+        offersImgsfiles = e.target.files;
+        var extension = GetoffersFileExt(offersImgsfiles[0]);
+        var name = getoffersFileName(offersImgsfiles[0]);
     
-        TourImgNameInput.value = name;
-        TourImgextLab.innerHTML = extension;
+        offersImgNameInput.value = name;
+        offersImgextLab.innerHTML = extension;
     
-        TourImgsreader.readAsDataURL(TourImgsfiles[0]);}
+        offersImgsreader.readAsDataURL(offersImgsfiles[0]);
+    }
 
  }
 
- TourImgsreader.onload = function(){
-    TourImg.src = TourImgsreader.result;
+ offersImgsreader.onload = function(){
+    offersImg.src = offersImgsreader.result;
 }
 
-TourImgSelButton.onclick = function(e){
+offersImgSelButton.onclick = function(e){
     e.preventDefault();
-    TourImgInput.click();
+    offersImgInput.click();
 }
 //get image extension
-function GetTourFileExt(file){
+function GetoffersFileExt(file){
     var temp = file.name.split('.');
     var ext = temp.slice((temp.length-1),(temp.length));
     return "."+ ext[0];
 }
 // get image Name
-function getTourFileName(file){
+function getoffersFileName(file){
     var temp = file.name.split('.');
     var fname = temp.slice(0,-1).join(".");
     return fname;
 }
 // Save Image  To Firestore
-async function saveTourImgURLToFireStore(url){
-    var name = TourImgInput.files[0].name;
-    // var ext = TourImgextLab.innerHTML;
+async function saveoffersImgURLToFireStore(url){
+    var name = offersImgInput.files[0].name;
+    // var ext = offersImgextLab.innerHTML;
 
-    var ref = doc(db,"TournamentsImages/"+tourImgId.value);
+    var ref = doc(db,"offersImages/"+offersImgId.value);
 
     await setDoc(ref,{
-        TournamentImgId : tourImgId.value,
-        TournamentImgName : name,
-        TournamentImgURL: url,
+        offerImgId : offersImgId.value,
+        offerImgName : name,
+        offerImgURL: url,
 
     }).then(()=>{
         alert("data has been added Succesfuly");
@@ -470,37 +471,36 @@ async function saveTourImgURLToFireStore(url){
     .catch((error)=>{
      alert("Unsuccesfuly data has not been added"+error);
     });
-    emptyTourInputs()
-    TourImgsfiles = "";
-
+    emptyoffersInputs()
+    offersImgsfiles = "";
 }
 //-----------------------image upload proccess
-async function TourUploadProcess(){
-    if(TourImgsfiles.length > 0){
-        var ref = doc(db,"TournamentsImages/"+tourImgId.value);
+async function offersUploadProcess(){
+    if(offersImgsfiles.length > 0){
+        var ref = doc(db,"offersImages/"+offersImgId.value);
         const docSnap = await getDoc(ref);
         if(!docSnap.exists()){
-            var imgToUpload = TourImgsfiles[0];
-            var ImageName = TourImgNameInput.value + TourImgextLab.innerHTML;
+            var imgToUpload = offersImgsfiles[0];
+            var ImageName = offersImgNameInput.value + offersImgextLab.innerHTML;
 
             const metaData ={
                 contentType:imgToUpload.type,
             }
             const storage = getStorage();
         
-            const storageRef = sRef(storage, "TournamentsImages/"+ImageName);
+            const storageRef = sRef(storage, "offersImages/"+ImageName);
         
             const uploadTask = uploadBytesResumable(storageRef,imgToUpload,metaData);
             uploadTask.on('state-change',(snapShot)=>{
                 var progress = (snapShot.bytesTransferred / snapShot.totalBytes) * 100;
-                TourImgprogLab.innerHTML = "upload" + progress + "%";
+                offersImgprogLab.innerHTML = "upload" + progress + "%";
             },
             (error) =>{
                 alert("error image not uploaded");
             },
             ()=>{
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL)=>{
-                    saveTourImgURLToFireStore(downloadURL)
+                    saveoffersImgURLToFireStore(downloadURL)
                 })
             }
             )
@@ -509,30 +509,30 @@ async function TourUploadProcess(){
         
 }
 //get image from firestore
-var tourImgStash;
-async function getTourImageFromFirestore(){
+var offersImgStash;
+async function getoffersImageFromFirestore(){
 
-    var ref = doc(db,"TournamentsImages/"+tourImgId.value);
+    var ref = doc(db,"offersImages/"+offersImgId.value);
 
     const docSnap = await getDoc(ref)
     .then((docSnap)=>{
-        TourImgNameInput.value = docSnap.data().TournamentImgName;
-        TourImg.src = docSnap.data().TournamentImgURL;
-        tourImgStash = docSnap.data().TournamentImgName;
+        offersImgNameInput.value = docSnap.data().offerImgName;
+        offersImg.src = docSnap.data().offerImgURL;
+        offersImgStash = docSnap.data().offerImgName;
     })
     .catch(error=> alert("No Such Document:"+error));
-    TourImgInput.value = "";
+    offersImgInput.value = "";
 }
- //update tournaments Image
- async  function updateTourImage(url){
+ //update offers Image
+ async  function updateoffersImage(url){
     
-    var name = TourImgInput.files[0].name;
-    var ref = doc(db, "TournamentsImages",tourImgId.value);
+    var name = offersImgInput.files[0].name;
+    var ref = doc(db, "offersImages",offersImgId.value);
         await updateDoc(
             ref, {
-                TournamentImgId : tourImgId.value,
-                TournamentImgName : name,
-                TournamentImgURL: url,
+                offerImgId : offersImgId.value,
+                offerImgName : name,
+                offerImgURL: url,
             }
         )
         .then(()=>{
@@ -543,38 +543,38 @@ async function getTourImageFromFirestore(){
         alert("Unsuccesfuly data has not been updated:" + error);
         });
         emptyInputs();
-        TourImgsfiles = "";
+        offersImgsfiles = "";
 }
 // update Image to storage procces
-async function UpdateTourImgProcess(){
-    var ref = doc(db, "TournamentsImages",tourImgId.value);
+async function UpdateoffersImgProcess(){
+    var ref = doc(db, "offersImages",offersImgId.value);
     const docSnap = await getDoc(ref);
     if(docSnap.exists())
     {
-        if(TourImgsfiles.length > 0){
-            await deleteTournamentImageFromStorage();
-            var imgToUpload = TourImgsfiles[0];
+        if(offersImgsfiles.length > 0){
+            await deleteofferImageFromStorage();
+            var imgToUpload = offersImgsfiles[0];
         
-            var ImageName = TourImgInput.files[0].name;
+            var ImageName = offersImgInput.files[0].name;
         
             const metaData ={
                 contentType:imgToUpload.type,
             }
             const storage = getStorage();
         
-            const storageRef = sRef(storage, "TournamentsImages/"+ImageName);
+            const storageRef = sRef(storage, "offersImages/"+ImageName);
         
             const uploadTask = uploadBytesResumable(storageRef,imgToUpload,metaData);
             uploadTask.on('state-change',(snapShot)=>{
                 var progress = (snapShot.bytesTransferred / snapShot.totalBytes) * 100;
-                TourImgprogLab.innerHTML = "upload" + progress + "%";
+                offersImgprogLab.innerHTML = "upload" + progress + "%";
             },
             (error) =>{
                 alert("error image not uploaded:"+error);
             },
             ()=>{
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL)=>{
-                    updateTourImage(downloadURL);
+                    updateoffersImage(downloadURL);
                 })
             }
             )
@@ -583,14 +583,14 @@ async function UpdateTourImgProcess(){
    
 }
 //delete image from fireBase and storage
-async function DeleteTourDocument(){
-    var ref = doc(db, "TournamentsImages",tourImgId.value);
+async function DeleteoffersDocument(){
+    var ref = doc(db, "offersImages",offersImgId.value);
     const docSnap = await getDoc(ref)
     if(!docSnap.exists()){
         alert("Document does not exist");
         return;
     }else{
-       await deleteTournamentImageFromStorage();
+       await deleteofferImageFromStorage();
         await deleteDoc(ref)
         .then(()=>{
             alert("data has been deleted Succesfuly");
@@ -599,28 +599,343 @@ async function DeleteTourDocument(){
     
         alert("Unsuccesfuly data has not been deleted:" + error);
         });
-        emptyTourInputs()
+        emptyoffersInputs()
     }
 
    
 }
-//delete tourImage from storage
-async function deleteTournamentImageFromStorage(){
+//delete offersImage from storage
+async function deleteofferImageFromStorage(){
     var name;
-    var ref = doc(db, "TournamentsImages",tourImgId.value);
+    var ref = doc(db, "offersImages",offersImgId.value);
     const docSnap = await getDoc(ref)
     .then((docSnap)=>{
-        name = docSnap.data().TournamentImgName;
+        name = docSnap.data().offerImgName;
     })
     const storage = getStorage();
-    const desertRef = sRef(storage, "TournamentsImages/"+name);
-
+    const desertRef = sRef(storage, "offersImages/"+name);
 
     await deleteObject(desertRef).then(() => {
         // alert("File Deleted Succefully")
       }).catch((error) => {
         alert(error)
       });
+}
+
+// ------------------------------------------------ Add offers data to table-------------------------------------------------
+// ---------------------------- Table Of Data ---------------------------------------------------------------------------------------
+//variable
+let offerstableBody = document.querySelector(".offers-tbody1")
+let offersImgNo = 0;
+
+//Add Item To Table
+function AddoffersItemToTable(offersId,offersName,offersImg){
+    // create table elements
+    let tableTr = document.createElement("tr");
+    let tableTd1 = document.createElement("td");
+    let tableTd2 = document.createElement("td");
+    let tableTd3 = document.createElement("td");
+    let tableTd4 = document.createElement("td");
+    let tableTd4Img = document.createElement("img");
+    //fill table elements with image data
+    tableTd1.innerHTML = ++offersImgNo;
+    tableTd2.innerHTML = offersId;
+    tableTd3.innerHTML = offersName;
+    tableTd4Img.src = offersImg ;
+    //append table elements
+    tableTr.appendChild(tableTd1);
+    tableTr.appendChild(tableTd2);
+    tableTr.appendChild(tableTd3);
+    tableTr.appendChild(tableTd4);
+
+    tableTd4.appendChild(tableTd4Img)
+    //append table body
+    offerstableBody.appendChild(tableTr);
+}
+//Add All Items To Table
+function AddAlloffersItemsToTable(offers){
+    offersImgNo = 0
+    offerstableBody.innerHTML ="";
+        offers.forEach(offer =>{
+            AddoffersItemToTable(offer.offerImgId,offer.offerImgName,offer.offerImgURL);
+        })
+    }
+    //Get DocumentOnce
+    // async function GetAlloffersDocumentsOnce(){
+    //     const querySnapShot = await getDocs(collection(db,"offersImages"))
+       
+    //     var offers = [];
+       
+    //     querySnapShot.forEach(doc=>{
+    //         offers.push(doc.data())
+    //     })
+       
+    //     AddAlloffersItemsToTable(meals)
+    //    }
+
+    //Get All Documents Real Time
+    async function GetAlloffersDocumentsRealTime(){
+        const dbRef = collection(db,"offersImages");
+       
+        onSnapshot(dbRef,(querySnapShot)=>{
+           var offers = [];
+       
+            querySnapShot.forEach(doc => {
+                offers.push(doc.data());
+            });
+            AddAlloffersItemsToTable(offers)
+        })
+       }
+
+
+//Empty Inputs After Submit
+function emptyoffersInputs(){
+    offersImgNameInput.value = "";
+    offersImg.src = "";
+    offersImgextLab.innerHTML= "";
+    offersImgprogLab.innerHTML = "";
+}
+//Buttons Events
+offersinsBtn.onclick = function(e){
+    e.preventDefault();
+    offersUploadProcess();
+}
+offersselBtn.onclick = function(e){
+    e.preventDefault();
+    getoffersImageFromFirestore();
+}
+offersdelBtn.onclick = (e)=>{
+    e.preventDefault()
+    DeleteoffersDocument();
+};
+offersupdBtn.onclick = (e) =>{
+    e.preventDefault()
+    UpdateoffersImgProcess();
+}
+
+
+//----------------------------------------------------------end offers------------------------------------------=]
+//------------------------------------------------- tournaments images----------------------------------------------
+// variables
+//buttons
+let TourinsBtn = document.getElementById("tour-Insbtn");
+let TourselBtn = document.getElementById("tour-Selbtn");
+let TourupdBtn = document.getElementById("tour-Updbtn");
+let TourdelBtn = document.getElementById("tour-Delbtn");
+//inputs and elements
+var TourImgsfiles = [];
+var tourImgId = document.getElementById("tour-id");
+var TourImgsreader = new FileReader();
+let TourImgSelButton = document.getElementById("select-tour-img");
+var TourImgNameInput = document.getElementById("tour-img-name-input");
+var TourImgextLab = document.getElementById("tour-extlab");
+var TourImg = document.getElementById("tour-img");
+var TourImgprogLab = document.getElementById("tour-upprogress");
+var TourImgInput = document.createElement("input");
+TourImgInput.type = 'file';
+
+TourImgInput.onchange = e =>{
+ if(TourImgInput.value !== "")
+ {     TourImgsfiles = e.target.files;
+    var extension = GetTourFileExt(TourImgsfiles[0]);
+    var name = getTourFileName(TourImgsfiles[0]);
+
+    TourImgNameInput.value = name;
+    TourImgextLab.innerHTML = extension;
+
+    TourImgsreader.readAsDataURL(TourImgsfiles[0]);}
+
+}
+
+TourImgsreader.onload = function(){
+TourImg.src = TourImgsreader.result;
+}
+
+TourImgSelButton.onclick = function(e){
+e.preventDefault();
+TourImgInput.click();
+}
+//get image extension
+function GetTourFileExt(file){
+var temp = file.name.split('.');
+var ext = temp.slice((temp.length-1),(temp.length));
+return "."+ ext[0];
+}
+// get image Name
+function getTourFileName(file){
+var temp = file.name.split('.');
+var fname = temp.slice(0,-1).join(".");
+return fname;
+}
+// Save Image  To Firestore
+async function saveTourImgURLToFireStore(url){
+var name = TourImgInput.files[0].name;
+// var ext = TourImgextLab.innerHTML;
+
+var ref = doc(db,"TournamentsImages/"+tourImgId.value);
+
+await setDoc(ref,{
+    TournamentImgId : tourImgId.value,
+    TournamentImgName : name,
+    TournamentImgURL: url,
+
+}).then(()=>{
+    alert("data has been added Succesfuly");
+})
+.catch((error)=>{
+ alert("Unsuccesfuly data has not been added"+error);
+});
+emptyTourInputs()
+TourImgsfiles = "";
+
+}
+//-----------------------image upload proccess
+async function TourUploadProcess(){
+if(TourImgsfiles.length > 0){
+    var ref = doc(db,"TournamentsImages/"+tourImgId.value);
+    const docSnap = await getDoc(ref);
+    if(!docSnap.exists()){
+        var imgToUpload = TourImgsfiles[0];
+        var ImageName = TourImgNameInput.value + TourImgextLab.innerHTML;
+
+        const metaData ={
+            contentType:imgToUpload.type,
+        }
+        const storage = getStorage();
+    
+        const storageRef = sRef(storage, "TournamentsImages/"+ImageName);
+    
+        const uploadTask = uploadBytesResumable(storageRef,imgToUpload,metaData);
+        uploadTask.on('state-change',(snapShot)=>{
+            var progress = (snapShot.bytesTransferred / snapShot.totalBytes) * 100;
+            TourImgprogLab.innerHTML = "upload" + progress + "%";
+        },
+        (error) =>{
+            alert("error image not uploaded");
+        },
+        ()=>{
+            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL)=>{
+                saveTourImgURLToFireStore(downloadURL)
+            })
+        }
+        )
+    }
+    }
+    
+}
+//get image from firestore
+var tourImgStash;
+async function getTourImageFromFirestore(){
+
+var ref = doc(db,"TournamentsImages/"+tourImgId.value);
+
+const docSnap = await getDoc(ref)
+.then((docSnap)=>{
+    TourImgNameInput.value = docSnap.data().TournamentImgName;
+    TourImg.src = docSnap.data().TournamentImgURL;
+    tourImgStash = docSnap.data().TournamentImgName;
+})
+.catch(error=> alert("No Such Document:"+error));
+TourImgInput.value = "";
+}
+//update tournaments Image
+async  function updateTourImage(url){
+
+var name = TourImgInput.files[0].name;
+var ref = doc(db, "TournamentsImages",tourImgId.value);
+    await updateDoc(
+        ref, {
+            TournamentImgId : tourImgId.value,
+            TournamentImgName : name,
+            TournamentImgURL: url,
+        }
+    )
+    .then(()=>{
+        alert("data has been updated Succesfuly");
+    })
+    .catch((error)=>{
+
+    alert("Unsuccesfuly data has not been updated:" + error);
+    });
+    emptyInputs();
+    TourImgsfiles = "";
+}
+// update Image to storage procces
+async function UpdateTourImgProcess(){
+var ref = doc(db, "TournamentsImages",tourImgId.value);
+const docSnap = await getDoc(ref);
+if(docSnap.exists())
+{
+    if(TourImgsfiles.length > 0){
+        await deleteTournamentImageFromStorage();
+        var imgToUpload = TourImgsfiles[0];
+    
+        var ImageName = TourImgInput.files[0].name;
+    
+        const metaData ={
+            contentType:imgToUpload.type,
+        }
+        const storage = getStorage();
+    
+        const storageRef = sRef(storage, "TournamentsImages/"+ImageName);
+    
+        const uploadTask = uploadBytesResumable(storageRef,imgToUpload,metaData);
+        uploadTask.on('state-change',(snapShot)=>{
+            var progress = (snapShot.bytesTransferred / snapShot.totalBytes) * 100;
+            TourImgprogLab.innerHTML = "upload" + progress + "%";
+        },
+        (error) =>{
+            alert("error image not uploaded:"+error);
+        },
+        ()=>{
+            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL)=>{
+                updateTourImage(downloadURL);
+            })
+        }
+        )
+        }
+}
+
+}
+//delete image from fireBase and storage
+async function DeleteTourDocument(){
+var ref = doc(db, "TournamentsImages",tourImgId.value);
+const docSnap = await getDoc(ref)
+if(!docSnap.exists()){
+    alert("Document does not exist");
+    return;
+}else{
+   await deleteTournamentImageFromStorage();
+    await deleteDoc(ref)
+    .then(()=>{
+        alert("data has been deleted Succesfuly");
+    })
+    .catch((error)=>{
+
+    alert("Unsuccesfuly data has not been deleted:" + error);
+    });
+    emptyTourInputs()
+}
+
+
+}
+//delete tourImage from storage
+async function deleteTournamentImageFromStorage(){
+var name;
+var ref = doc(db, "TournamentsImages",tourImgId.value);
+const docSnap = await getDoc(ref)
+.then((docSnap)=>{
+    name = docSnap.data().TournamentImgName;
+})
+const storage = getStorage();
+const desertRef = sRef(storage, "TournamentsImages/"+name);
+
+
+await deleteObject(desertRef).then(() => {
+    // alert("File Deleted Succefully")
+  }).catch((error) => {
+    alert(error)
+  });
 }
 
 // ------------------------------------------------ Add tournaments data to table-------------------------------------------------
@@ -631,89 +946,90 @@ let TourImgNo = 0;
 
 //Add Item To Table
 function AddTourItemToTable(TourId,TourName,TourImg){
-    // create table elements
-    let tableTr = document.createElement("tr");
-    let tableTd1 = document.createElement("td");
-    let tableTd2 = document.createElement("td");
-    let tableTd3 = document.createElement("td");
-    let tableTd4 = document.createElement("td");
-    let tableTd4Img = document.createElement("img");
-    //fill table elements with image data
-    tableTd1.innerHTML = ++TourImgNo;
-    tableTd2.innerHTML = TourId;
-    tableTd3.innerHTML = TourName;
-    tableTd4Img.src = TourImg ;
-    //append table elements
-    tableTr.appendChild(tableTd1);
-    tableTr.appendChild(tableTd2);
-    tableTr.appendChild(tableTd3);
-    tableTr.appendChild(tableTd4);
+// create table elements
+let tableTr = document.createElement("tr");
+let tableTd1 = document.createElement("td");
+let tableTd2 = document.createElement("td");
+let tableTd3 = document.createElement("td");
+let tableTd4 = document.createElement("td");
+let tableTd4Img = document.createElement("img");
+//fill table elements with image data
+tableTd1.innerHTML = ++TourImgNo;
+tableTd2.innerHTML = TourId;
+tableTd3.innerHTML = TourName;
+tableTd4Img.src = TourImg ;
+//append table elements
+tableTr.appendChild(tableTd1);
+tableTr.appendChild(tableTd2);
+tableTr.appendChild(tableTd3);
+tableTr.appendChild(tableTd4);
 
-    tableTd4.appendChild(tableTd4Img)
-    //append table body
-    TourtableBody.appendChild(tableTr);
+tableTd4.appendChild(tableTd4Img)
+//append table body
+TourtableBody.appendChild(tableTr);
 }
 //Add All Items To Table
 function AddAllTourItemsToTable(tournaments){
-    TourImgNo = 0
-    TourtableBody.innerHTML ="";
-        tournaments.forEach(tour =>{
-            AddTourItemToTable(tour.TournamentImgId,tour.TournamentImgName,tour.TournamentImgURL)
-        })
-    }
+TourImgNo = 0
+TourtableBody.innerHTML ="";
+    tournaments.forEach(tour =>{
+        AddTourItemToTable(tour.TournamentImgId,tour.TournamentImgName,tour.TournamentImgURL)
+    })
+}
 
-    //Get DocumentOnce
-    // async function GetAllTourDocumentsOnce(){
-    //     const querySnapShot = await getDocs(collection(db,"TournamentsImages"))
-       
-    //     var tournaments = [];
-       
-    //     querySnapShot.forEach(doc=>{
-    //         tournaments.push(doc.data())
-    //     })
-       
-    //     AddAllTourItemsToTable(meals)
-    //    }
+//Get DocumentOnce
+// async function GetAllTourDocumentsOnce(){
+//     const querySnapShot = await getDocs(collection(db,"TournamentsImages"))
+   
+//     var tournaments = [];
+   
+//     querySnapShot.forEach(doc=>{
+//         tournaments.push(doc.data())
+//     })
+   
+//     AddAllTourItemsToTable(meals)
+//    }
 
-    //Get All Documents Real Time
-    async function GetAllTourDocumentsRealTime(){
-        const dbRef = collection(db,"TournamentsImages");
-       
-        onSnapshot(dbRef,(querySnapShot)=>{
-           var tournaments = [];
-       
-            querySnapShot.forEach(doc => {
-                tournaments.push(doc.data());
-            });
-            AddAllTourItemsToTable(tournaments)
-        })
-       }
-       window.onload = ()=>{
-        GetAllDocumentsRealTime();
-        GetAllTourDocumentsRealTime();
-       };
+//Get All Documents Real Time
+async function GetAllTourDocumentsRealTime(){
+    const dbRef = collection(db,"TournamentsImages");
+   
+    onSnapshot(dbRef,(querySnapShot)=>{
+       var tournaments = [];
+   
+        querySnapShot.forEach(doc => {
+            tournaments.push(doc.data());
+        });
+        AddAllTourItemsToTable(tournaments)
+    })
+   }
+   window.onload = ()=>{
+    GetAllDocumentsRealTime();
+    GetAlloffersDocumentsRealTime();
+    GetAllTourDocumentsRealTime();
+   };
 
 //Empty Inputs After Submit
 function emptyTourInputs(){
-    TourImgNameInput.value = "";
-    TourImg.src = "";
-    TourImgextLab.innerHTML= "";
-    TourImgprogLab.innerHTML = "";
+TourImgNameInput.value = "";
+TourImg.src = "";
+TourImgextLab.innerHTML= "";
+TourImgprogLab.innerHTML = "";
 }
 //Buttons Events
 TourinsBtn.onclick = function(e){
-    e.preventDefault();
-    TourUploadProcess();
+e.preventDefault();
+TourUploadProcess();
 }
 TourselBtn.onclick = function(e){
-    e.preventDefault();
-    getTourImageFromFirestore();
+e.preventDefault();
+getTourImageFromFirestore();
 }
 TourdelBtn.onclick = (e)=>{
-    e.preventDefault()
-    DeleteTourDocument();
+e.preventDefault()
+DeleteTourDocument();
 };
 TourupdBtn.onclick = (e) =>{
-    e.preventDefault()
-    UpdateTourImgProcess();
+e.preventDefault()
+UpdateTourImgProcess();
 }
