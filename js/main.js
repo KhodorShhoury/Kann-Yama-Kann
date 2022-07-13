@@ -178,10 +178,24 @@ closePopUpIcon.addEventListener("click",closeRegisterPopUp)
 
 
 let TourRegisterButton = document.getElementById("tour-register-button");
+function sendTourInfo(e){
+  e.preventDefault();
+  let tourName=document.getElementById("tour-input-tourament-name").value;
+  let name = document.getElementById("tour-input-name").value
+  let num= document.getElementById("tour-input-number").value;
+  let players = document.getElementById("tour-input-players").value;
+  let pay = document.getElementById("tour-input-pay").value;
+  let payTime = document.getElementById("tour-input-pay-time").value;
+  window.location.href =(`https://api.whatsapp.com/send?phone=+96176090301&text=
+  %20Game%20Name:${tourName}
+  %0aFullName:${name}
+  %0aPhone%20Number:${num}
+  %0aNumber%20Of%20Players:${players}
+  %0aDue:${payTime}
+  %0aBy:${pay}`)
+}
 
-
-
-
+TourRegisterButton.addEventListener("click",sendTourInfo)
 
 //start contact
 let contactButton = document.getElementById("contact-button");
