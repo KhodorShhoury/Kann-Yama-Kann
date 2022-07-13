@@ -124,25 +124,57 @@
           </div>
           <div class="swiper-pagination"></div>
         </div>
-        <div id="register-button" class="main-button"><a href=""">Register - حجز</a></div>
+        <div id="register-popup-button" class="main-button"><a href=""">Register - حجز</a></div>
+      </div>
+      <div class="popup-register-form">
+        <div class="popup-container">
+          
+          <form class="form" action="GET">
+            <i id="close-popup-register-form" class="fa-solid fa-circle-xmark"></i>
+            <div class="inputs">
+
+              <div class="input-div tournament-name">
+                <select name="" id="" >
+                  <option value="play">Select Tournament</option>
+                </select>
+              </div>
+  
+              <div class="input-div name">
+                <input id="contact-name" class="input" type="text" placeholder="Your Name*">
+              </div>
+  
+              <div class="input-div phone">
+                <input id="contact-number" class="input" type="number" name="number" id="" placeholder="Your phone*">
+              </div>
+  
+              <div class="input-div pay">
+                <label for="">سوف تتم عملية الدفع:</label>
+              <select name="" id="">
+                <option value="">OMT</option>
+                <option value="">مباشر</option>
+              </select>
+              </div>
+              
+              <div class="input-div">
+                <label dir="rtl" for="">برجاء تحديد المهلة التي سوف يتم الدفع فيها: </label>
+              <select name="" id="">
+                <option value="">24Hr</option>
+                <option value="">72Hr</option>
+              </select>
+              </div>
+
+              
+  
+              
+              <div id="tour-register-button" class="main-button"><a href=""">register</a></div>
+            </div>
+            
+          </form>
+        </div>
+        
       </div>
     </div>
-    <div class="popup-register-form">
-      <form action="GET">
-        <div class="inputs">
-          <div class="input-div name">
-            <input id="contact-name" class="input" type="text" placeholder="Your Name*">
-          </div>
-          <div class="input-div phone">
-            <input id="contact-number" class="input" type="number" name="number" id="" placeholder="Your phone*">
-          </div>
-          <div class="input-div message">
-            <textarea id="contact-msg" class="input" name="" id="" cols="30" rows="10" placeholder="Message"></textarea>
-          </div>
-          <div id="contact-button" class="main-button"><a href=""">Send Message</a></div>
-        </div>
-      </form>
-    </div>
+   
     <!-- end Tournaments -->
     <!-- start Contact -->
     <h4 class="main-heading">Contact Us</h4>
@@ -166,6 +198,7 @@
       </form>
       </div>
     </div>
+
     <!-- end Contact -->
    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
    <script type="module" src="js/main.js"></script>

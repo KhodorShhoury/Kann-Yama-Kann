@@ -152,12 +152,33 @@ setTimeout(() => {
 },600);
 
 
-//register tournament
-let registertButton = document.getElementById("register-button");
 
-function registerFormPopUp(){
-  
+//register tournament
+let popUpRegisterButton = document.getElementById("register-popup-button");
+let popUpRegisterForm = document.querySelector(".popup-register-form");
+function handleRegisterPopUp(e){
+  e.preventDefault()
+  popUpRegisterForm.classList.contains("active")
+  ?popUpRegisterForm.classList.remove("active")
+  :popUpRegisterForm.classList.add("active");
 }
+
+popUpRegisterButton.addEventListener("click",handleRegisterPopUp)
+
+//handle popup Close 
+let closePopUpIcon = document.getElementById("close-popup-register-form");
+
+function closeRegisterPopUp(){
+  popUpRegisterForm.classList.remove("active");
+}
+
+closePopUpIcon.addEventListener("click",closeRegisterPopUp)
+
+
+
+
+let TourRegisterButton = document.getElementById("tour-register-button");
+
 
 
 
@@ -165,7 +186,7 @@ function registerFormPopUp(){
 //start contact
 let contactButton = document.getElementById("contact-button");
 function send_handle(e){
-e.preventDefault()
+e.preventDefault();
   let name=document.getElementById("contact-name").value;
 
   let msg= document.getElementById("contact-msg").value;
