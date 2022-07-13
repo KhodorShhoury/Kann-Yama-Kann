@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="css/styles.css">
   </head>
   <body>
+    
     <!-- start header -->
     <header class="header" id="header">
       <div class="container">
@@ -123,13 +124,28 @@
           </div>
           <div class="swiper-pagination"></div>
         </div>
-        <div id="contact-button" class="main-button"><a href=""">Register - حجز</a></div>
+        <div id="register-button" class="main-button"><a href=""">Register - حجز</a></div>
       </div>
+    </div>
+    <div class="popup-register-form">
+      <form action="GET">
+        <div class="inputs">
+          <div class="input-div name">
+            <input id="contact-name" class="input" type="text" placeholder="Your Name*">
+          </div>
+          <div class="input-div phone">
+            <input id="contact-number" class="input" type="number" name="number" id="" placeholder="Your phone*">
+          </div>
+          <div class="input-div message">
+            <textarea id="contact-msg" class="input" name="" id="" cols="30" rows="10" placeholder="Message"></textarea>
+          </div>
+          <div id="contact-button" class="main-button"><a href=""">Send Message</a></div>
+        </div>
+      </form>
     </div>
     <!-- end Tournaments -->
     <!-- start Contact -->
     <h4 class="main-heading">Contact Us</h4>
-
     <div class="contact" id="contact">
       <div class="location">
         <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13324.669389504807!2d35.420882!3d33.392798!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x225d087a43a58cab!2z2YPYp9mGINmK2KfZhdinINmD2KfZhg!5e0!3m2!1sen!2slb!4v1657653719249!5m2!1sen!2slb" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>      </div>
@@ -145,7 +161,7 @@
           <div class="input-div message">
             <textarea id="contact-msg" class="input" name="" id="" cols="30" rows="10" placeholder="Message"></textarea>
           </div>
-          <div id="register-button" class="main-button"><a href=""">Send Message</a></div>
+          <div id="contact-button" class="main-button"><a href=""">Send Message</a></div>
         </div>
       </form>
       </div>

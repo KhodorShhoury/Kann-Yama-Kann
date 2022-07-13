@@ -451,7 +451,16 @@ input[type=number] {
 
 }
 /* end swiper */
-  /* /end offers */
+.popup-register-form{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+    z-index: 999;
+}
 /* end tournaments */
 
 /* start contact */
@@ -483,7 +492,7 @@ max-width: 50%;
     }
 }
 .contact .contact-form{
-background-image: url("../img/contact-bg.jpg");
+background-image: url("../imgs/about-us-img.jpeg");
 background-size: cover;
 background-repeat: no-repeat;
 background-position: cover cover;
@@ -495,32 +504,51 @@ background-position: cover cover;
 }
 .contact .contact-form form{
     display: block;
-    background-color: white;
+    background: rgba(255, 255, 255, 0.2);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 40px;
     border-radius: var(--main-border-radius);
 }
 .contact .contact-form form .inputs{
     display: flex;
     flex-wrap: wrap;
+    
 }
 .contact .contact-form form .inputs .input-div{
     flex: 0 0 100%;
     max-width: 100%;
 }
 .contact .contact-form form .inputs .input-div .input{
-    width: 100%;
+    width: 95%;
     font-size: 14px;
     margin: 0 0 30px 0;
     padding: 0 10px;
     height: 40px;
     outline: none;
     border: 1px solid #ddd;
+    background: rgba(255, 255, 255, 0.2);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(255, 255, 255, 0.3);
+color: white;
+font-weight: 700;
 }
 .contact .contact-form form .inputs .input-div textarea{
     line-height: 40px;
     height: 150px !important;
     resize: none;
 
+}
+.contact .contact-form form .inputs .input-div .input::placeholder{
+    color: white;
+    text-transform: uppercase;
+    font-weight: 900;
 }
 @media(min-width:481px){
     .contact .contact-form form .inputs .name,
