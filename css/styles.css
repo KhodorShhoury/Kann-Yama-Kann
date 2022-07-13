@@ -32,6 +32,17 @@ ul{
     padding: 0;
     margin: 0;
 }
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 .container{
     padding-left: 15px;
     padding-right: 15px;
@@ -40,7 +51,7 @@ ul{
 }
 
 .main-heading{
-    margin: 0px auto 80px;
+    margin: 80px auto 80px;
     text-align: center;
     font-size: 40px;
     color: var(--main-color);
@@ -49,9 +60,9 @@ ul{
 
 .main-button{
     text-align: center;
-    margin: 0 auto;
+    margin: 20px auto;
     width: fit-content;
-   
+   text-transform: uppercase;
 }
 .main-button a{
     font-size: 16px;
@@ -513,7 +524,7 @@ background-position: cover cover;
 }
 @media(min-width:481px){
     .contact .contact-form form .inputs .name,
-    .contact .contact-form form .inputs .email{
+    .contact .contact-form form .inputs .phone{
         flex: 0 0 50%;
         max-width: 50%;
     }

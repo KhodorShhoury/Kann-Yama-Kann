@@ -30,7 +30,7 @@
           <li class="nav-link"><a href="#gallery">Gallery</a></li>
           <li class="nav-link"><a href="#about">About</a></li>
           <li class="nav-link"><a href="menu-page.html">Menu</a></li>
-          <li class="nav-link"><a href="#tournaments">Tournaments</a></li>
+          <li class="nav-link"><a href="#tournaments">Events</a></li>
           <li class="nav-link"><a href="#contact">Contact Us</a></li>
         </ul>
       </div>
@@ -115,7 +115,7 @@
 
     <!-- start Tournaments -->
     <div class="tournaments" id="tournaments">
-      <h4 class="main-heading">Tournaments</h4>
+      <h4 class="main-heading">Events</h4>
       <div class="container">
         <div class="tournaments-swiper swiper">
           <div class="tournaments-swiper-wrapper swiper-wrapper">
@@ -123,10 +123,13 @@
           </div>
           <div class="swiper-pagination"></div>
         </div>
+        <div id="contact-button" class="main-button"><a href=""">Register - حجز</a></div>
       </div>
     </div>
     <!-- end Tournaments -->
     <!-- start Contact -->
+    <h4 class="main-heading">Contact Us</h4>
+
     <div class="contact" id="contact">
       <div class="location">
         <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13324.669389504807!2d35.420882!3d33.392798!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x225d087a43a58cab!2z2YPYp9mGINmK2KfZhdinINmD2KfZhg!5e0!3m2!1sen!2slb!4v1657653719249!5m2!1sen!2slb" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>      </div>
@@ -134,18 +137,15 @@
       <form action="GET">
         <div class="inputs">
           <div class="input-div name">
-            <input class="input" type="text" placeholder="Your Name*">
+            <input id="contact-name" class="input" type="text" placeholder="Your Name*">
           </div>
-          <div class="input-div email">
-            <input class="input" type="number" name="number" id="" placeholder="Your phone*">
-          </div>
-          <div class="input-div subject">
-            <input class="input" type="text" placeholder="Subject">
+          <div class="input-div phone">
+            <input id="contact-number" class="input" type="number" name="number" id="" placeholder="Your phone*">
           </div>
           <div class="input-div message">
-            <textarea class="input" name="" id="" cols="30" rows="10" placeholder="Message"></textarea>
+            <textarea id="contact-msg" class="input" name="" id="" cols="30" rows="10" placeholder="Message"></textarea>
           </div>
-          <div class="main-button"><a href="">Send Message</a></div>
+          <div id="register-button" class="main-button"><a href=""">Send Message</a></div>
         </div>
       </form>
       </div>

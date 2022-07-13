@@ -150,3 +150,19 @@ setTimeout(() => {
   }
   });
 },600);
+
+//start contact
+let contactButton = document.getElementById("contact-button");
+function send_handle(e){
+e.preventDefault()
+  let name=document.getElementById("contact-name").value;
+
+  let msg= document.getElementById("contact-msg").value;
+
+  let num= document.getElementById("contact-number").value;
+  
+ let win = window.open(`https://wa.me/${+96176090301}?text=%20Name:%20${name}%20Message:%20${msg}`, '_blank');
+win.focus()
+}
+contactButton.addEventListener("click",send_handle);
+//end contact

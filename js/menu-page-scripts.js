@@ -1,14 +1,14 @@
-// let headerSection = document.querySelector(".header"); //header section
-// let offersSection = document.getElementById("offers");
-// // function that handle header position
-// function handleHeaderPosition(){
-//     if(document.documentElement.scrollTop >=  offersSection.offsetHeight + 80){
-//         headerSection.classList.add("fixed");
-//     }else{
-//         headerSection.classList.remove("fixed")
-//     }
-// }
-// window.onscroll = handleHeaderPosition;
+let headerSection = document.querySelector(".header"); //header section
+let offersSection = document.getElementById("offers");
+// function that handle header position
+function handleHeaderPosition(){
+    if(document.documentElement.scrollTop >=  offersSection.offsetHeight + 80){
+        headerSection.classList.add("fixed");
+    }else{
+        headerSection.classList.remove("fixed")
+    }
+}
+window.onscroll = handleHeaderPosition;
 
 
 // Import the functions you need from the SDKs you need
