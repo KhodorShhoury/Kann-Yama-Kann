@@ -32,7 +32,7 @@ function navLinksHighLight(){
     var current = "";
     sections.forEach((section) => {
       const sectionTop = section.offsetTop;
-      if (headerSection.offsetHeight >= sectionTop ) {
+      if (scrollY >= sectionTop - headerSection.offsetHeight ) {
         current = section.getAttribute("id");
       }
     });

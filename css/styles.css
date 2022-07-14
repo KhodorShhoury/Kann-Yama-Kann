@@ -533,13 +533,14 @@ left: 0;
 }
 .contact .location {
     min-height: 500px;
+    flex: 0 0 50%;
 }
 .contact .location iframe{
     min-height: 100%;
     max-height: 100%;
     width: 100%;
+    
 }
-@media(min-width:992px){
 .contact .location{
     flex: 0 0 50%;
     max-width: 50%;
@@ -548,11 +549,19 @@ left: 0;
 flex: 0 0 50%;
 max-width: 50%;
 }
-}
+
 @media(max-width:991px){
-    .contact{
+    .contact .box{
         flex-direction: column;
     }
+    .contact .location {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .contact .contact-form{
+        flex: 0 0 100%;
+        max-width: 100%;
+        }
 }
 .contact .contact-form{
 background-image: url("../imgs/about-us-img.jpeg");
