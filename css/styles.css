@@ -32,6 +32,10 @@ ul{
     padding: 0;
     margin: 0;
 }
+input,textarea,button{
+    border: none;
+    outline: none;
+}
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -546,6 +550,10 @@ left: 0;
     max-width: 50%;
 }
 .contact .contact-form{
+    background-image: url("../imgs/about-us-img.jpeg");
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center center;
 flex: 0 0 50%;
 max-width: 50%;
 }
@@ -561,13 +569,9 @@ max-width: 50%;
     .contact .contact-form{
         flex: 0 0 100%;
         max-width: 100%;
+        margin:10px 0px 30px;
+        padding: 20px;
         }
-}
-.contact .contact-form{
-background-image: url("../imgs/about-us-img.jpeg");
-background-size: cover;
-background-repeat: no-repeat;
-background-position: cover cover;
 }
 @media(min-width:481px){
     .contact .contact-form {
@@ -576,14 +580,11 @@ background-position: cover cover;
 }
 .contact .contact-form form{
     display: block;
-    background: rgba(255, 255, 255, 0.2);
+background: rgba(255, 255, 255, 0.25);
 border-radius: 16px;
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(5px);
--webkit-backdrop-filter: blur(5px);
-border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 40px;
-    border-radius: var(--main-border-radius);
+text-align: center;
+padding: 20px 0px;
 }
 .contact .contact-form form .inputs{
     display: flex;
@@ -601,13 +602,9 @@ border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 0 10px;
     height: 40px;
     outline: none;
-    border: 1px solid #ddd;
-    background: rgba(255, 255, 255, 0.2);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(5px);
--webkit-backdrop-filter: blur(5px);
-border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.33);
+   border-radius: 16px;
+   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 color: white;
 font-weight: 700;
 }
