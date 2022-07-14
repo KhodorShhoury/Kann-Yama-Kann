@@ -11,7 +11,7 @@
     --main-padding-top:100px;
     --main-padding-bottom:100px;
     --paragraph-color:#666;
-    --black-color : #232D39;
+    --black-color : #191919;
     --box-shadow-color : #ddd;
     --grayish-color : #FAFAFA;
     --main-overlay-color: rgba(0,0,0,0.5);
@@ -23,6 +23,9 @@ html{
 }
 body{
     font-family: "cairo",sans-serif; 
+}
+body.overflow-hidden{
+    overflow: hidden;
 }
 a{
     text-decoration: none;
@@ -228,7 +231,7 @@ left: 0;
 .main{
     position: relative;
     width: 100%;
-    padding-bottom: 120px;
+    padding-bottom: 100px;
 }
 .main::after{
     content: "";
@@ -282,7 +285,7 @@ left: 0;
 /* end main */
 /* start gallery */
 .gallery{
-    padding-top: var(--main-padding-top);
+    padding-top: 50px;
     padding-bottom: var(--main-padding-bottom);
     background-color: var(--section-background);
 }
@@ -419,6 +422,7 @@ left: 0;
     position: relative;
     width: 100%;
     height: 100%;
+    padding-bottom: var(--main-padding-bottom);
 }
 /* start swiper */
 .tournaments-swiper {
@@ -529,6 +533,7 @@ left: 0;
 
 /* start contact */
 .contact{
+    padding-bottom: var(--main-padding-bottom);
     display: block;
     margin-top: 100px;
 }
@@ -626,6 +631,44 @@ font-weight: 700;
         max-width: 50%;
     }
 }
-
-
+.social{
+    padding-bottom: var(--main-padding-bottom);
+}
+.social .container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.social .container .follow-us{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+}
+.social .container .follow-us .box{
+    padding: 20px 0px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--main-border-radius);
+    background-color: var(--main-color);
+}
+.social .container .follow-us .box i{
+    font-size: 50px;
+}
+.social .container .follow-us .box a{
+    display: block;
+    margin-left: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+}
 /* end contact */
+/* start footer */
+.footer{
+    height: 200px;
+    background-color:var(--black-color) ;
+}
+/* end footer */

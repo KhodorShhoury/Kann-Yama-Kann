@@ -1,10 +1,7 @@
-
-// handle header position
-
+// handle header position fixed
 //variables
 let headerSection = document.querySelector(".header"); //header section
 let mainSection = document.querySelector(".main"); //main section
-
 
 // function that handle header position
 function handleHeaderPosition(){
@@ -14,10 +11,11 @@ function handleHeaderPosition(){
         headerSection.classList.remove("fixed")
     }
 }
+//handle header position onscroll and load.
+window.addEventListener("load",handleHeaderPosition);
+window.addEventListener("scroll",handleHeaderPosition);
 
-
-
-//mav links
+//handle mav links
 let navLinks = [...document.querySelectorAll(".nav-link")];
 function handleNavLinksActive(e){
   navLinks.forEach(navlink=>navlink.classList.remove("active"));
@@ -25,7 +23,6 @@ function handleNavLinksActive(e){
 }
 
 navLinks.forEach(navlink=>navlink.addEventListener("click",handleNavLinksActive))
-
 
 const sections = [...document.querySelectorAll(".section")];
 function navLinksHighLight(){
@@ -45,10 +42,8 @@ function navLinksHighLight(){
       }
     });  
 }
-window.onscroll = function(){
-  handleHeaderPosition();
-  navLinksHighLight();
-}
+window.addEventListener("scroll",navLinksHighLight);
+
 //start gallery
 var swiper = new Swiper(".gallery-swiper", {
     slidesPerView: 3,
@@ -79,15 +74,7 @@ var swiper = new Swiper(".gallery-swiper", {
   }
   });
 //end gallery
-
 // start tournaments
-
-
-
-
-// start tournaments
-
-
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -102,10 +89,8 @@ const firebaseConfig = {
   messagingSenderId: "138428441492",
   appId: "1:138428441492:web:03accd6edfc2e4b2b16581"
 };
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
 
 import {getFirestore, doc, getDoc, getDocs, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField,onSnapshot} from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js"
 const db = getFirestore();
@@ -125,10 +110,8 @@ async function getTourImageFromFirestoreRealtime(){
 
     })
 }
+window.addEventListener("load",getTourImageFromFirestoreRealtime)
 
-window.onload = getTourImageFromFirestoreRealtime;
-
-let tournaments = document.getElementById("tournaments");
 let tournamentsSwiperWrapper = document.querySelector(".tournaments-swiper-wrapper");
 
 
@@ -179,16 +162,13 @@ setTimeout(() => {
   });
 },2000);
 
-
-
 //register tournament
 let popUpRegisterButton = document.getElementById("register-popup-button");
 let popUpRegisterForm = document.querySelector(".popup-register-form");
 function handleRegisterPopUp(e){
   e.preventDefault()
-  popUpRegisterForm.classList.contains("active")
-  ?popUpRegisterForm.classList.remove("active")
-  :popUpRegisterForm.classList.add("active");
+  popUpRegisterForm.classList.add("active");
+   document.body.classList.add("overflow-hidden");
 }
 
 popUpRegisterButton.addEventListener("click",handleRegisterPopUp)
@@ -198,12 +178,11 @@ let closePopUpIcon = document.getElementById("close-popup-register-form");
 
 function closeRegisterPopUp(){
   popUpRegisterForm.classList.remove("active");
+  document.body.classList.remove("overflow-hidden");
+
 }
 
 closePopUpIcon.addEventListener("click",closeRegisterPopUp)
-
-
-
 
 let TourRegisterButton = document.getElementById("tour-register-button");
 function sendTourInfo(e){
@@ -227,7 +206,7 @@ TourRegisterButton.addEventListener("click",sendTourInfo)
 
 //start contact
 let contactButton = document.getElementById("contact-button");
-function send_handle(e){
+function sendContactMsg(e){
 e.preventDefault();
   let name=document.getElementById("contact-name").value;
 
@@ -237,8 +216,5 @@ e.preventDefault();
   
   window.open(`https://wa.me/${+96176090301}?text=%20Name:%20${name}%20Message:%20${msg}`, '_blank');
 }
-contactButton.addEventListener("click",send_handle);
+contactButton.addEventListener("click",sendContactMsg);
 //end contact
-
-
-
