@@ -176,6 +176,9 @@ input[type=number] {
     overflow: hidden;
     text-align: center;
 }
+.header .container .main-nav .nav-link.active a::before{
+left: 0;
+}
 .header.fixed .container .main-nav .nav-link a{
     color: black;
 }
@@ -522,8 +525,11 @@ input[type=number] {
 
 /* start contact */
 .contact{
-    display: flex;
+    display: block;
     margin-top: 100px;
+}
+.contact .box{
+    display: flex;
 }
 .contact .location {
     min-height: 500px;

@@ -15,12 +15,40 @@ function handleHeaderPosition(){
     }
 }
 
-window.onscroll = function(){
-    handleHeaderPosition();
+
+
+//mav links
+let navLinks = [...document.querySelectorAll(".nav-link")];
+function handleNavLinksActive(e){
+  navLinks.forEach(navlink=>navlink.classList.remove("active"));
+  e.currentTarget.classList.add("active");
 }
 
+navLinks.forEach(navlink=>navlink.addEventListener("click",handleNavLinksActive))
 
 
+const sections = [...document.querySelectorAll(".section")];
+function navLinksHighLight(){
+    var current = "";
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop;
+      if (headerSection.offsetHeight >= sectionTop ) {
+        current = section.getAttribute("id");
+      }
+    });
+  
+    navLinks.forEach((li) => {
+      li.classList.remove("active");
+      if (li.querySelector("a").href.includes(current)) {
+      
+        li.classList.add("active");
+      }
+    });  
+}
+window.onscroll = function(){
+  handleHeaderPosition();
+  navLinksHighLight();
+}
 //start gallery
 var swiper = new Swiper(".gallery-swiper", {
     slidesPerView: 3,

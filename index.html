@@ -27,18 +27,18 @@
           <img src="imgs/logo-removebg.png" alt="">
         </div>
         <ul class="main-nav">
-          <li class="nav-link"><a href="#main">Home</a></li>
-          <li class="nav-link"><a href="#gallery">Gallery</a></li>
-          <li class="nav-link"><a href="#about">About</a></li>
-          <li class="nav-link"><a href="menu-page.html">Menu</a></li>
-          <li class="nav-link"><a href="#tournaments">Events</a></li>
-          <li class="nav-link"><a href="#contact">Contact Us</a></li>
+          <li class="nav-link active" data-link = "main"><a href="#main">Home</a></li>
+          <li class="nav-link data-link = "gallery"><a href="#gallery">Gallery</a></li>
+          <li class="nav-link data-link = "about"><a href="#about">About</a></li>
+          <li class="nav-link data-link = "menu"><a href="menu-page.html">Menu</a></li>
+          <li class="nav-link data-link = "tournaments"><a href="#tournaments">Events</a></li>
+          <li class="nav-link data-link = "contact"><a href="#contact">Contact Us</a></li>
         </ul>
       </div>
     </header>
     <!-- end header -->
     <!-- start main -->
-    <main class="main" id="main">
+    <main class="main section" id="main">
       <video class="main-bg" src="imgs/main-bg.mp4" autoplay muted loop></video>
       
         <div class="text">
@@ -54,7 +54,7 @@
     <!-- end main -->
     <div class="spikes"></div>
     <!-- start gallery -->
-    <div class="gallery" id="gallery">
+    <div class="gallery section" id="gallery">
       <h4 class="main-heading">Gallery</h4>
       <div class="container">
         <!-- Slider main container -->
@@ -100,7 +100,7 @@
     </div>
     <!-- end gallery -->
     <!-- start about -->
-    <div class="about" id="about">
+    <div class="about section" id="about">
       <div class="container">
         <div class="content">
           <h4>About Us</h4>
@@ -115,7 +115,7 @@
     <!-- end about -->
 
     <!-- start Tournaments -->
-    <div class="tournaments" id="tournaments">
+    <div class="tournaments section" id="tournaments">
       <h4 class="main-heading">Events</h4>
       <div class="container">
         <div class="tournaments-swiper swiper">
@@ -177,26 +177,30 @@
     </div>
     <!-- end Tournaments -->
     <!-- start Contact -->
-    <h4 class="main-heading">Contact Us</h4>
-    <div class="contact" id="contact">
-      <div class="location">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13324.669389504807!2d35.420882!3d33.392798!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x225d087a43a58cab!2z2YPYp9mGINmK2KfZhdinINmD2KfZhg!5e0!3m2!1sen!2slb!4v1657653719249!5m2!1sen!2slb" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>      </div>
-      <div class="contact-form">
-      <form action="GET">
-        <div class="inputs">
-          <div class="input-div name">
-            <input id="contact-name" class="input" type="text" placeholder="Your Name*">
-          </div>
-          <div class="input-div phone">
-            <input id="contact-number" class="input" type="number" name="number" id="" placeholder="Your phone*">
-          </div>
-          <div class="input-div message">
-            <textarea id="contact-msg" class="input" name="" id="" cols="30" rows="10" placeholder="Message"></textarea>
-          </div>
-          <div id="contact-button" class="main-button"><a href=""">Send Message</a></div>
+    <div class="contact section" id="contact">
+      <h4 class="main-heading">Contact Us</h4>
+      <div class="box">
+        <div class="location">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13324.669389504807!2d35.420882!3d33.392798!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x225d087a43a58cab!2z2YPYp9mGINmK2KfZhdinINmD2KfZhg!5e0!3m2!1sen!2slb!4v1657653719249!5m2!1sen!2slb" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-      </form>
+        <div class="contact-form">
+        <form action="GET">
+          <div class="inputs">
+            <div class="input-div name">
+              <input id="contact-name" class="input" type="text" placeholder="Your Name*">
+            </div>
+            <div class="input-div phone">
+              <input id="contact-number" class="input" type="number" name="number" id="" placeholder="Your phone*">
+            </div>
+            <div class="input-div message">
+              <textarea id="contact-msg" class="input" name="" id="" cols="30" rows="10" placeholder="Message"></textarea>
+            </div>
+            <div id="contact-button" class="main-button"><a href=""">Send Message</a></div>
+          </div>
+        </form>
+        </div>
       </div>
+
     </div>
 
     <!-- end Contact -->
