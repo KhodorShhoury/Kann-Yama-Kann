@@ -562,6 +562,16 @@ background-repeat: no-repeat;
 background-position: center center;
 flex: 0 0 50%;
 max-width: 50%;
+position: relative;
+}
+.contact .contact-form::after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: var(--main-overlay-color);
 }
 
 @media(max-width:991px){
@@ -586,11 +596,13 @@ max-width: 50%;
 }
 .contact .contact-form form{
     display: block;
-background: rgba(255, 255, 255, 0.25);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-text-align: center;
-padding: 20px 0px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px 0px;
+    position: relative;
+    z-index: 1;
 }
 .contact .contact-form form .inputs{
     display: flex;
@@ -665,6 +677,8 @@ font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: var(--main-border-radius);
+
 }
 /* end contact */
 /* start footer */
