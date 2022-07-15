@@ -755,6 +755,7 @@ font-weight: 700;
   }
   .footer .footer-gallery img {
     width: 100px;
+    height: 80px;
     border: 3px solid white;
     margin: 2px;
   }
