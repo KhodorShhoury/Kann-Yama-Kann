@@ -670,7 +670,7 @@ font-weight: 700;
 /* start footer */
 .footer{
     background-color:var(--black-color);
-    padding: 70px 0px;
+    padding: 70px 0px 0px;
 }
 @media (max-width: 767px) {
     .footer {
@@ -759,10 +759,13 @@ font-weight: 700;
     margin: 2px;
   }
   .footer .copyright {
-    padding: 25px 0;
+    padding: 25px 0 25px;
     text-align: center;
     color: white;
     margin: 50px 0 0;
     border-top: 1px solid #444;
+  }
+  .footer .copyright a{
+    color: var(--main-color);
   }
 /* end footer */
