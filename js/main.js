@@ -204,6 +204,7 @@ function sendTourInfo(e){
 
 TourRegisterButton.addEventListener("click",sendTourInfo)
 
+
 //start contact
 let contactButton = document.getElementById("contact-button");
 function sendContactMsg(e){
@@ -214,7 +215,10 @@ e.preventDefault();
 
   let num= document.getElementById("contact-number").value;
   
-  window.open(`https://wa.me/${+96176090301}?text=%20Name:%20${name}%20Message:%20${msg}`, '_blank');
+  window.open(`https://api.whatsapp.com/send?phone=+96176090301&text=
+  %20Name:%20${name}
+  %0aNumber:${num}
+  %0aMessage:${msg}`);
 }
 contactButton.addEventListener("click",sendContactMsg);
 //end contact

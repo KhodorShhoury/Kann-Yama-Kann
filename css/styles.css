@@ -647,23 +647,23 @@ font-weight: 700;
     align-items: center;
 }
 .social .container .follow-us .box{
-    padding: 20px 0px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 80px;
     border-radius: var(--main-border-radius);
-    background-color: var(--main-color);
 }
 .social .container .follow-us .box i{
     font-size: 50px;
+    margin-right: 10px;
 }
 .social .container .follow-us .box a{
     display: block;
-    margin-left: 10px;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
     color: white;
+    background-color: var(--main-color);
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 /* end contact */
 /* start footer */
