@@ -211,7 +211,7 @@
   }
   @media (max-width: 480px) {
     .header .container .main-nav .nav-link a {
-      font-size: 12px;
+      font-size: 11px;
     }
   }
   .header .container .main-nav .nav-link a:hover {
@@ -774,9 +774,20 @@
     color: white;
     margin: 50px 0 0;
     border-top: 1px solid #444;
+    font-weight: 700;
+  }
+  @media(max-width:480px){
+    .footer .copyright{
+      font-size: 17px;
+    }
   }
   .footer .copyright a {
     color: var(--main-color);
-  }
+    text-decoration: underline;
+    transition: all var(--main-transition-duration);
+    }
+    .footer .copyright a:hover{
+      color: #333;
+    }
   /* end footer */
   
