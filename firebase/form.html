@@ -27,7 +27,6 @@
                 <label>Password:</label>
                 <input type="password" name="password" id="password-input">
 
-                <button id="register-button">Sign Up</button>
                 <button id="login-button">sign In</button>
         </div>
     </div>
@@ -58,20 +57,19 @@ const app = initializeApp(firebaseConfig);
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
 
-const registerButton = document.getElementById("register-button");
+// const registerButton = document.getElementById("register-button");
 
-    const register = () =>{
-      const email = document.getElementById("email-input").value;
-      const password = document.getElementById("password-input").value;
+//     const register = () =>{
+//       const email = document.getElementById("email-input").value;
+//       const password = document.getElementById("password-input").value;
 
-      createUserWithEmailAndPassword(auth,email,password)
-      .then((userCredential) =>{
-        window.location.replace("cp.html");
-      }).catch(err =>{
-        alert("error:"+err)
-      })
-    }
-
+//       createUserWithEmailAndPassword(auth,email,password)
+//       .then((userCredential) =>{
+//         window.location.replace("cp.html");
+//       }).catch(err =>{
+//         alert("error:"+err)
+//       })
+//     }
     const loginButton = document.getElementById("login-button");
 
     const login = ()=>{
@@ -85,9 +83,6 @@ const registerButton = document.getElementById("register-button");
         alert(err);
       })
     }
-
-
-    registerButton.addEventListener("click",register)
-    loginButton.addEventListener("click",login)
+    loginButton.addEventListener("click",login);
   </script>
 </html>
