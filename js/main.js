@@ -194,7 +194,7 @@ setTimeout(() => {
 			},
 		}
 	});
-}, 2000);
+}, 4000);
  
 let showTourImgDiv = document.querySelector(".show-tour-img-div");
 let tourImgDiv = document.querySelector(".show-tour-img-container .image");

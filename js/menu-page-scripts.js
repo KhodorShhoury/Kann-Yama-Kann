@@ -216,7 +216,7 @@ setTimeout(() => {
 			},
 		}
 	});
-}, 2000);
+}, 5000);
 let showOfferImgDiv = document.querySelector(".show-offer-img-div");
 let offerImgDiv = document.querySelector(".show-offer-img-container .image");
 let cloneElement;
