@@ -1,14 +1,5 @@
-let headerSection = document.querySelector(".header"); //header section
-let offersSection = document.getElementById("offers");
-// function that handle header position
-function handleHeaderPosition() {
-	if (document.documentElement.scrollTop >= offersSection.offsetHeight + 80) {
-		headerSection.classList.add("fixed");
-	} else {
-		headerSection.classList.remove("fixed")
-	}
-}
-window.onscroll = handleHeaderPosition;
+
+
 
 
 // Import the functions you need from the SDKs you need
@@ -168,7 +159,7 @@ async function getOffersImageFromFirestoreRealtime() {
 let offers = document.getElementById("offers");
 let offersSwiperWrapper = document.querySelector(".offers-swiper-wrapper");
 
-
+var offersImagesElements;
 function createOffersSwiperSlide(offersImages) {
 
 	offersImages.forEach(img => {
@@ -176,6 +167,7 @@ function createOffersSwiperSlide(offersImages) {
 		offersSwiperSlide.classList.add("swiper-slide");
 
 		let offerImg = document.createElement("img");
+		offerImg.classList.add("offer-img");
 		offerImg.src = img.offerImgURL;
 
 
@@ -183,6 +175,7 @@ function createOffersSwiperSlide(offersImages) {
 
 		offersSwiperWrapper.appendChild(offersSwiperSlide);
 	})
+	offersImagesElements = [... document.querySelectorAll(".offer-img")]
 }
 
 setTimeout(() => {
@@ -224,7 +217,32 @@ setTimeout(() => {
 		}
 	});
 }, 2000);
+let showOfferImgDiv = document.querySelector(".show-offer-img-div");
+let offerImgDiv = document.querySelector(".show-offer-img-container .image");
+let cloneElement;
+function showofferImg(e){
+	cloneElement= e.currentTarget.cloneNode()
+	offerImgDiv.appendChild(cloneElement);
+	showOfferImgDiv.classList.add("active");
+	setTimeout(() => {
+		showOfferImgDiv.style.opacity= 1;
+	}, 10);
+}
+window.addEventListener("load",function(){
+	setTimeout(() => {
+		offersImagesElements.forEach(img=>img.addEventListener("click",showofferImg)
+		)
+	}, 3000);
+})
 
+
+let hideOfferImgIcon = document.querySelector("#hide-offer-img");
+hideOfferImgIcon.addEventListener("click",hideofferImg);
+function hideofferImg(){
+	showOfferImgDiv.classList.remove("active");
+	showOfferImgDiv.style.opacity= 0;
+	offerImgDiv.removeChild(cloneElement)
+}
 window.onload = () => {
 	GetAllDocumentsRealTime();
 	getOffersImageFromFirestoreRealtime();

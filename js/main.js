@@ -119,8 +119,6 @@ import {
 } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js"
 const db = getFirestore();
 
-
-
 async function getTourImageFromFirestoreRealtime() {
 	const dbRef = collection(db, "TournamentsImages");
 
@@ -138,7 +136,7 @@ window.addEventListener("load", getTourImageFromFirestoreRealtime)
 
 let tournamentsSwiperWrapper = document.querySelector(".tournaments-swiper-wrapper");
 
-
+var tourImages;
 function createTournamentsSwiperSlide(TournamentsImages) {
 
 	TournamentsImages.forEach(img => {
@@ -146,6 +144,7 @@ function createTournamentsSwiperSlide(TournamentsImages) {
 		tournamentsSwiperSlide.classList.add("swiper-slide");
 
 		let tournamentImg = document.createElement("img");
+		tournamentImg.classList.add("tour-img");
 		tournamentImg.src = img.TournamentImgURL;
 
 
@@ -153,7 +152,11 @@ function createTournamentsSwiperSlide(TournamentsImages) {
 
 		tournamentsSwiperWrapper.appendChild(tournamentsSwiperSlide);
 	})
+
+	tourImages = [...document.querySelectorAll(".tour-img")];
+
 }
+
 setTimeout(() => {
 	var TourSwiper = new Swiper(".tournaments-swiper", {
 		slidesPerView: 3,
@@ -176,7 +179,6 @@ setTimeout(() => {
 			prevEl: ".swiper-button-prev",
 		},
 		// Navigation arrows
-
 		breakpoints: {
 			0: {
 				slidesPerView: 1
@@ -193,7 +195,33 @@ setTimeout(() => {
 		}
 	});
 }, 2000);
+ 
+let showTourImgDiv = document.querySelector(".show-tour-img-div");
+let tourImgDiv = document.querySelector(".show-tour-img-container .image");
+let cloneElement;
+function showTourImg(e){
+	cloneElement= e.currentTarget.cloneNode()
+	tourImgDiv.appendChild(cloneElement);
+	showTourImgDiv.classList.add("active");
+	setTimeout(() => {
+		showTourImgDiv.style.opacity= 1;
+	}, 10);
+}
+window.addEventListener("load",function(){
+	setTimeout(() => {
+		tourImages.forEach(img=>img.addEventListener("click",showTourImg)
+		)
+	}, 3000);
+})
 
+
+let hideTourImgIcon = document.querySelector("#hide-tour-img");
+hideTourImgIcon.addEventListener("click",hideTourImg);
+function hideTourImg(){
+	showTourImgDiv.classList.remove("active");
+	showTourImgDiv.style.opacity= 0;
+	tourImgDiv.removeChild(cloneElement)
+}
 //register tournament
 let popUpRegisterButton = document.getElementById("register-popup-button");
 let popUpRegisterForm = document.querySelector(".popup-register-form");
@@ -201,6 +229,10 @@ let popUpRegisterForm = document.querySelector(".popup-register-form");
 function handleRegisterPopUp(e) {
 	e.preventDefault()
 	popUpRegisterForm.classList.add("active");
+	setTimeout(() => {
+		popUpRegisterForm.style.opacity = 1;
+
+	}, 10);
 	document.body.classList.add("overflow-hidden");
 }
 
@@ -210,6 +242,7 @@ popUpRegisterButton.addEventListener("click", handleRegisterPopUp)
 let closePopUpIcon = document.getElementById("close-popup-register-form");
 
 function closeRegisterPopUp() {
+	popUpRegisterForm.style.opacity = 0;
 	popUpRegisterForm.classList.remove("active");
 	document.body.classList.remove("overflow-hidden");
 
