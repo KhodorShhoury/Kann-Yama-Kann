@@ -80,3 +80,35 @@ margin: auto;
      width: 1170px;
 }
 }
+.main .container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main .form{
+    margin-top: 40vh;
+    width: 300px;
+    display: block;
+}
+.main .form label{
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+}
+.main .form input{
+        display: block;
+        width: 100%;
+        background-color: transparent;
+        outline: none;
+        border: 3px solid var(--main-color);
+        border-radius: var(--main-border-radius);
+        margin: 0px 0px 10px 0px;
+        padding: 5px;
+        caret-color: var(--main-color);
+        color: white;
+        font-weight: 700;
+}
+.main .form #login-button{
+    display: block;
+    margin: 0px auto;
+}

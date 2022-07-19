@@ -16,22 +16,24 @@
     <!-- swiper.js -->
     <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- css styles -->
+    <link rel="stylesheet" href="css/auth.css">
   </head>
   <body>
-    <div class="main">
-        <div class="form-container">
-           <form action="" class="form">
+    <main class="main">
+        <div class="container">
+           <form action="POST" class="form">
             <label>Email:</label>
             <input type="email" name="email" id="email-input">
 
             <label>Password:</label>
             <input type="password" name="password" id="password-input">
 
-            <button id="login-button">sign In</button>
+            <button id="login-button" class="button">sign In</button>
            </form>
                 
         </div>
-    </div>
+    </main>
   </body>
   <script type="module">
 
@@ -74,7 +76,8 @@ const auth = getAuth(app);
 //     }
     const loginButton = document.getElementById("login-button");
 
-    const login = ()=>{
+    const login = (e)=>{
+      e.preventDefault()
       const email = document.getElementById("email-input").value;
       const password = document.getElementById("password-input").value;
 
