@@ -46,7 +46,17 @@ button,input{
     text-transform: uppercase;
 }
 
-
+.button{
+    padding: 10px 35px;
+    border: none;
+    outline: none;
+    background-color: var(--main-color);
+    color: var(--dark-color);
+    font-weight: 700;
+    text-align: center;
+    margin: 10px 10px;
+    cursor: pointer;
+}
 .container{
 padding: 0;
 margin: auto;
@@ -69,6 +79,12 @@ margin: auto;
 .container{
      width: 1170px;
 }
+}
+
+#sign-out-button{
+    position: absolute;
+    right: 20px;
+    top: 0px;
 }
 
 

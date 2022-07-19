@@ -1,3 +1,4 @@
+
 // Import the functions you need from the SDKs you need
 import {
 	initializeApp
@@ -41,6 +42,27 @@ import {
 	deleteObject,
 } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-storage.js";
 
+//
+import { getAuth,onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js";
+const auth = getAuth(app);
+
+onAuthStateChanged(auth,(user) => {
+	if(user) {
+		console.log("welcome")
+	 } else {
+		window.location.href = "auth.html";
+	 }
+}) 
+
+const signOutButton = document.getElementById("sign-out-button");
+signOutButton.addEventListener("click",function(e){
+	e.preventDefault()
+auth.signOut().then(function() {
+		console.log('Signed Out');
+	  }, function(error) {
+		console.error('Sign Out Error', error);
+	  });
+})
 // -----------------------------------------------REFFERENCES-------------------------------------------
 //inputs
 let mealId = document.getElementById("meal-id");
@@ -1051,3 +1073,9 @@ TourupdBtn.onclick = (e) => {
 	e.preventDefault()
 	UpdateTourImgProcess();
 }
+//
+
+
+	
+	
+	

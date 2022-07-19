@@ -205,6 +205,7 @@ function showTourImg(e){
 	showTourImgDiv.classList.add("active");
 	setTimeout(() => {
 		showTourImgDiv.style.opacity= 1;
+		console.log("ww")
 	}, 10);
 }
 window.addEventListener("load",function(){
