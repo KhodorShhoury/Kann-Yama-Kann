@@ -93,7 +93,7 @@ function createMealCard(meals) {
 		//-create meal Title
 		let mealName = document.createElement("h5");
 		mealName.className = "meal-name";
-		mealName.innerHTML = mealCard.MealName
+		mealName.innerHTML = mealCard.MealName;
 		//-create meal description
 		let mealDesc = document.createElement("p");
 		mealDesc.className = "meal-desc";
@@ -110,7 +110,7 @@ function createMealCard(meals) {
 		//-create meal price $
 		let mealPriceCur = document.createElement("span");
 		mealPriceCur.className = "meal-price-currency";
-		mealPriceCur.innerHTML = "L.L"
+		mealPriceCur.innerHTML = "<span>L.L</span>";
 
 		//-create meal type
 		let mealType = document.createElement("p");

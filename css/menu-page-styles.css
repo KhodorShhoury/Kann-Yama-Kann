@@ -300,6 +300,9 @@ ul {
   color: var(--main-color);
   font-weight: 700;
 }
+.menu .container .meal .meal-body .meal-price-div .meal-price span{
+  font-size: 12px;
+}
 .menu .container .meal .meal-body .meal-type {
   display: inline-block;
   position: absolute;
