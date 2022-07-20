@@ -96,6 +96,11 @@ margin: auto;
             flex-direction: column;
         }
     }
+    @media(max-width:767px){
+        .container{
+            margin-top: 100px;
+        }
+    }
 
     .container .menu-panel-container .form{
         flex: 0 0 30%;
@@ -229,6 +234,11 @@ margin: auto;
     }
     .container .menu-panel-container .menu-panel-table .table-container::-webkit-scrollbar{
         width: 10px;
+    }
+    @media(max-width:480px){
+        .container .menu-panel-container .menu-panel-table .table-container::-webkit-scrollbar{
+            width: 5px;
+        }
     }
     .container .menu-panel-container .menu-panel-table .table-container::-webkit-scrollbar-track{
         background: #212529;
