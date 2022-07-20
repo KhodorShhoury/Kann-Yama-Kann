@@ -85,6 +85,7 @@ function createMealCard(meals) {
 		let mealImageTop = document.createElement("img");
 		mealImageTop.className = "meal-img-top";
 		mealImageTop.src = mealCard.MealImageURL;
+		mealImageTop.alt = "meal-img";
 		//-create mealBody
 		let mealBody = document.createElement("div");
 		mealBody.className = "meal-body";
@@ -169,7 +170,7 @@ function createOffersSwiperSlide(offersImages) {
 		let offerImg = document.createElement("img");
 		offerImg.classList.add("offer-img");
 		offerImg.src = img.offerImgURL;
-
+		offerImg.alt = "img"
 
 		offersSwiperSlide.appendChild(offerImg);
 

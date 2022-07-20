@@ -146,7 +146,7 @@ function createTournamentsSwiperSlide(TournamentsImages) {
 		let tournamentImg = document.createElement("img");
 		tournamentImg.classList.add("tour-img");
 		tournamentImg.src = img.TournamentImgURL;
-
+		tournamentImg.alt = "tournament-img";
 
 		tournamentsSwiperSlide.appendChild(tournamentImg);
 
