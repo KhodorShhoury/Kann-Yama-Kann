@@ -192,7 +192,6 @@ ul {
   -webkit-align-items: center;
   align-items: center;
 }
-
 .offers .offers-swiper .swiper-slide img {
   display: block;
   width: 100%;
@@ -200,7 +199,6 @@ ul {
   object-fit: cover;
   border-radius: var(--main-border-radius);
 }
-
 .offers .offers-swiper .swiper-pagination-bullet-active {
   background-color: var(--main-color);
 }

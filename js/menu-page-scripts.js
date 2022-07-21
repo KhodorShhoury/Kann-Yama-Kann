@@ -1,7 +1,4 @@
 
-
-
-
 // Import the functions you need from the SDKs you need
 import {
 	initializeApp
@@ -40,16 +37,7 @@ export {
 	collection
 }
 const db = getFirestore();
-
-
-
-
-
 //---------------------------------------- get data fromFireBase --------------------------------------
-
-
-
-
 async function GetAllDocumentsRealTime() {
 	const dbRef = collection(db, "meals");
 
@@ -64,15 +52,10 @@ async function GetAllDocumentsRealTime() {
 	})
 
 }
-
-
-
-
-
 // --------------------------------------------------- Add Menu meals ------------------------------------------------------------
 let menu = document.querySelector("#menu");
 let mealContainer = document.getElementById("menu-container");
-
+var allMeals;
 function createMealCard(meals) {
 	mealContainer.innerHTML = "";
 	meals.forEach(mealCard => {
@@ -105,7 +88,11 @@ function createMealCard(meals) {
 		//-create meal price
 		let mealPrice = document.createElement("p");
 		mealPrice.className = "meal-price";
-		mealPrice.innerHTML = mealCard.MealPrice;
+		let priceSpan = document.createElement("span");
+		priceSpan.classList.add("price");
+		priceSpan.innerHTML = mealCard.MealPrice;
+
+		mealPrice.appendChild(priceSpan)
 
 		//-create meal price $
 		let mealPriceCur = document.createElement("span");
@@ -117,8 +104,7 @@ function createMealCard(meals) {
 		mealType.className = "meal-type";
 		mealType.innerHTML = mealCard.MealCateg;
 
-		meal.appendChild(mealImageTop);
-		meal.appendChild(mealBody);
+
 
 		mealBody.appendChild(mealName)
 		mealBody.appendChild(mealDesc)
@@ -128,19 +114,21 @@ function createMealCard(meals) {
 		mealPriceDiv.appendChild(mealPrice)
 		mealPrice.prepend(mealPriceCur)
 
+		meal.appendChild(mealImageTop);
+		meal.appendChild(mealBody);
+
 		mealContainer.appendChild(meal);
 		menu.appendChild(mealContainer);
+
 	})
-
+	allMeals = [...document.querySelectorAll(".meal")];
 }
-
+setTimeout(() => {
+	[...mealContainer.children].sort((a,b)=>{
+parseFloat(a.querySelector(".meal-body .meal-price-div .meal-price .price").innerHTML)  - parseFloat(b.querySelector(".meal-body .meal-price-div .meal-price .price").innerHTML); 
+})
+}, 2000);
 //--------------------------------------------------------offers----------------------------------------
-
-
-
-
-
-
 async function getOffersImageFromFirestoreRealtime() {
 	const dbRef = collection(db, "offersImages");
 
@@ -154,8 +142,6 @@ async function getOffersImageFromFirestoreRealtime() {
 
 	})
 }
-
-
 
 let offers = document.getElementById("offers");
 let offersSwiperWrapper = document.querySelector(".offers-swiper-wrapper");
