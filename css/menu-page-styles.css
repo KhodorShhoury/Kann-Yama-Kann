@@ -264,7 +264,7 @@ ul {
 }
 .menu .meals-filter{
   position: absolute;
-  right: 100px;
+  right: 10%;
   top: 200px;
   color: black;
 }
@@ -305,8 +305,8 @@ ul {
   color: var(--main-color);
   font-weight: 700;
 }
-.menu .container .meal .meal-body .meal-price-div .meal-price span{
-  font-size: 12px;
+.menu .container .meal .meal-body .meal-price-div .meal-price .meal-price-currency{
+  font-size: 14px;
 }
 .menu .container .meal .meal-body .meal-type {
   display: inline-block;
