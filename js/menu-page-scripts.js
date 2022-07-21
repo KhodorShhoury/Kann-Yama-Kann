@@ -56,8 +56,9 @@ async function GetAllDocumentsRealTime() {
 let menu = document.querySelector("#menu");
 let mealContainer = document.getElementById("menu-container");
 var allMeals;
+let categorySelect = document.querySelector(".meals-filter");
 function createMealCard(meals) {
-	mealContainer.innerHTML = "";
+	
 	meals.forEach(mealCard => {
 		//-create meal
 		let meal = document.createElement("div");
@@ -104,8 +105,17 @@ function createMealCard(meals) {
 		mealType.className = "meal-type";
 		mealType.innerHTML = mealCard.MealCateg;
 
-
-
+		meal.dataset.filter = mealCard.MealCateg;
+		
+		let filterResult = [...categorySelect.querySelectorAll("option")].every(option =>{
+		 return	option.value !== mealCard.MealCateg && option.innerHTML !== mealCard.MealCateg;			
+		})
+		if(filterResult){
+			let newOpt = document.createElement("option");
+				newOpt.value = mealCard.MealCateg;
+				newOpt.innerHTML = mealCard.MealCateg;
+				categorySelect.appendChild(newOpt)
+		}
 		mealBody.appendChild(mealName)
 		mealBody.appendChild(mealDesc)
 		mealBody.appendChild(mealPriceDiv)
@@ -123,11 +133,24 @@ function createMealCard(meals) {
 	})
 	allMeals = [...document.querySelectorAll(".meal")];
 }
-setTimeout(() => {
-	[...mealContainer.children].sort((a,b)=>{
-parseFloat(a.querySelector(".meal-body .meal-price-div .meal-price .price").innerHTML)  - parseFloat(b.querySelector(".meal-body .meal-price-div .meal-price .price").innerHTML); 
-})
-}, 2000);
+
+//filter meals
+categorySelect.addEventListener("change",filterMeals);
+
+function filterMeals(){
+	if(categorySelect.value.toLowerCase() == "all"){
+		allMeals.forEach(meal=>{
+			meal.style.display = "block";
+		})
+	}else{
+		allMeals.forEach(meal=>{
+			meal.getAttribute('data-filter').toLowerCase() == categorySelect.value.toLowerCase()
+			?meal.style.display = "block"
+			:meal.style.display = "none"
+		})
+	}
+	
+}
 //--------------------------------------------------------offers----------------------------------------
 async function getOffersImageFromFirestoreRealtime() {
 	const dbRef = collection(db, "offersImages");

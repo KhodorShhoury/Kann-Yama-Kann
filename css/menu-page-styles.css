@@ -260,6 +260,13 @@ ul {
 .menu {
   padding-top: var(--main-padding-top);
   padding-bottom: var(--main-padding-bottom);
+  position: relative;
+}
+.menu .meals-filter{
+  position: absolute;
+  right: 100px;
+  top: 200px;
+  color: black;
 }
 .menu .container {
   display: grid;
