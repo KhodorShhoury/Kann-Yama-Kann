@@ -58,7 +58,9 @@ let mealContainer = document.getElementById("menu-container");
 var allMeals;
 let categorySelect = document.querySelector(".meals-filter");
 function createMealCard(meals) {
+	categorySelect.innerHTML = "<option class = 'all'> All </opttion>";
 	
+	mealContainer.innerHTML = "";
 	meals.forEach(mealCard => {
 		//-create meal
 		let meal = document.createElement("div");
