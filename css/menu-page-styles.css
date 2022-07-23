@@ -303,6 +303,7 @@ ul {
 .menu .container .meal .meal-body .meal-price-div {
   display: inline-block;
   margin-bottom: 15px;
+  width:20%;
 }
 .menu .container .meal .meal-body .meal-price-div .meal-price {
   font-size: 16px;
@@ -316,7 +317,7 @@ ul {
   display: inline-block;
   justify-self: right;
   color: var(--paragraph-color);
-  width: 130px;
+  width: 80%;
   text-align: right;
 }
 .show-meal-img-div{
