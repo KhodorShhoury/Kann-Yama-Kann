@@ -314,9 +314,10 @@ ul {
 }
 .menu .container .meal .meal-body .meal-type {
   display: inline-block;
-  position: absolute;
-  right: 0;
+  justify-self: right;
   color: var(--paragraph-color);
+  width: 130px;
+  text-align: right;
 }
 .show-meal-img-div{
   position: fixed;
