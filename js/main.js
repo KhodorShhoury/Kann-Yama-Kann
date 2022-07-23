@@ -25,7 +25,6 @@ function handleNavLinksActive(e) {
 }
 
 navLinks.forEach(navlink => navlink.addEventListener("click", handleNavLinksActive))
-
 const sections = [...document.querySelectorAll(".section")];
 
 function navLinksHighLight() {
@@ -46,6 +45,7 @@ function navLinksHighLight() {
 	});
 }
 window.addEventListener("scroll", navLinksHighLight);
+window.addEventListener("load", navLinksHighLight);
 
 //start gallery
 var swiper = new Swiper(".gallery-swiper", {
