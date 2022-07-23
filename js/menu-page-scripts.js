@@ -153,6 +153,36 @@ function filterMeals(){
 	}
 	
 }
+
+
+let showMealImgDiv = document.querySelector(".show-meal-img-div");
+let mealImgDiv = document.querySelector(".show-meal-img-container .image");
+let mealCloneElement;
+function showMealImg(e){
+	mealCloneElement= e.currentTarget.cloneNode()
+	mealImgDiv.appendChild(mealCloneElement);
+	showMealImgDiv.classList.add("active");
+	document.body.classList.add("overflow-hidden")
+	setTimeout(() => {
+		showMealImgDiv.style.opacity= 1;
+	}, 10);
+}
+window.addEventListener("load",function(){
+	setTimeout(() => {
+		allMeals.forEach(img=>img.querySelector("img").addEventListener("click",showMealImg)
+		)
+	}, 3000);
+})
+
+
+let hideMealImgIcon = document.querySelector("#hide-meal-img");
+hideMealImgIcon.addEventListener("click",hideMealImg);
+function hideMealImg(){
+	showMealImgDiv.classList.remove("active");
+	document.body.classList.remove("overflow-hidden")
+	showMealImgDiv.style.opacity= 0;
+	mealImgDiv.removeChild(mealCloneElement)
+}
 //--------------------------------------------------------offers----------------------------------------
 async function getOffersImageFromFirestoreRealtime() {
 	const dbRef = collection(db, "offersImages");
@@ -177,6 +207,7 @@ function createOffersSwiperSlide(offersImages) {
 	offersImages.forEach(img => {
 		let offersSwiperSlide = document.createElement("div");
 		offersSwiperSlide.classList.add("swiper-slide");
+		offersSwiperSlide.classList.add("offer-swiper-slide");
 
 		let offerImg = document.createElement("img");
 		offerImg.classList.add("offer-img");
@@ -187,7 +218,7 @@ function createOffersSwiperSlide(offersImages) {
 
 		offersSwiperWrapper.appendChild(offersSwiperSlide);
 	})
-	offersImagesElements = [... document.querySelectorAll(".offer-img")]
+	offersImagesElements = [... document.querySelectorAll(".offer-swiper-slide")]
 }
 
 setTimeout(() => {
@@ -233,9 +264,10 @@ let showOfferImgDiv = document.querySelector(".show-offer-img-div");
 let offerImgDiv = document.querySelector(".show-offer-img-container .image");
 let cloneElement;
 function showofferImg(e){
-	cloneElement= e.currentTarget.cloneNode()
+	cloneElement= e.currentTarget.querySelector("img").cloneNode()
 	offerImgDiv.appendChild(cloneElement);
 	showOfferImgDiv.classList.add("active");
+	document.body.classList.add("overflow-hidden")
 	setTimeout(() => {
 		showOfferImgDiv.style.opacity= 1;
 	}, 10);
@@ -252,6 +284,7 @@ let hideOfferImgIcon = document.querySelector("#hide-offer-img");
 hideOfferImgIcon.addEventListener("click",hideofferImg);
 function hideofferImg(){
 	showOfferImgDiv.classList.remove("active");
+	document.body.classList.remove("overflow-hidden")
 	showOfferImgDiv.style.opacity= 0;
 	offerImgDiv.removeChild(cloneElement)
 }

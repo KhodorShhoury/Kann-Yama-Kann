@@ -1,3 +1,4 @@
+
 // handle header position fixed
 //variables
 let headerSection = document.querySelector(".header"); //header section
@@ -203,9 +204,9 @@ function showTourImg(e){
 	cloneElement= e.currentTarget.cloneNode()
 	tourImgDiv.appendChild(cloneElement);
 	showTourImgDiv.classList.add("active");
+	document.body.classList.add("overflow-hidden")
 	setTimeout(() => {
 		showTourImgDiv.style.opacity= 1;
-		console.log("ww")
 	}, 10);
 }
 window.addEventListener("load",function(){
@@ -220,6 +221,7 @@ let hideTourImgIcon = document.querySelector("#hide-tour-img");
 hideTourImgIcon.addEventListener("click",hideTourImg);
 function hideTourImg(){
 	showTourImgDiv.classList.remove("active");
+	document.body.classList.remove("overflow-hidden")
 	showTourImgDiv.style.opacity= 0;
 	tourImgDiv.removeChild(cloneElement)
 }
