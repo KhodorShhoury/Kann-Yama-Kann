@@ -297,7 +297,7 @@ ul {
 }
 .menu .container .meal .meal-body .meal-desc {
   font-size: 15px;
-  margin: 15px 0px;
+  margin: 15px 0px 20px;
   color: var(--paragraph-color);
 }
 .menu .container .meal .meal-body .meal-price-div {
@@ -317,7 +317,7 @@ ul {
   display: inline-block;
   justify-self: right;
   color: var(--paragraph-color);
-  width: 50%;
+  width: 60%;
   text-align: right;
   overflow-block: scroll;
   position: absolute;
