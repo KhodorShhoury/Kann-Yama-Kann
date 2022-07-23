@@ -299,6 +299,7 @@ ul {
   font-size: 15px;
   margin: 15px 0px 20px;
   color: var(--paragraph-color);
+  width: 90%;
 }
 .menu .container .meal .meal-body .meal-price-div {
   display: inline-block;
