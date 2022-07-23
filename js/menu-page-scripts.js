@@ -179,7 +179,7 @@ let hideMealImgIcon = document.querySelector("#hide-meal-img");
 hideMealImgIcon.addEventListener("click",hideMealImg);
 function hideMealImg(){
 	showMealImgDiv.classList.remove("active");
-	document.body.classList.remove("overflow-hidden")
+	document.body.classList.remove("overflow-hidden");
 	showMealImgDiv.style.opacity= 0;
 	mealImgDiv.removeChild(mealCloneElement)
 }

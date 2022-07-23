@@ -364,11 +364,13 @@ delBtn.addEventListener("click", DeleteDocument);
 //variable
 let tableBody = document.querySelector(".tbody1")
 let mealNo = 0;
-
+let categorySelect = document.querySelector(".meals-filter");
+let allMeals;
 //Add Item To Table
 function AddItemToTable(mealId, mealName, mealDesc, mealPrice, mealCateg) {
 	// create table elements
 	let tableTr = document.createElement("tr");
+	tableTr.classList.add("meal");
 	let tableTd1 = document.createElement("td");
 	let tableTd2 = document.createElement("td");
 	let tableTd3 = document.createElement("td");
@@ -382,6 +384,7 @@ function AddItemToTable(mealId, mealName, mealDesc, mealPrice, mealCateg) {
 	tableTd4.innerHTML = mealDesc;
 	tableTd5.innerHTML = "L.L" + mealPrice;
 	tableTd6.innerHTML = mealCateg;
+	tableTd6.dataset.filter = mealCateg;
 	//append table elements
 	tableTr.appendChild(tableTd1);
 	tableTr.appendChild(tableTd2);
@@ -391,6 +394,17 @@ function AddItemToTable(mealId, mealName, mealDesc, mealPrice, mealCateg) {
 	tableTr.appendChild(tableTd6);
 	//append table body
 	tableBody.appendChild(tableTr);
+	
+	let filterResult = [...categorySelect.querySelectorAll("option")].every(option =>{
+		return	option.value !== mealCateg && option.innerHTML !== mealCateg;			
+	   })
+	   if(filterResult){
+		   let newOpt = document.createElement("option");
+			   newOpt.value = mealCateg;
+			   newOpt.innerHTML = mealCateg;
+			   categorySelect.appendChild(newOpt)
+	   }
+	   allMeals = [...document.querySelectorAll(".meal")];
 }
 //Add All Items To Table
 function AddAllItemsToTable(meals) {
@@ -399,6 +413,27 @@ function AddAllItemsToTable(meals) {
 	meals.forEach(meal => {
 		AddItemToTable(meal.MealId, meal.MealName, meal.MealDesc, meal.MealPrice, meal.MealCateg)
 	})
+}
+
+
+//filter meals
+categorySelect.addEventListener("change",filterMeals);
+
+function filterMeals(){
+	if(categorySelect.value.toLowerCase() == "all"){
+		allMeals.forEach(meal=>{
+			meal.style.display = "table-row";
+			categorySelect.style.textAlign = "start";
+		})
+	}else{
+		allMeals.forEach(meal=>{
+			categorySelect.style.textAlign = "center";
+			meal.querySelector("[data-filter]").getAttribute('data-filter').toLowerCase() == categorySelect.value.toLowerCase()
+			?meal.style.display = "table-row"
+			:meal.style.display = "none"
+		})
+	}
+	
 }
 
 //Get DocumentOnce
