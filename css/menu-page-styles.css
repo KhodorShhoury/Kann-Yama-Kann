@@ -274,8 +274,8 @@ ul {
 }
 .menu .container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
 }
 .menu .container .meal {
   box-shadow: 0 0 10px var(--box-shadow-color);
@@ -291,7 +291,7 @@ ul {
   position: relative;
 }
 .menu .container .meal .meal-body .meal-name {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 700;
   margin-top: 10px;
 }
@@ -317,8 +317,12 @@ ul {
   display: inline-block;
   justify-self: right;
   color: var(--paragraph-color);
-  width: 80%;
+  width: 50%;
   text-align: right;
+  overflow-block: scroll;
+  position: absolute;
+  right: 10px;
+  align-items: center;
 }
 .show-meal-img-div{
   position: fixed;
