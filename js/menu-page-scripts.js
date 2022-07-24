@@ -136,7 +136,6 @@ function createMealCard(meals) {
 	let allCateg = document.createElement("option");
 	allCateg.innerHTML = `All: ${allMeals.length}`;
 	allCateg.value = "All";
-	categorySelect.prepend(allCateg);
 	categorySelect.value = allCateg.value;
 }
 
