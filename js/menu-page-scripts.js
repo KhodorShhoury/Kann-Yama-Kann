@@ -222,48 +222,47 @@ function createOffersSwiperSlide(offersImages) {
 
 		offersSwiperWrapper.appendChild(offersSwiperSlide);
 	})
-	offersImagesElements = [... document.querySelectorAll(".offer-swiper-slide")]
+	offersImagesElements = [... document.querySelectorAll(".offer-swiper-slide")];
+		var swiper = new Swiper(".offers-swiper", {
+			slidesPerView: 3,
+			spaceBetween: 30,
+			freeMode: false,
+			loop: true,
+			keyboard: {
+				enabled: true,
+			},
+			autoplay: {
+				delay: 2500,
+				disableOnInteraction: false,
+			},
+			pagination: {
+				el: ".swiper-pagination",
+				clickable: true,
+			},
+			navigation: {
+				nextEl: ".swiper-button-next",
+				prevEl: ".swiper-button-prev",
+			},
+			// Navigation arrows
+	
+			breakpoints: {
+				0: {
+					slidesPerView: 1
+				},
+				480: {
+					slidesPerView: 2
+				},
+				991: {
+					slidesPerView: 3
+				},
+				1199: {
+					slidesPerView: 4
+				},
+			}
+		});
 }
 
-setTimeout(() => {
-	var swiper = new Swiper(".offers-swiper", {
-		slidesPerView: 3,
-		spaceBetween: 30,
-		freeMode: false,
-		loop: true,
-		keyboard: {
-			enabled: true,
-		},
-		autoplay: {
-			delay: 2500,
-			disableOnInteraction: false,
-		},
-		pagination: {
-			el: ".swiper-pagination",
-			clickable: true,
-		},
-		navigation: {
-			nextEl: ".swiper-button-next",
-			prevEl: ".swiper-button-prev",
-		},
-		// Navigation arrows
 
-		breakpoints: {
-			0: {
-				slidesPerView: 1
-			},
-			480: {
-				slidesPerView: 2
-			},
-			991: {
-				slidesPerView: 3
-			},
-			1199: {
-				slidesPerView: 4
-			},
-		}
-	});
-}, 5000);
 let showOfferImgDiv = document.querySelector(".show-offer-img-div");
 let offerImgDiv = document.querySelector(".show-offer-img-container .image");
 let cloneElement;

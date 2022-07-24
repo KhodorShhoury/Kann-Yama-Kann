@@ -155,10 +155,6 @@ function createTournamentsSwiperSlide(TournamentsImages) {
 	})
 
 	tourImages = [...document.querySelectorAll(".tour-img")];
-
-}
-
-setTimeout(() => {
 	var TourSwiper = new Swiper(".tournaments-swiper", {
 		slidesPerView: 3,
 		spaceBetween: 30,
@@ -195,8 +191,10 @@ setTimeout(() => {
 			},
 		}
 	});
-}, 4000);
- 
+
+}
+
+
 let showTourImgDiv = document.querySelector(".show-tour-img-div");
 let tourImgDiv = document.querySelector(".show-tour-img-container .image");
 let cloneElement;
