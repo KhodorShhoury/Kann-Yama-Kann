@@ -346,6 +346,7 @@ async function deleteMealImageFromStorage() {
 		alert(error)
 	});
 }
+
 // --------------------------------------- buttons event -----------------------------------------------------------------------
 insBtn.addEventListener("click", (e) => {
 	e.preventDefault();

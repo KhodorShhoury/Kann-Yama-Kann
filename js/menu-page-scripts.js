@@ -60,6 +60,7 @@ let categorySelect = document.querySelector(".meals-filter");
 function createMealCard(meals) {
 	
 	mealContainer.innerHTML = "";
+	categorySelect.innerHTML = "";
 	meals.forEach(mealCard => {
 		//-create meal
 		let meal = document.createElement("div");
@@ -136,11 +137,13 @@ function createMealCard(meals) {
 	let allCateg = document.createElement("option");
 	allCateg.innerHTML = `All: ${allMeals.length}`;
 	allCateg.value = "All";
-	categorySelect.value = allCateg.value;
+	categorySelect.prepend(allCateg);
+	allCateg.selected = "selected";
 }
 
 //filter meals
 categorySelect.addEventListener("change",filterMeals);
+categorySelect.addEventListener("select",filterMeals);
 function filterMeals(){
 	if(categorySelect.value.toLowerCase() == "all"){
 		allMeals.forEach(meal=>{
