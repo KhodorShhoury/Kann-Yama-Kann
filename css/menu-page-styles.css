@@ -311,6 +311,7 @@ ul {
   display: inline-flex;
   flex-wrap: wrap;
   max-width: 40%;
+  align-items: center;
 }
 .menu .container .meal .meal-body .meal-price-div .meal-price {
 
@@ -321,7 +322,6 @@ ul {
   font-weight: 700;
   display: inline-flex;
   flex-wrap: wrap;
-  max-width: 30px;
 }
 .menu .container .meal .meal-body .meal-price-div .meal-price .meal-price-currency{
   font-size: 13px;
@@ -334,13 +334,12 @@ ul {
 }
 .menu .container .meal .meal-body .meal-type {
   display: inline-block;
-  justify-self: right;
   color: var(--paragraph-color);
-  max-width: 55%;
+  max-width: 60%;
   text-align: right;
   position: absolute;
   right: 10px;
-  align-items: center;
+
   font-size: 14px;
 }
 .show-meal-img-div{
