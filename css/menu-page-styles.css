@@ -284,45 +284,64 @@ ul {
 .menu .container .meal .meal-img-top {
   border-radius: var(--main-border-radius);
   width: 100%;
-  max-width: 100%;
   height: 180px;
+  max-height: 180px;
 }
 .menu .container .meal .meal-body {
   position: relative;
 }
 .menu .container .meal .meal-body .meal-name {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
-  margin-top: 10px;
+  margin: 15px 0px;
+}
+@media(max-width:767px){
+  .menu .container .meal .meal-body .meal-name {
+    font-size: 18px;
+  }
 }
 .menu .container .meal .meal-body .meal-desc {
-  font-size: 15px;
-  margin: 15px 0px 20px;
+  font-size: 14px;
   color: var(--paragraph-color);
   width: 90%;
+  margin-bottom: 15px;
 }
 .menu .container .meal .meal-body .meal-price-div {
-  display: inline-block;
-  margin-bottom: 15px;
-  max-width:20%;
+  margin-bottom: 5px;
+  display: inline-flex;
+  flex-wrap: wrap;
+  max-width: 40%;
 }
 .menu .container .meal .meal-body .meal-price-div .meal-price {
-  font-size: 16px;
+
+}
+.menu .container .meal .meal-body .meal-price-div .meal-price .price{
+  font-size: 15px;
   color: var(--main-color);
   font-weight: 700;
+  display: inline-flex;
+  flex-wrap: wrap;
+  max-width: 30px;
 }
 .menu .container .meal .meal-body .meal-price-div .meal-price .meal-price-currency{
+  font-size: 13px;
+  display: inline-flex;
+}
+.menu .container .meal .meal-body .meal-price-div .meal-price .meal-price-currency span{
   font-size: 14px;
+  font-weight: bold;
+  color: var(--main-color);
 }
 .menu .container .meal .meal-body .meal-type {
   display: inline-block;
   justify-self: right;
   color: var(--paragraph-color);
-  width: 60%;
+  max-width: 55%;
   text-align: right;
   position: absolute;
   right: 10px;
   align-items: center;
+  font-size: 14px;
 }
 .show-meal-img-div{
   position: fixed;

@@ -83,7 +83,7 @@ function createMealCard(meals) {
 		//-create meal description
 		let mealDesc = document.createElement("p");
 		mealDesc.className = "meal-desc";
-		mealDesc.innerHTML = mealCard.MealDesc;
+		mealDesc.innerHTML = mealCard.MealDesc.toUpperCase();
 		//-create Meal Price
 		let mealPriceDiv = document.createElement("div");
 		mealPriceDiv.className = "meal-price-div";
@@ -105,7 +105,7 @@ function createMealCard(meals) {
 		//-create meal type
 		let mealType = document.createElement("p");
 		mealType.className = "meal-type";
-		mealType.innerHTML = mealCard.MealCateg;
+		mealType.innerHTML = mealCard.MealCateg.toUpperCase();
 
 		meal.dataset.filter = mealCard.MealCateg;
 		

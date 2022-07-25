@@ -233,10 +233,10 @@ async function updateFieldsInADocument(url) {
 		await updateDoc(
 				ref, {
 					MealId: mealId.value,
-					MealName: mealName.value,
-					MealDesc: mealDesc.value,
-					MealPrice: mealPrice.value,
-					MealCateg: mealCateg.value,
+					...(mealName.value.length > 0 && {MealName: mealName.value}),
+					...(mealDesc.value.length > 0 && {MealDesc: mealDesc.value,}),
+					...(mealPrice.value.length > 0 && {MealPrice: mealPrice.value,}),
+					...(mealCateg.value.length > 0 && {MealCateg: mealCateg.value,}),
 					MealImageName: (name + extension),
 					MealImageURL: url
 				}
@@ -252,10 +252,10 @@ async function updateFieldsInADocument(url) {
 		await updateDoc(
 				ref, {
 					MealId: mealId.value,
-					MealName: mealName.value,
-					MealDesc: mealDesc.value,
-					MealPrice: mealPrice.value,
-					MealCateg: mealCateg.value,
+					...(mealName.value.length > 0 && {MealName: mealName.value}),
+					...(mealDesc.value.length > 0 && {MealDesc: mealDesc.value,}),
+					...(mealPrice.value.length > 0 && {MealPrice: mealPrice.value,}),
+					...(mealCateg.value.length > 0 && {MealCateg: mealCateg.value,}),
 				}
 
 			)
