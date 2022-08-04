@@ -68,11 +68,11 @@ function createMealCard(meals) {
 
 
 		//-create mealImage
-		// let mealImageTop = document.createElement("img");
-		// mealImageTop.className = "meal-img-top";
-		// mealImageTop.src = mealCard.MealImageURL;
-		// mealImageTop.alt = "meal-img";
-		//-create mealBody
+		let mealImageTop = document.createElement("img");
+		mealImageTop.className = "meal-img-top";
+		mealImageTop.src = mealCard.MealImageURL;
+		mealImageTop.alt = "meal-img";
+// 		-create mealBody
 		let mealBody = document.createElement("div");
 		mealBody.className = "meal-body";
 
@@ -127,6 +127,7 @@ function createMealCard(meals) {
 		mealPrice.prepend(mealPriceCur)
 
 		// meal.appendChild(mealImageTop);
+		meal.appendChild(mealImageTop);
 		meal.appendChild(mealBody);
 
 		mealContainer.appendChild(meal);
@@ -174,12 +175,12 @@ function showMealImg(e){
 		showMealImgDiv.style.opacity= 1;
 	}, 10);
 }
-// window.addEventListener("load",function(){
-// 	setTimeout(() => {
-// 		allMeals.forEach(img=>img.querySelector("img").addEventListener("click",showMealImg)
-// 		)
-// 	}, 3000);
-// })
+window.addEventListener("load",function(){
+	setTimeout(() => {
+		allMeals.forEach(img=>img.querySelector("img").addEventListener("click",showMealImg)
+		)
+	}, 3000);
+})
 
 
 let hideMealImgIcon = document.querySelector("#hide-meal-img");
