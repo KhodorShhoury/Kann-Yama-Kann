@@ -1,0 +1,63 @@
+//media queries
+
+@mixin media($viewport){
+    
+}
+
+
+//   Overlay Mixin
+//   Accept Argument => Color
+//   Example: @include overlay(black, .5);
+
+@mixin overlay($color, $opacity) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color, $opacity);
+}
+
+// auto add prefixes
+@mixin prefixer($property, $value, $prefixes: webkit moz o ms) {
+    @each $prefix in $prefixes {
+    #{'-' + $prefix + '-' + $property}: $value;
+    }
+
+    // Output standard non-prefixed declaration
+    #{$property}: $value;
+}
+
+
+//  ** Animation Mixin For All Browser
+//  ** Accept Argument => Animation Name
+//  ** Example: @include keyframes(SlideUpAndDown)
+
+
+@mixin keyframes($name) {
+    @-webkit-keyframes #{$name} {
+    @content;
+    }
+    @-moz-keyframes #{$name} {
+    @content;
+    }
+    @keyframes #{$name} {
+    @content;
+    }
+}
+
+
+//centering
+@mixin centerer() {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include prefixer(transform, translate(-50%, -50%), webkit moz o);
+}
+
+  //circle shape
+@mixin circle($dimension) {
+    width: $dimension;
+    height: $dimension;
+    border-radius: 50%;
+}

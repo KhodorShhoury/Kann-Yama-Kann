@@ -159,7 +159,7 @@ function createTournamentsSwiperSlide(TournamentsImages) {
 		slidesPerView: 3,
 		spaceBetween: 30,
 		freeMode: false,
-		loop: true,
+		loop: false,
 		keyboard: {
 			enabled: true,
 		},
@@ -193,7 +193,6 @@ function createTournamentsSwiperSlide(TournamentsImages) {
 	});
 
 }
-
 
 let showTourImgDiv = document.querySelector(".show-tour-img-div");
 let tourImgDiv = document.querySelector(".show-tour-img-container .image");

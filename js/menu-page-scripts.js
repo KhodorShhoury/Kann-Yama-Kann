@@ -72,7 +72,7 @@ function createMealCard(meals) {
 		mealImageTop.className = "meal-img-top";
 		mealImageTop.src = mealCard.MealImageURL;
 		mealImageTop.alt = "meal-img";
-// 		-create mealBody
+		//-create mealBody
 		let mealBody = document.createElement("div");
 		mealBody.className = "meal-body";
 
@@ -126,7 +126,6 @@ function createMealCard(meals) {
 		mealPriceDiv.appendChild(mealPrice)
 		mealPrice.prepend(mealPriceCur)
 
-		// meal.appendChild(mealImageTop);
 		meal.appendChild(mealImageTop);
 		meal.appendChild(mealBody);
 

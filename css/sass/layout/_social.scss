@@ -1,0 +1,35 @@
+.social {
+    padding-bottom: $mainPaddingBottom;
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        .follow-us {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            justify-content: center;
+            align-items: center;
+            .box {
+                height: 80px;
+                border-radius: $main-border-radius;
+                i {
+                    font-size: 50px;
+                    margin-right: 10px;
+                }
+                a {
+                    display: block;
+                    font-size: 18px;
+                    font-weight: bold;
+                    color: white;
+                    background-color: $main-color;
+                    height: 80px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: $main-border-radius;
+                }
+            }
+        }
+    }
+}

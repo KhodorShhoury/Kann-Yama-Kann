@@ -1110,8 +1110,3 @@ TourupdBtn.onclick = (e) => {
 	UpdateTourImgProcess();
 }
 //
-
-
-	
-	
-	

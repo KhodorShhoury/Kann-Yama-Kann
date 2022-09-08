@@ -1,0 +1,108 @@
+.footer {
+    background-color: $black-color;
+    padding: 70px 0px 0px;
+    @media ($maxMobile) {
+        text-align: center;
+    }
+    .container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 40px;
+    }
+    .box{
+        h3{
+            font-size: 30px;
+            color: white;
+            font-weight: 700;
+        }
+        .social-media {
+            display: flex;
+            align-items: center;
+            margin: 20px 0px;
+            @media ($maxMobile) {
+                justify-content: center;
+            }
+            li {
+                margin-right: 10px;
+                a {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: #313131;
+                    font-size: 20px;
+                    color: $sec-paragraph-color;
+                    width: 50px;
+                    height: 50px;
+                    transition: $main-transition-duration;
+                    &.facebook:hover {
+                        background-color: #1877f2;
+                    }
+                    &.instagram:hover {
+                        background-color: #8a3ab9;
+                    }
+                    &.whatsapp:hover {
+                        background-color: #25d366;
+                    }
+                }
+            }
+
+        }
+        .text {
+            line-height: 2;
+            color: #b9b9b9;
+        }
+        .line {
+            display: flex;
+            align-items: center;
+            color: #b9b9b9;
+            margin-bottom: 30px;
+            @media ($maxMobile) {
+                flex-direction: column;
+            }
+            i {
+                font-size: 25px;
+                color: $main-color;
+                margin-right: 10px;
+                @media ($maxMobile) {
+                    margin-right: 0;
+                    margin-bottom: 15px;
+                }
+            }
+            .info {
+                line-height: 1.7;
+                flex: 1;
+                span {
+                    display: block;
+                }
+            }
+        }
+    }
+    .footer-gallery {
+        max-width: 340px;
+        img {
+            height: 100px;
+            width: 100px;
+            border: 3px solid white;
+            margin: 2px;
+        }
+    }
+    .copyright {
+        padding: 25px 0 25px;
+        text-align: center;
+        color: white;
+        margin: 50px 0 0;
+        border-top: 1px solid #444;
+        font-weight: 700;
+        @media(max-width:480px){
+            font-size: 17px;
+        }
+        a {
+            color: $main-color;
+            text-decoration: underline;
+            transition: all $main-transition-duration;
+            &:hover{
+                color: #333;
+            }
+            }
+    }
+}

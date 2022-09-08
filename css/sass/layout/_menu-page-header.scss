@@ -1,0 +1,80 @@
+.header {
+    width: 100%;
+    background-color: white;
+    @include prefixer(box-shadow,0 0 10px $box-shadow-color);
+    transition: all $main-transition-duration linear;
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 72px;
+            @media ($maxMobile) {
+                width: 100%;
+            }
+            img {
+                max-width: 100%;
+                max-height: 100%;
+            }
+        }
+        .main-nav {
+            display: flex;
+            @media ($maxMobile) {
+                margin: auto;
+            }
+            .nav-link {
+                a{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 72px;
+                    padding: 0px 25px;
+                    color: $black-color;
+                    font-size: 14px;
+                    font-weight: 600;
+                    transition: all $main-transition-duration;
+                    position: relative;
+                    overflow: hidden;
+                    text-transform: uppercase;
+                    @media (max-width: 480px) {
+                        font-size: 10px;
+                    }
+                    @media ($maxMobile) {
+                        padding: 10px;
+                        height: 35px;
+                    }
+                    @media ($maxSmall) {
+                        padding: 0 10px;
+                    }
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        width: 100%;
+                        height: 4px;
+                        background-color: $main-color;
+                        bottom: 0;
+                        left: -100%;
+                        transition: all $main-transition-duration;
+                    }
+                    &:hover {
+                        color: $main-color;
+                        background-color: $grayish-color;
+                        &::before {
+                            left: 0;
+                        }
+                    }
+                }
+                &.active a::before {
+                    left: 0;
+                }
+            }
+        }
+    }
+}

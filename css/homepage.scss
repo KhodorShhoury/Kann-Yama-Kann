@@ -1,0 +1,29 @@
+// import variables
+@import "sass/helpers/variables";
+// import mixins
+@import "sass/helpers/mixins";
+// /import global rules
+@import "sass/layout/global-rules.scss";
+// import grid system
+@import "sass/layout/grid";
+// import buttons
+@import "sass/components/buttons";
+// import header
+@import "sass/layout/header";
+// import main
+@import "sass/layout/main";
+// import gallery
+@import "sass/layout/gallery";
+// import about
+@import "sass/layout/about";
+// import tournaments
+@import "sass/layout/tournaments";
+// import contact
+@import "sass/layout/contact";
+// import social
+@import "sass/layout/social";
+// import footer
+@import "sass/layout/footer";
+
+
+
